@@ -15,16 +15,14 @@ public class Initializer implements WebApplicationInitializer {
 			throws ServletException {
 		AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
 		context.register(ProductionConfig.class);
-		//context.getEnvironment().setActiveProfiles("production");
 
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet(
 				"dispatcher", new DispatcherServlet(context));
 		dispatcher.setLoadOnStartup(1);
 		dispatcher.addMapping("/");
         dispatcher.setInitParameter("throwExceptionIfNoHandlerFound","true");
-		
+
 		servletContext.addFilter("HttpMethodFilter", org.springframework.web.filter.HiddenHttpMethodFilter.class)
 		.addMappingForUrlPatterns(null, false, "/*");
-
 	}
 }

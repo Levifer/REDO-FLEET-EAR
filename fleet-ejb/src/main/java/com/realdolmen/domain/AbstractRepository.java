@@ -1,7 +1,6 @@
 package com.realdolmen.domain;
 
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -21,6 +20,7 @@ public abstract class AbstractRepository<T> {
 
     private List<T> tList = new ArrayList<>();
 
+    @SuppressWarnings("unchecked")
     public List<T> findAll() {
         Query query = entityManager.createQuery("SELECT t FROM " + returnEntityClass().getSimpleName() + " t");
         if (query.getResultList() == null) {

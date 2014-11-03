@@ -9,4 +9,5 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class PackRepository extends AbstractRepository<Pack> {
+
 }

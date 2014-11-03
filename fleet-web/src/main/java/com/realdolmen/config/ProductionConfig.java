@@ -13,6 +13,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
+import org.springframework.ws.client.core.WebServiceTemplate;
 
 @Configuration
 @EnableWebMvc
@@ -77,5 +78,12 @@ public class ProductionConfig extends WebMvcConfigurerAdapter {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
         interceptor.setParamName("locale");
         return interceptor;
+    }
+
+    @Bean
+    public WebServiceTemplate webServiceTemplate(){
+        WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+        webServiceTemplate.setDefaultUri("http://localhost:8080/fleet-ejb/CarModelWebService");
+        return webServiceTemplate;
     }
 }

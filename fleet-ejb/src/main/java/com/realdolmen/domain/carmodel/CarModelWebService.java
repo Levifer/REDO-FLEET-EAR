@@ -19,6 +19,7 @@ public class CarModelWebService {
     @Inject
     private CarModelRepository carModelRepository;
 
+
     @WebResult(name = "carModels")
     @WebMethod
     public List<CarModel> carModels(@WebParam(name = "brand") String brand) {

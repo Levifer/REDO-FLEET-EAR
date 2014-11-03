@@ -100,4 +100,12 @@ public class Pack {
         return id;
     }
 
+    public BigDecimal getPrice(List<Option> options){
+        BigDecimal totelPrice = new BigDecimal(0);
+        for (Option option : options) {
+            totelPrice = totelPrice.add(option.getPrice());
+        }
+        return totelPrice.multiply(new BigDecimal(0.9));
+    }
+
 }

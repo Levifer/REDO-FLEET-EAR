@@ -18,4 +18,16 @@ public class PackWebService {
     @Inject
     private PackRepository packRepository;
 
+    public List<Pack> findAll(){
+        return packRepository.findAll();
+    }
+
+    public Pack findById(Integer id){
+        return packRepository.find(id);
+    }
+
+    public Pack updatePack(Pack pack){
+        return packRepository.update(pack);
+    }
+
 }

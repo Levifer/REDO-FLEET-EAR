@@ -2,6 +2,7 @@ package com.realdolmen.service;
 
 import com.realdolmen.domain.option.OptionRepository;
 import com.realdolmen.domain.option.OptionWebService;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -18,6 +19,9 @@ public class OptionServiceTest {
 
     @Mock
     private OptionRepository optionRepository;
+    @Test
+    public void testTEST() throws Exception {
 
+    }
 
 }

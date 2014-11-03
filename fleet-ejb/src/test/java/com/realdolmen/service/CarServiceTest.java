@@ -2,6 +2,7 @@ package com.realdolmen.service;
 
 import com.realdolmen.domain.car.CarRepository;
 import com.realdolmen.domain.car.CarWebService;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -19,6 +20,8 @@ public class CarServiceTest {
     @Mock
     private CarRepository carRepository;
 
+    @Test
+    public void testTEST() throws Exception {
 
-
+    }
 }

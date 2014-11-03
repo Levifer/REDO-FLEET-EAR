@@ -1,11 +1,14 @@
 package com.realdolmen.domain.car;
 
-import org.springframework.stereotype.Service;
+
+import javax.jws.WebService;
+import javax.transaction.Transactional;
 
 /**
  * Created by BPTAT47 on 30/10/2014.
  */
-@Service
+@WebService
+@Transactional
 public class CarWebService {
 
 

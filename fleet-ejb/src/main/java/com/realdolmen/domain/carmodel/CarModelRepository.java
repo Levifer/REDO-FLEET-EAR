@@ -1,7 +1,6 @@
 package com.realdolmen.domain.carmodel;
 
 import com.realdolmen.domain.AbstractRepository;
-import org.springframework.stereotype.Repository;
 
 import javax.ejb.Stateless;
 import java.util.List;

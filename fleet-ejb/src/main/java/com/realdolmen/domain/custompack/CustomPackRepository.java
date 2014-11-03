@@ -1,11 +1,12 @@
 package com.realdolmen.domain.custompack;
 
 import com.realdolmen.domain.AbstractRepository;
-import org.springframework.stereotype.Repository;
+
+import javax.ejb.Stateless;
 
 /**
  * Created by TLAAU71 on 30/10/2014.
  */
-@Repository
+@Stateless
 public class CustomPackRepository extends AbstractRepository<CustomPack> {
 }

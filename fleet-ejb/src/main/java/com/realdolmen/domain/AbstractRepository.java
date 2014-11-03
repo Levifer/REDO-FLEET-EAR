@@ -1,7 +1,7 @@
 package com.realdolmen.domain;
 
-import org.springframework.stereotype.Repository;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by BPTAT47 on 30/10/2014.
  */
-@Repository
+@Stateless
 public abstract class AbstractRepository<T> {
 
     @PersistenceContext

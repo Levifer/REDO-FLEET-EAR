@@ -196,4 +196,48 @@ public class CarModel {
         this.imageUrl = imageUrl;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CarModel carModel = (CarModel) o;
+
+        if (category != carModel.category) return false;
+        if (co2 != carModel.co2) return false;
+        if (deliveryTime != carModel.deliveryTime) return false;
+        if (fiscalHp != carModel.fiscalHp) return false;
+        if (maxKm != carModel.maxKm) return false;
+        if (minKm != carModel.minKm) return false;
+        if (quarter != carModel.quarter) return false;
+        if (brand != null ? !brand.equals(carModel.brand) : carModel.brand != null) return false;
+        if (fuelType != carModel.fuelType) return false;
+        if (!id.equals(carModel.id)) return false;
+        if (imageUrl != null ? !imageUrl.equals(carModel.imageUrl) : carModel.imageUrl != null) return false;
+        if (pack != null ? !pack.equals(carModel.pack) : carModel.pack != null) return false;
+        if (type != null ? !type.equals(carModel.type) : carModel.type != null) return false;
+        if (year != null ? !year.equals(carModel.year) : carModel.year != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + (brand != null ? brand.hashCode() : 0);
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (fuelType != null ? fuelType.hashCode() : 0);
+        result = 31 * result + (year != null ? year.hashCode() : 0);
+        result = 31 * result + quarter;
+        result = 31 * result + minKm;
+        result = 31 * result + maxKm;
+        result = 31 * result + deliveryTime;
+        result = 31 * result + fiscalHp;
+        result = 31 * result + co2;
+        result = 31 * result + category;
+        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
+        result = 31 * result + (pack != null ? pack.hashCode() : 0);
+        return result;
+    }
 }

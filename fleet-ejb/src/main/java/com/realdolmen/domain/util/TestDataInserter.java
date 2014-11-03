@@ -30,7 +30,7 @@ public class TestDataInserter {
     private OptionRepository optionRepository;
     @Inject
     private PackRepository packRepository;
-    @PersistenceContext
+    @PersistenceContext(unitName = "production")
     private EntityManager entityManager;
 
     public BigDecimal randomGenerator() {

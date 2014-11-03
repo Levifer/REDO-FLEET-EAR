@@ -1,27 +1,27 @@
-package com.realdolmen.service;
+package com.realdolmen.repository;
 
 import com.realdolmen.domain.car.CarRepository;
-import com.realdolmen.domain.car.CarWebService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
- * Created by TLAAU71 on 31/10/2014.
+ * Created by TLAAU71 on 3/11/2014.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class CarServiceTest {
-
+public class CarRepositoryTest {
     @InjectMocks
-    private CarWebService carWebService;
-
-    @Mock
     private CarRepository carRepository;
 
+    @Before
+    public void SetUp(){
+
+    }
+
     @Test
-    public void testFindById() throws Exception {
-        //TODO
+    public void testFindCarById() throws Exception {
+
     }
 }

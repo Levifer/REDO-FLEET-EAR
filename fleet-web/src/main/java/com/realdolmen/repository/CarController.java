@@ -1,4 +1,4 @@
-package com.realdolmen.controller;
+package com.realdolmen.repository;
 
 import com.realdolmen.domain.carmodel.CarModel;
 import com.realdolmen.service.CarModelWebServiceClient;

@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Created by BPTAT47 on 30/10/2014.
  */
-@Stateless
 public abstract class AbstractRepository<T> {
 
     @PersistenceContext

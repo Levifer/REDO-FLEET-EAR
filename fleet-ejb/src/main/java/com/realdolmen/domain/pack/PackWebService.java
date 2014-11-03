@@ -18,25 +18,4 @@ public class PackWebService {
     @Inject
     private PackRepository packRepository;
 
-
-    public List<Pack> findAll(){
-        return packRepository.findAll();
-    }
-
-    public Pack findById(Integer id){
-        return packRepository.find(id);
-    }
-
-    public Pack updatePack(Pack pack){
-        return packRepository.update(pack);
-    }
-
-    public BigDecimal getPrice(List<Option> options){
-        BigDecimal totelPrice = new BigDecimal(0);
-        for (Option option : options) {
-            totelPrice = totelPrice.add(option.getPrice());
-        }
-        return totelPrice.multiply(new BigDecimal(0.9));
-    }
-
 }

@@ -1,0 +1,21 @@
+body > div.container{
+    margin-top:50px;
+}
+
+.defer-image{
+    display: block;
+    background-color:#ffa;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+/* Image aspect ratios - % is relative to width. */
+.image-ratio\:1x2   { padding-top: 200%; }
+.image-ratio\:9x16  { padding-top: 177.777%; }
+.image-ratio\:2x3   { padding-top: 150%; }
+.image-ratio\:3x4   { padding-top: 133.333%; }
+.image-ratio\:1x1   { padding-top: 100%; }
+.image-ratio\:4x3   { padding-top: 75%; }
+.image-ratio\:3x2   { padding-top: 66.66%; }
+.image-ratio\:16x9  { padding-top: 56.25%; }
+.image-ratio\:2x1   { padding-top: 50%; }

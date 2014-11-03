@@ -2,3 +2,7 @@ target
 .idea
 template.iml
 fleet.iml
+fleetParent.iml
+fleet-web/fleet-web.iml
+fleet-ear/fleet-ear.iml
+fleet-ejb/fleet-ejb.iml

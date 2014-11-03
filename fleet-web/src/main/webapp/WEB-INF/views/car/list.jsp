@@ -1,5 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="row">
     <div class="col-md-12"><h2><spring:message code="car.flowTitle.list"/></h2></div>
 </div>
@@ -12,19 +13,16 @@
                 <th><spring:message code="car.type"/></th>
                 <th>&nbsp;</th>
             </tr>
-            <tr>
-                <td>Audi</td>
-                <td>A3</td>
-                <td>Hatchback</td>
-                <td>
-                    <a href="/car/1"><spring:message code="actions.details"/></a>
-                </td>
-            </tr>
+            <c:forEach var="car" items="${cars}">
+                <tr>
+                    <td>${car[1]}</td>
+                    <td>${car[2]}</td>
+                    <td>${car[3]}</td>
+                    <td>
+                        <a href="car/${car[0]}"><spring:message code="actions.details"/></a>
+                    </td>
+                </tr>
+            </c:forEach>
         </table>
     </div>
-</div>
-<div class="row">
-    <form:form>
-        <input type="submit" value="Back" name="_eventId_back" class="btn btn-danger"/>
-    </form:form>
 </div>

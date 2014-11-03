@@ -49,7 +49,7 @@ public class CarModel {
     @XmlElement
     private String imageUrl;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @XmlElement
     private Pack pack;
 

@@ -2,13 +2,15 @@ package com.realdolmen.domain.util;
 
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 /**
  * Created by BPTAT47 on 30/10/2014.
  */
 @Singleton
+@Startup
 public class TestData {
 
     @Inject

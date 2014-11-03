@@ -2,10 +2,7 @@ package com.realdolmen.domain.pack;
 
 import com.realdolmen.domain.option.Option;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.List;
@@ -30,7 +27,7 @@ public class Pack {
     @XmlElement
     private BigDecimal downgrade;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @XmlElement(nillable = true)
     private List<Option> options;
 

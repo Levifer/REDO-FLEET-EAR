@@ -2,6 +2,7 @@ package com.realdolmen.service;
 
 import com.realdolmen.domain.pack.PackRepository;
 import com.realdolmen.domain.pack.PackWebService;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -18,5 +19,8 @@ public class PackServiceTest {
 
     @Mock
     private PackRepository packRepository;
+    @Test
+    public void testTEST() throws Exception {
 
+    }
 }

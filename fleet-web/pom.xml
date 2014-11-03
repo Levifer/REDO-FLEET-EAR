@@ -38,14 +38,12 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
-
         <!-- Spring Web Flow -->
         <dependency>
             <groupId>org.springframework.webflow</groupId>
             <artifactId>spring-webflow</artifactId>
             <version>2.4.1.RELEASE</version>
         </dependency>
-
         <!-- Servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -67,15 +65,18 @@
             <artifactId>jsf-api</artifactId>
             <version>2.1</version>
         </dependency>
-
         <!-- Tiles -->
         <dependency>
             <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-extras</artifactId>
             <version>3.0.5</version>
         </dependency>
-
-
+        <!-- JSR 303 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.2.0.Final</version>
+		</dependency>
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>

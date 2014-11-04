@@ -21,7 +21,6 @@ public class CarModelWebServiceClient extends WebServiceGatewaySupport {
         ObjectFactory of = new ObjectFactory();
         GetCarModelsByBrand request = new GetCarModelsByBrand();
         request.setBrand(brand);
-        GetCarModelsByBrandResponse carModelsResponse = of.createGetCarModelsByBrandResponse();
 
         JAXBElement<GetCarModelsByBrandResponse> response = (JAXBElement<GetCarModelsByBrandResponse>) webServiceTemplate.marshalSendAndReceive(
                 of.createGetCarModelsByBrand(request),

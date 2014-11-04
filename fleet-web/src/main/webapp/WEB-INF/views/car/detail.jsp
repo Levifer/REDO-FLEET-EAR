@@ -8,8 +8,7 @@
 </div>
 <div class="row">
     <div class="col-md-6">
-        <c:out value="${car.brand.toLowerCase()}"/>
-        <img src="<%=request.getContextPath() %>/resources/img/logo/${fn:toLowerCase(car.brand)}.jpg" class="img-responsive"/>
+        <img src="<%=request.getContextPath() %>/resources/img/logo/${fn:toLowerCase(car.brand)}.png" class="img-responsive"/>
     </div>
     <div class="col-md-6">
         <p>${car.brand} ${car.name} (${car.type})</p>

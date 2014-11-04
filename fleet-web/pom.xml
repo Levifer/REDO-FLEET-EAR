@@ -119,6 +119,44 @@
         <finalName>fleet</finalName>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>1.12</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>
+                                    http://localhost:8080/fleet-ejb/CarModelWebService?wsdl
+                                </wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>com.realdolmen.wsdl</packageName>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.5.1</version>

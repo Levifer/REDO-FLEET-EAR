@@ -1,7 +1,10 @@
 package com.realdolmen.repository;
 
+import com.realdolmen.domain.carmodel.CarModel;
+import com.realdolmen.service.CarModelWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
 import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +21,9 @@ import java.util.List;
 public class CarController {
     @LoggerProducer
     private Logger logger;
+
+    @Autowired
+    private CarModelWebServiceClient carModelWebServiceClient;
 
     private boolean error = true;
 
@@ -70,6 +76,7 @@ public class CarController {
     public String home(Model model) {
         logger.info("home");
         model.addAttribute("isLoggedIn",true);
+        carModelWebServiceClient.callWebService("audi");
         return "index";
     }
 

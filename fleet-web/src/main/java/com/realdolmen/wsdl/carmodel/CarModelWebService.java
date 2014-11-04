@@ -22,20 +22,6 @@ public interface CarModelWebService {
 
     /**
      * 
-     * @param type
-     * @return
-     *     returns java.util.List<com.realdolmen.wsdl.carmodel.CarModel>
-     */
-    @WebMethod(action = "getCarModelsByType")
-    @WebResult(name = "carModels", targetNamespace = "")
-    @RequestWrapper(localName = "getCarModelsByType", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetCarModelsByType")
-    @ResponseWrapper(localName = "getCarModelsByTypeResponse", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetCarModelsByTypeResponse")
-    public List<CarModel> getCarModelsByType(
-        @WebParam(name = "type", targetNamespace = "")
-        String type);
-
-    /**
-     * 
      * @param id
      * @return
      *     returns com.realdolmen.wsdl.carmodel.CarModel
@@ -61,5 +47,30 @@ public interface CarModelWebService {
     public List<CarModel> getCarModelsByBrand(
         @WebParam(name = "brand", targetNamespace = "")
         String brand);
+
+    /**
+     * 
+     * @param type
+     * @return
+     *     returns java.util.List<com.realdolmen.wsdl.carmodel.CarModel>
+     */
+    @WebMethod(action = "getCarModelsByType")
+    @WebResult(name = "carModels", targetNamespace = "")
+    @RequestWrapper(localName = "getCarModelsByType", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetCarModelsByType")
+    @ResponseWrapper(localName = "getCarModelsByTypeResponse", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetCarModelsByTypeResponse")
+    public List<CarModel> getCarModelsByType(
+        @WebParam(name = "type", targetNamespace = "")
+        String type);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.realdolmen.wsdl.carmodel.CarModel>
+     */
+    @WebMethod(action = "getAllCarModels")
+    @WebResult(name = "carModels", targetNamespace = "")
+    @RequestWrapper(localName = "getAllCarModels", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetAllCarModels")
+    @ResponseWrapper(localName = "getAllCarModelsResponse", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetAllCarModelsResponse")
+    public List<CarModel> getAllCarModels();
 
 }

@@ -25,10 +25,12 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _GetCarModelsByBrandResponse_QNAME = new QName("http://carmodel.domain.realdolmen.com/", "getCarModelsByBrandResponse");
+    private final static QName _GetAllCarModelsResponse_QNAME = new QName("http://carmodel.domain.realdolmen.com/", "getAllCarModelsResponse");
     private final static QName _Pack_QNAME = new QName("http://carmodel.domain.realdolmen.com/", "pack");
     private final static QName _GetCarModelById_QNAME = new QName("http://carmodel.domain.realdolmen.com/", "getCarModelById");
     private final static QName _CarModel_QNAME = new QName("http://carmodel.domain.realdolmen.com/", "carModel");
     private final static QName _Option_QNAME = new QName("http://carmodel.domain.realdolmen.com/", "option");
+    private final static QName _GetAllCarModels_QNAME = new QName("http://carmodel.domain.realdolmen.com/", "getAllCarModels");
     private final static QName _GetCarModelsByTypeResponse_QNAME = new QName("http://carmodel.domain.realdolmen.com/", "getCarModelsByTypeResponse");
     private final static QName _GetCarModelsByType_QNAME = new QName("http://carmodel.domain.realdolmen.com/", "getCarModelsByType");
     private final static QName _GetCarModelByIdResponse_QNAME = new QName("http://carmodel.domain.realdolmen.com/", "getCarModelByIdResponse");
@@ -42,11 +44,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetCarModelsByType }
+     * Create an instance of {@link Option }
      * 
      */
-    public GetCarModelsByType createGetCarModelsByType() {
-        return new GetCarModelsByType();
+    public Option createOption() {
+        return new Option();
+    }
+
+    /**
+     * Create an instance of {@link GetAllCarModelsResponse }
+     * 
+     */
+    public GetAllCarModelsResponse createGetAllCarModelsResponse() {
+        return new GetAllCarModelsResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetCarModelsByBrand }
+     * 
+     */
+    public GetCarModelsByBrand createGetCarModelsByBrand() {
+        return new GetCarModelsByBrand();
     }
 
     /**
@@ -66,19 +84,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetCarModelsByBrandResponse }
+     * Create an instance of {@link GetAllCarModels }
      * 
      */
-    public GetCarModelsByBrandResponse createGetCarModelsByBrandResponse() {
-        return new GetCarModelsByBrandResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetCarModelsByTypeResponse }
-     * 
-     */
-    public GetCarModelsByTypeResponse createGetCarModelsByTypeResponse() {
-        return new GetCarModelsByTypeResponse();
+    public GetAllCarModels createGetAllCarModels() {
+        return new GetAllCarModels();
     }
 
     /**
@@ -90,11 +100,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Option }
+     * Create an instance of {@link GetCarModelsByTypeResponse }
      * 
      */
-    public Option createOption() {
-        return new Option();
+    public GetCarModelsByTypeResponse createGetCarModelsByTypeResponse() {
+        return new GetCarModelsByTypeResponse();
     }
 
     /**
@@ -106,11 +116,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetCarModelsByBrand }
+     * Create an instance of {@link GetCarModelsByType }
      * 
      */
-    public GetCarModelsByBrand createGetCarModelsByBrand() {
-        return new GetCarModelsByBrand();
+    public GetCarModelsByType createGetCarModelsByType() {
+        return new GetCarModelsByType();
+    }
+
+    /**
+     * Create an instance of {@link GetCarModelsByBrandResponse }
+     * 
+     */
+    public GetCarModelsByBrandResponse createGetCarModelsByBrandResponse() {
+        return new GetCarModelsByBrandResponse();
     }
 
     /**
@@ -120,6 +138,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://carmodel.domain.realdolmen.com/", name = "getCarModelsByBrandResponse")
     public JAXBElement<GetCarModelsByBrandResponse> createGetCarModelsByBrandResponse(GetCarModelsByBrandResponse value) {
         return new JAXBElement<GetCarModelsByBrandResponse>(_GetCarModelsByBrandResponse_QNAME, GetCarModelsByBrandResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllCarModelsResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://carmodel.domain.realdolmen.com/", name = "getAllCarModelsResponse")
+    public JAXBElement<GetAllCarModelsResponse> createGetAllCarModelsResponse(GetAllCarModelsResponse value) {
+        return new JAXBElement<GetAllCarModelsResponse>(_GetAllCarModelsResponse_QNAME, GetAllCarModelsResponse.class, null, value);
     }
 
     /**
@@ -156,6 +183,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://carmodel.domain.realdolmen.com/", name = "option")
     public JAXBElement<Option> createOption(Option value) {
         return new JAXBElement<Option>(_Option_QNAME, Option.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllCarModels }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://carmodel.domain.realdolmen.com/", name = "getAllCarModels")
+    public JAXBElement<GetAllCarModels> createGetAllCarModels(GetAllCarModels value) {
+        return new JAXBElement<GetAllCarModels>(_GetAllCarModels_QNAME, GetAllCarModels.class, null, value);
     }
 
     /**

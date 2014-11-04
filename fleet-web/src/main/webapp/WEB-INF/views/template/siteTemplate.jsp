@@ -7,12 +7,14 @@
         <title><tiles:insertAttribute name="title" /></title>
         <link type="text/css" href="<%=request.getContextPath() %>/resources/css/bootstrap.css" rel="stylesheet"/>
         <link type="text/css" href="<%=request.getContextPath() %>/resources/css/style.css" rel="stylesheet"/>
+        <script type="application/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-2.1.1.min.js"></script>
+        <script type="application/javascript" src="<%=request.getContextPath() %>/resources/js/bootstrap.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -37,7 +39,5 @@
             <!-- Body Page -->
             <tiles:insertAttribute name="body" />
         </div>
-        <!--<script type="application/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-2.1.1.min.js"></script>
-        <script type="application/javascript" src="<%=request.getContextPath() %>/resources/js/bootstrap.js"></script>-->
     </body>
 </html>

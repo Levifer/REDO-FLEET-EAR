@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.ws.client.core.WebServiceTemplate;
+import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
 
 @Configuration
 @EnableWebMvc
@@ -81,8 +83,24 @@ public class ProductionConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
+    public Jaxb2Marshaller marshaller(){
+        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+        String[] packages = new String[]{
+                "com.realdolmen.wsdl"
+        };
+        marshaller.setPackagesToScan(packages);
+        return marshaller;
+    }
+
+    @Bean
+    public SaajSoapMessageFactory messageFactory(){
+        return new SaajSoapMessageFactory();
+    }
+
+    @Bean
     public WebServiceTemplate webServiceTemplate(){
-        WebServiceTemplate webServiceTemplate = new WebServiceTemplate();
+        System.out.println("webservicetemplate");
+        WebServiceTemplate webServiceTemplate = new WebServiceTemplate(marshaller(),marshaller());
         webServiceTemplate.setDefaultUri("http://localhost:8080/fleet-ejb/CarModelWebService");
         return webServiceTemplate;
     }

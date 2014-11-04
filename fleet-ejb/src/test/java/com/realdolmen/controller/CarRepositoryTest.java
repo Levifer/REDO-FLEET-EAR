@@ -1,4 +1,4 @@
-package com.realdolmen.repository;
+package com.realdolmen.controller;
 
 import com.realdolmen.ImportPersistenceTest;
 import com.realdolmen.domain.Enums;

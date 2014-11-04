@@ -14,19 +14,21 @@ import java.util.Date;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
 @NamedQueries(
-        {
-           @NamedQuery(name = "CarModel.findAllByBrand",query = "SELECT c FROM CarModel c WHERE c.brand =:brand")
-        }
+    {
+        @NamedQuery(name = "CarModel.findAllByBrand",query = "SELECT c FROM CarModel c WHERE c.brand =:brand"),
+        @NamedQuery(name = "CarModel.findAllByType",query = "SELECT c FROM CarModel c WHERE c.type =:type")
+    }
 )
 public class CarModel {
     @Id
     @GeneratedValue
-    @XmlTransient
     private Integer id;
     @XmlElement
     private String brand;
     @XmlElement
-    private String type;
+    private String name;
+    @XmlElement
+    private Enums.CarType type;
     @XmlElement
     private Enums.Fuel fuelType;
     @Temporal(TemporalType.DATE)
@@ -57,8 +59,9 @@ public class CarModel {
     public CarModel() {
     }
 
-    public CarModel(String brand, String type, Enums.Fuel fuelType, Date year, int quarter, int minKm, int maxKm, int deliveryTime, int fiscalHp, int co2, int category, String imageUrl, Pack pack) {
+    public CarModel(String brand, String name, Enums.CarType type, Enums.Fuel fuelType, Date year, int quarter, int minKm, int maxKm, int deliveryTime, int fiscalHp, int co2, int category, String imageUrl, Pack pack) {
         this.brand = brand;
+        this.name = name;
         this.type = type;
         this.fuelType = fuelType;
         this.year = year;
@@ -73,8 +76,9 @@ public class CarModel {
         this.pack = pack;
     }
 
-    public CarModel(String brand, String type, Enums.Fuel fuelType, Date year, int quarter, Pack pack, int minKm, int maxKm, int deliveryTime, int fiscalHp, int co2, int category) {
+    public CarModel(String brand, String name, Enums.CarType type, Enums.Fuel fuelType, Date year, int quarter, Pack pack, int minKm, int maxKm, int deliveryTime, int fiscalHp, int co2, int category) {
         this.brand = brand;
+        this.name = name;
         this.type = type;
         this.fuelType = fuelType;
         this.year = year;
@@ -96,11 +100,19 @@ public class CarModel {
         this.brand = brand;
     }
 
-    public String getType() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Enums.CarType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Enums.CarType type) {
         this.type = type;
     }
 

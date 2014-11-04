@@ -12,6 +12,14 @@
     <artifactId>fleet-web</artifactId>
     <packaging>war</packaging>
 
+    <repositories>
+        <repository>
+            <id>myWSRepo</id>
+            <name>myWSRepoName</name>
+            <url>https://code.lds.org/svn/stack/modules/ws-spring</url>
+           </repository>
+    </repositories>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java-version>1.7</java-version>
@@ -79,11 +87,11 @@
             <version>3.0.5</version>
         </dependency>
         <!-- JSR 303 -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>4.2.0.Final</version>
-		</dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.2.0.Final</version>
+        </dependency>
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -105,11 +113,163 @@
             <artifactId>log4j</artifactId>
             <version>1.2.14</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.realdolmen</groupId>-->
+            <!--<artifactId>fleet-ejb</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
         <finalName>fleet</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>1.12</version>
+                <executions>
+                    <execution>
+                        <id>wsdl-carmodel</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>
+                                    http://localhost:8080/fleet-ejb/CarModelWebService?wsdl
+                                </wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>com.realdolmen.wsdl.carmodel</packageName>
+                            <destDir>${basedir}/src/main/java</destDir>
+                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>wsdl-car</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>
+                                    http://localhost:8080/fleet-ejb/CarWebService?wsdl
+                                </wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>com.realdolmen.wsdl.car</packageName>
+                            <destDir>${basedir}/src/main/java</destDir>
+                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>wsdl-custompack</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>
+                                    http://localhost:8080/fleet-ejb/CustomPackWebService?wsdl
+                                </wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>com.realdolmen.wsdl.custompack</packageName>
+                            <destDir>${basedir}/src/main/java</destDir>
+                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>wsdl-employee</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>
+                                    http://localhost:8080/fleet-ejb/EmployeeWebService?wsdl
+                                </wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>com.realdolmen.wsdl.employee</packageName>
+                            <destDir>${basedir}/src/main/java</destDir>
+                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>wsdl-option</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>
+                                    http://localhost:8080/fleet-ejb/OptionWebService?wsdl
+                                </wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>com.realdolmen.wsdl.option</packageName>
+                            <destDir>${basedir}/src/main/java</destDir>
+                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>wsdl-pack</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>
+                                    http://localhost:8080/fleet-ejb/PackWebService?wsdl
+                                </wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>com.realdolmen.wsdl.pack</packageName>
+                            <destDir>${basedir}/src/main/java</destDir>
+                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

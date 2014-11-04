@@ -12,6 +12,14 @@
     <artifactId>fleet-web</artifactId>
     <packaging>war</packaging>
 
+    <repositories>
+        <repository>
+            <id>myWSRepo</id>
+            <name>myWSRepoName</name>
+            <url>https://code.lds.org/svn/stack/modules/ws-spring</url>
+           </repository>
+    </repositories>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java-version>1.7</java-version>
@@ -79,11 +87,11 @@
             <version>3.0.5</version>
         </dependency>
         <!-- JSR 303 -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>4.2.0.Final</version>
-		</dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.2.0.Final</version>
+        </dependency>
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -110,6 +118,44 @@
     <build>
         <finalName>fleet</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>1.12</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>
+                                    http://localhost:8080/fleet-ejb/CarModelWebService?wsdl
+                                </wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>com.realdolmen.wsdl</packageName>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

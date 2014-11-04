@@ -16,11 +16,10 @@ import javax.xml.bind.JAXBElement;
  */
 @Service
 public class CarModelWebServiceClient extends WebServiceGatewaySupport {
-
     @Autowired
     private WebServiceTemplate webServiceTemplate;
 
-    public CarModelsResponse getCarModelsByBrand(String brand){
+    public CarModelsResponse getCarModelsByBrand(String brand) {
         ObjectFactory of = new ObjectFactory();
         CarModels request = new CarModels();
         request.setBrand(brand);

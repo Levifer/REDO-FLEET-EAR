@@ -86,7 +86,7 @@ public class ProductionConfig extends WebMvcConfigurerAdapter {
     public Jaxb2Marshaller marshaller(){
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         String[] packages = new String[]{
-                "com.realdolmen.domain"
+                "com.realdolmen.wsdl"
         };
         marshaller.setPackagesToScan(packages);
         return marshaller;

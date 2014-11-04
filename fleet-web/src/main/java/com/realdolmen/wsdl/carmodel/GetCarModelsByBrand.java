@@ -1,5 +1,5 @@
 
-package com.realdolmen.domain.ws.carmodel;
+package com.realdolmen.wsdl.carmodel;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for carModels complex type.
+ * <p>Java class for getCarModelsByBrand complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="carModels">
+ * &lt;complexType name="getCarModelsByBrand">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "carModels", propOrder = {
+@XmlType(name = "getCarModelsByBrand", propOrder = {
     "brand"
 })
-public class CarModels {
+public class GetCarModelsByBrand {
 
     protected String brand;
 

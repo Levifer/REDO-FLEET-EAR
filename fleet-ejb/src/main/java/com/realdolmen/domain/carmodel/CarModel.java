@@ -21,7 +21,6 @@ import java.util.Date;
 public class CarModel {
     @Id
     @GeneratedValue
-    @XmlTransient
     private Integer id;
     @XmlElement
     private String brand;

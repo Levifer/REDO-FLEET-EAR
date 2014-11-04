@@ -21,10 +21,17 @@ public class CarModelWebService {
 
 
     @WebResult(name = "carModels")
-    @WebMethod(action = "getCarModels")
-    public List<CarModel> carModels(@WebParam(name = "brand") String brand) {
-        List<CarModel> fetchedCarModel = carModelRepository.findAllByBrand(brand);
-        return fetchedCarModel;
+    @WebMethod(action = "getCarModelsByBrand")
+    public List<CarModel> getCarModelsByBrand(@WebParam(name = "brand") String brand) {
+        List<CarModel> carModels = carModelRepository.findAllByBrand(brand);
+        return carModels;
+    }
+
+    @WebResult(name = "carModels")
+    @WebMethod(action = "getCarModelsByType")
+    public List<CarModel> getCarModelsByType(@WebParam(name = "type") String type) {
+        List<CarModel> carModels = carModelRepository.findAllByType(type);
+        return carModels;
     }
 
 }

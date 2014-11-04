@@ -11,12 +11,14 @@ import java.util.List;
 @Stateless
 public class CarModelRepository extends AbstractRepository<CarModel>{
 
-   public CarModel findAllByType(){
-      return new CarModel();
-   }
+    public List<CarModel> findAllByType(String type){
+        return entityManager.createNamedQuery("CarModel.findAllByType",CarModel.class)
+                .setParameter("type",type)
+                .getResultList();
+    }
 
     public List<CarModel> findAllByBrand(String brand){
-     return   entityManager.createNamedQuery("CarModel.findAllByBrand",CarModel.class)
+     return entityManager.createNamedQuery("CarModel.findAllByBrand",CarModel.class)
              .setParameter("brand",brand)
              .getResultList();
     }

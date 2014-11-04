@@ -1,10 +1,12 @@
 package com.realdolmen.service;
 
 import com.realdolmen.domain.carmodel.CarModel;
+import com.realdolmen.domain.carmodel.CarModelWebService;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
-import org.springframework.ws.soap.client.core.SoapActionCallback;
-
+import javax.xml.namespace.QName;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -12,9 +14,18 @@ import java.util.List;
  */
 @Service
 public class CarModelWebServiceClient extends WebServiceGatewaySupport {
-    public void callWebService(String brand){
-        List<CarModel> cars = (List<CarModel>)getWebServiceTemplate().marshalSendAndReceive(brand,
-                new SoapActionCallback("http://localhost:8080/fleet-ejb/CarModelWebService/carModels"));
+    private static CarModelWebService carModelWebService;
+    public void callWebService(String brand) {
+
+        URL wsdlLocation = null;
+        try {
+            wsdlLocation = new URL("http://localhost:8080/fleet-ejb/CarModelWebService?wsdl");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        QName serviceName = new QName("http://carmodel.domain.realdolmen.com/", "CarModelWebService");
+        javax.xml.ws.Service service = javax.xml.ws.Service.create(wsdlLocation, serviceName);
+        carModelWebService = service.getPort(CarModelWebService.class);
 
     }
 }

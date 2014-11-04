@@ -12,6 +12,14 @@
     <artifactId>fleet-web</artifactId>
     <packaging>war</packaging>
 
+    <repositories>
+        <repository>
+            <id>myWSRepo</id>
+            <name>myWSRepoName</name>
+            <url>https://code.lds.org/svn/stack/modules/ws-spring</url>
+           </repository>
+    </repositories>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java-version>1.7</java-version>
@@ -79,11 +87,11 @@
             <version>3.0.5</version>
         </dependency>
         <!-- JSR 303 -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>4.2.0.Final</version>
-		</dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.2.0.Final</version>
+        </dependency>
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>

@@ -1,6 +1,5 @@
 package com.realdolmen.repository;
 
-import com.realdolmen.domain.carmodel.CarModel;
 import com.realdolmen.service.CarModelWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
 import org.slf4j.Logger;

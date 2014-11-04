@@ -12,4 +12,7 @@ import javax.transaction.Transactional;
 public class CarWebService {
 
 
+    public Car findById(Integer id) {
+        return null;
+    }
 }

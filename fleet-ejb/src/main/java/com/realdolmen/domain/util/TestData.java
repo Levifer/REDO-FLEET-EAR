@@ -16,6 +16,7 @@ public class TestData {
     @Inject
     private TestDataInserter inserter;
 
+
     @PostConstruct
     private  void init(){
         inserter.insertOptions();
@@ -23,5 +24,6 @@ public class TestData {
         inserter.insertACarModel();
         inserter.insertASecondCarModelWithAnUpdatedPack();
         inserter.insertEmployees();
+
     }
 }

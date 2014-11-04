@@ -25,6 +25,13 @@ public class CustomPack {
     @XmlElement
     private List<Option> options;
 
+    public CustomPack() {
+    }
+
+    public CustomPack(List<Option> options) {
+        this.options = options;
+    }
+
     public Integer getId() {
         return id;
     }

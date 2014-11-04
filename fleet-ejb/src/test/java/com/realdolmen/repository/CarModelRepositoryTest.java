@@ -1,0 +1,65 @@
+package com.realdolmen.repository;
+
+import com.realdolmen.ImportPersistenceTest;
+import com.realdolmen.domain.Enums;
+import com.realdolmen.domain.carmodel.CarModel;
+import com.realdolmen.domain.pack.Pack;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+/**
+ * Created by TLAAU71 on 4/11/2014.
+ */
+@Ignore
+public class CarModelRepositoryTest extends ImportPersistenceTest{
+    private CarModel carModel;
+
+    @Before
+    public void Setup(){
+        Pack pack = em().getReference(Pack.class,1);
+        carModel = new CarModel("Audi", "A3 sportback 1,6 tdi 105 pk ultra attraction", Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 20, 9, 88, 2, "", pack);
+    }
+    @Test
+    public void testPersistCarModel() throws Exception {
+        em().persist(carModel);
+        assertNotNull(carModel.getId());
+    }
+
+    @Test
+    public void testRemoveCarModel() throws Exception {
+        em().remove(carModel);
+        assertNull(carModel.getId());
+    }
+
+    @Test
+    public void testRetrieveCarModel() throws Exception {
+        CarModel carModel = em().getReference(CarModel.class, 1);
+        assertNotNull(carModel.getBrand());
+    }
+
+    @Test
+    public void testUpdateCarModel() throws Exception {
+        CarModel carModel = em().getReference(CarModel.class, 1);
+        assertEquals("A3 sportback 1,6 tdi 105 pk ultra attraction",carModel.getType());
+        carModel.setType("A3");
+        em().merge(carModel);
+        assertEquals("A3",carModel.getType());
+    }
+
+    @Test
+    @Ignore
+    public void testFindAllCarModels() throws Exception {
+        List resultList = em().createQuery("SELECT c from carmodel c",CarModel.class).getResultList();
+        assertNotNull(resultList.size());
+        assertNotNull(resultList.get(1));
+    }
+}

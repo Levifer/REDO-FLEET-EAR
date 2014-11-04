@@ -31,6 +31,14 @@ public class Car implements Serializable {
     @XmlElement
     private Date carInUse;
 
+    public Car() {
+    }
+
+    public Car(CarModel model, Integer mileage, Date carInUse) {
+        this.model = model;
+        this.mileage = mileage;
+        this.carInUse = carInUse;
+    }
 
     public Integer getId() {
         return id;

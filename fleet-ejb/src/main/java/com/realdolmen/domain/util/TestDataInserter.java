@@ -85,7 +85,7 @@ public class TestDataInserter {
     }
 
     public void insertACarModel() {
-        CarModel carModel = new CarModel("Audi", "A3", Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 20, 9, 88, 2, "", packRepository.findAll().get(0));
+        CarModel carModel = new CarModel("Audi", "A3 sportback 1,6 tdi 105 pk ultra attraction", Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 20, 9, 88, 2, "", packRepository.findAll().get(0));
         entityManager.persist(carModel);
         logger.info("/////************************************INSERTING A CARMODEL*************************************/////\"); ");
 

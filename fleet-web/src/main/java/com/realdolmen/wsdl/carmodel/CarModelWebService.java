@@ -36,6 +36,20 @@ public interface CarModelWebService {
 
     /**
      * 
+     * @param id
+     * @return
+     *     returns com.realdolmen.wsdl.carmodel.CarModel
+     */
+    @WebMethod(action = "getCarModelById")
+    @WebResult(name = "carModels", targetNamespace = "")
+    @RequestWrapper(localName = "getCarModelById", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetCarModelById")
+    @ResponseWrapper(localName = "getCarModelByIdResponse", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetCarModelByIdResponse")
+    public CarModel getCarModelById(
+        @WebParam(name = "id", targetNamespace = "")
+        Integer id);
+
+    /**
+     * 
      * @param brand
      * @return
      *     returns java.util.List<com.realdolmen.wsdl.carmodel.CarModel>

@@ -1,8 +1,6 @@
 package com.realdolmen.service;
 
-import com.realdolmen.wsdl.carmodel.GetCarModelsByBrand;
-import com.realdolmen.wsdl.carmodel.GetCarModelsByBrandResponse;
-import com.realdolmen.wsdl.carmodel.ObjectFactory;
+import com.realdolmen.wsdl.carmodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
@@ -30,8 +28,32 @@ public class CarModelWebServiceClient extends WebServiceGatewaySupport {
                 new SoapActionCallback("getCarModelsByBrand")
         );
 
+        return response.getValue();
+    }
+
+    public GetCarModelsByTypeResponse getCarModelsByType(String type) {
+        ObjectFactory of = new ObjectFactory();
+        GetCarModelsByType request = new GetCarModelsByType();
+        request.setType(type);
+
+        JAXBElement<GetCarModelsByTypeResponse> response = (JAXBElement<GetCarModelsByTypeResponse>) webServiceTemplate.marshalSendAndReceive(
+                of.createGetCarModelsByType(request),
+                new SoapActionCallback("getCarModelsByType")
+        );
 
         return response.getValue();
+    }
 
+    public GetCarModelByIdResponse getCarModelsById(Integer id) {
+        ObjectFactory of = new ObjectFactory();
+        GetCarModelById request = new GetCarModelById();
+        request.setId(id);
+
+        JAXBElement<GetCarModelByIdResponse> response = (JAXBElement<GetCarModelByIdResponse>) webServiceTemplate.marshalSendAndReceive(
+                of.createGetCarModelById(request),
+                new SoapActionCallback("getCarModelById")
+        );
+
+        return response.getValue();
     }
 }

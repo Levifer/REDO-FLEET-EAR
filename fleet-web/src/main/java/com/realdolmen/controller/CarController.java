@@ -1,9 +1,11 @@
-package com.realdolmen.repository;
+package com.realdolmen.controller;
 
 import com.realdolmen.service.CarModelWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
 import com.realdolmen.wsdl.carmodel.CarModel;
+import com.realdolmen.wsdl.carmodel.GetCarModelByIdResponse;
 import com.realdolmen.wsdl.carmodel.GetCarModelsByBrandResponse;
+import com.realdolmen.wsdl.carmodel.GetCarModelsByTypeResponse;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,51 +30,6 @@ public class CarController {
 
     private boolean error = true;
 
-    private List<String[]> cars(){
-        List<String[]> cars = new ArrayList<>();
-        String[] car = new String[]{
-                "1","Audi", "A3", "Hatchback", "1.6 TDI", "105", "ultra attraction"
-        };
-        cars.add(car);
-
-        car = new String[]{
-                "2","Seat", "Ibiza ST", "Break", "1.6 CRTDI", "105","Style Ecomotive"
-        };
-        cars.add(car);
-
-        car = new String[]{
-                "3","Seat", "Leon Style", "Hatchback", "1.6 CRTDI", "105",""
-        };
-        cars.add(car);
-
-        car = new String[]{
-                "4","Skoda", "Octavia Berline", "Berline", "1.6 CRTDI", "110",""
-        };
-        cars.add(car);
-
-        car = new String[]{
-                "5","Skoda", "Octavia Combi", "Break", "1.6 TDI", "110","Greenline"
-        };
-        cars.add(car);
-
-        car = new String[]{
-                "6","Skoda", "Roomster", "Monovolume", "1.6 TDI", "75",""
-        };
-        cars.add(car);
-
-        car = new String[]{
-                "7","Volkswagen", "Golf 7", "Hatchback", "1.6 TDI", "105","Highline"
-        };
-        cars.add(car);
-
-        car = new String[]{
-                "8","Volkswagen", "Golf Variant", "Break", "1.6 TDI", "105","Trendline"
-        };
-        cars.add(car);
-
-        return cars;
-    }
-
     @RequestMapping("/")
     public String home(Model model) {
         logger.info("home");
@@ -87,7 +44,7 @@ public class CarController {
         logger.info("/car");
         List<CarModel> cars = new ArrayList<CarModel>();
         if(type!=null){
-            GetCarModelsByBrandResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
+            GetCarModelsByTypeResponse carModels = carModelWebServiceClient.getCarModelsByType("Hatchback");
             cars = carModels.getCarModels();
         }
 
@@ -110,8 +67,10 @@ public class CarController {
     @RequestMapping("/car/{id}")
     public String detail(@PathVariable("id") String id, Model model) {
         logger.info("/car - id: " + id);
+        GetCarModelByIdResponse carModelsByIdResponse = carModelWebServiceClient.getCarModelsById(Integer.parseInt(id));
         model.addAttribute("isLoggedIn",true);
         model.addAttribute("id",id);
+        model.addAttribute("car", carModelsByIdResponse.getCarModels());
         return "carDetail";
     }
 

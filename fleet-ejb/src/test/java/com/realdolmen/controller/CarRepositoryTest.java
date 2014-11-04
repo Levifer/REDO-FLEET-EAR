@@ -1,4 +1,4 @@
-package com.realdolmen.repository;
+package com.realdolmen.controller;
 
 import com.realdolmen.domain.car.CarRepository;
 import org.junit.Before;

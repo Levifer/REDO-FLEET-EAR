@@ -1,4 +1,4 @@
-package com.realdolmen.repository;
+package com.realdolmen.controller;
 
 import com.realdolmen.util.LoggerProducer;
 import org.slf4j.Logger;

@@ -6,7 +6,6 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -32,6 +31,13 @@ public class CarModelWebService {
     public List<CarModel> getCarModelsByType(@WebParam(name = "type") String type) {
         List<CarModel> carModels = carModelRepository.findAllByType(type);
         return carModels;
+    }
+
+    @WebResult(name = "carModels")
+    @WebMethod(action = "getCarModelById")
+    public CarModel getCarModelById(@WebParam(name = "id") Integer id) {
+        CarModel carModel = carModelRepository.find(id);
+        return carModel;
     }
 
 }

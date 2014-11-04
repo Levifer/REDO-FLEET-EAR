@@ -31,8 +31,6 @@ public class CarController {
     public String home(Model model) {
         logger.info("home");
         model.addAttribute("isLoggedIn",true);
-        GetCarModelsByBrandResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
-        logger.info(carModels.getCarModels().get(0).getBrand());
         return "index";
     }
 
@@ -41,6 +39,7 @@ public class CarController {
         logger.info("/car");
         List<CarModel> cars = new ArrayList<CarModel>();
         if(type!=null){
+            logger.info("find cars by type: " + type);
             GetCarModelsByTypeResponse carModels = carModelWebServiceClient.getCarModelsByType(type.toUpperCase());
             cars = carModels.getCarModels();
         }
@@ -52,6 +51,7 @@ public class CarController {
         }
 
         if(cars.isEmpty()){
+            logger.info("findAllCars");
             GetAllCarModelsResponse carModels = carModelWebServiceClient.getAllCarModels();
             cars = carModels.getCarModels();
         }
@@ -66,7 +66,6 @@ public class CarController {
         logger.info("/car - id: " + id);
         GetCarModelByIdResponse carModelsByIdResponse = carModelWebServiceClient.getCarModelsById(Integer.parseInt(id));
         model.addAttribute("isLoggedIn",true);
-        model.addAttribute("id",id);
         model.addAttribute("car", carModelsByIdResponse.getCarModel());
         return "carDetail";
     }

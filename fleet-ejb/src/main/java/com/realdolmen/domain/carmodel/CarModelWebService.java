@@ -14,30 +14,30 @@ import java.util.List;
 @WebService
 @Stateless
 public class CarModelWebService {
-
     @Inject
     private CarModelRepository carModelRepository;
-
 
     @WebResult(name = "carModels")
     @WebMethod(action = "getCarModelsByBrand")
     public List<CarModel> getCarModelsByBrand(@WebParam(name = "brand") String brand) {
-        List<CarModel> carModels = carModelRepository.findAllByBrand(brand);
-        return carModels;
+        return carModelRepository.findAllByBrand(brand);
     }
 
     @WebResult(name = "carModels")
     @WebMethod(action = "getCarModelsByType")
     public List<CarModel> getCarModelsByType(@WebParam(name = "type") String type) {
-        List<CarModel> carModels = carModelRepository.findAllByType(type);
-        return carModels;
+        return carModelRepository.findAllByType(type);
     }
 
     @WebResult(name = "carModels")
     @WebMethod(action = "getCarModelById")
     public CarModel getCarModelById(@WebParam(name = "id") Integer id) {
-        CarModel carModel = carModelRepository.find(id);
-        return carModel;
+        return carModelRepository.find(id);
     }
 
+    @WebResult(name = "carModels")
+    @WebMethod(action = "getAllCarModels")
+    public List<CarModel> getAllCarModels() {
+        return carModelRepository.findAll();
+    }
 }

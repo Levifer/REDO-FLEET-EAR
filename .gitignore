@@ -4,3 +4,4 @@ template.iml
 fleet.iml
 fleetParent.iml
 */*.iml
+fleet-web/src/main/java/com/realdolmen/wsdl

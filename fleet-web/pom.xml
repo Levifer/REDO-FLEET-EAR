@@ -129,6 +129,7 @@
                 <version>1.12</version>
                 <executions>
                     <execution>
+                        <id>wsdl-carmodel</id>
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
@@ -139,6 +140,111 @@
                                 </wsdlUrl>
                             </wsdlUrls>
                             <packageName>com.realdolmen.wsdl.carmodel</packageName>
+                            <destDir>${basedir}/src/main/java</destDir>
+                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>wsdl-car</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>
+                                    http://localhost:8080/fleet-ejb/CarWebService?wsdl
+                                </wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>com.realdolmen.wsdl.car</packageName>
+                            <destDir>${basedir}/src/main/java</destDir>
+                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>wsdl-custompack</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>
+                                    http://localhost:8080/fleet-ejb/CustomPackWebService?wsdl
+                                </wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>com.realdolmen.wsdl.custompack</packageName>
+                            <destDir>${basedir}/src/main/java</destDir>
+                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>wsdl-employee</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>
+                                    http://localhost:8080/fleet-ejb/EmployeeWebService?wsdl
+                                </wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>com.realdolmen.wsdl.employee</packageName>
+                            <destDir>${basedir}/src/main/java</destDir>
+                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>wsdl-option</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>
+                                    http://localhost:8080/fleet-ejb/OptionWebService?wsdl
+                                </wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>com.realdolmen.wsdl.option</packageName>
+                            <destDir>${basedir}/src/main/java</destDir>
+                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>wsdl-pack</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlUrls>
+                                <wsdlUrl>
+                                    http://localhost:8080/fleet-ejb/PackWebService?wsdl
+                                </wsdlUrl>
+                            </wsdlUrls>
+                            <packageName>com.realdolmen.wsdl.pack</packageName>
                             <destDir>${basedir}/src/main/java</destDir>
                             <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
                             <xadditionalHeaders>true</xadditionalHeaders>

@@ -113,11 +113,11 @@
             <artifactId>log4j</artifactId>
             <version>1.2.14</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.realdolmen</groupId>-->
-            <!--<artifactId>fleet-ejb</artifactId>-->
-            <!--<version>1.0-SNAPSHOT</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.realdolmen</groupId>
+            <artifactId>fleet-ejb</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -132,6 +132,7 @@
                         <goals>
                             <goal>wsimport</goal>
                         </goals>
+                        <phase>process-classes</phase>
                         <configuration>
                             <wsdlUrls>
                                 <wsdlUrl>
@@ -139,13 +140,31 @@
                                 </wsdlUrl>
                             </wsdlUrls>
                             <packageName>com.realdolmen.wsdl.carmodel</packageName>
-                            <destDir>${basedir}/src/main/java</destDir>
-                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                            <destDir>target/ws</destDir>
+                            <sourceDestDir>target/ws</sourceDestDir>
                             <xadditionalHeaders>true</xadditionalHeaders>
                             <extension>true</extension>
                             <keep>true</keep>
                             <verbose>true</verbose>
                             <target>2.0</target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>package-wsclient-jars</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classesDirectory>target/ws</classesDirectory>
+                            <classifier>wsclient</classifier>
                         </configuration>
                     </execution>
                 </executions>

@@ -1,8 +1,5 @@
 package com.realdolmen.service;
 
-import com.realdolmen.wsdl.carmodel.GetCarModelsByBrand;
-import com.realdolmen.wsdl.carmodel.GetCarModelsByBrandResponse;
-import com.realdolmen.wsdl.carmodel.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
@@ -19,7 +16,7 @@ public class CarModelWebServiceClient extends WebServiceGatewaySupport {
     @Autowired
     private WebServiceTemplate webServiceTemplate;
 
-    public GetCarModelsByBrandResponse getCarModelsByBrand(String brand) {
+    /*public GetCarModelsByBrandResponse getCarModelsByBrand(String brand) {
         ObjectFactory of = new ObjectFactory();
         GetCarModelsByBrand request = new GetCarModelsByBrand();
         request.setBrand(brand);
@@ -33,5 +30,5 @@ public class CarModelWebServiceClient extends WebServiceGatewaySupport {
 
         return response.getValue();
 
-    }
+    }*/
 }

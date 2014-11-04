@@ -44,19 +44,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FindByTypeResponse }
+     * Create an instance of {@link FindById }
      * 
      */
-    public FindByTypeResponse createFindByTypeResponse() {
-        return new FindByTypeResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindLowerThandPriceResponse }
-     * 
-     */
-    public FindLowerThandPriceResponse createFindLowerThandPriceResponse() {
-        return new FindLowerThandPriceResponse();
+    public FindById createFindById() {
+        return new FindById();
     }
 
     /**
@@ -68,51 +60,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Option }
-     * 
-     */
-    public Option createOption() {
-        return new Option();
-    }
-
-    /**
      * Create an instance of {@link FindByIdResponse }
      * 
      */
     public FindByIdResponse createFindByIdResponse() {
         return new FindByIdResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindByNameResponse }
-     * 
-     */
-    public FindByNameResponse createFindByNameResponse() {
-        return new FindByNameResponse();
-    }
-
-    /**
-     * Create an instance of {@link FindById }
-     * 
-     */
-    public FindById createFindById() {
-        return new FindById();
-    }
-
-    /**
-     * Create an instance of {@link FindLowerThandPrice }
-     * 
-     */
-    public FindLowerThandPrice createFindLowerThandPrice() {
-        return new FindLowerThandPrice();
-    }
-
-    /**
-     * Create an instance of {@link FindByType }
-     * 
-     */
-    public FindByType createFindByType() {
-        return new FindByType();
     }
 
     /**
@@ -129,6 +81,54 @@ public class ObjectFactory {
      */
     public FindAll createFindAll() {
         return new FindAll();
+    }
+
+    /**
+     * Create an instance of {@link FindLowerThandPrice }
+     * 
+     */
+    public FindLowerThandPrice createFindLowerThandPrice() {
+        return new FindLowerThandPrice();
+    }
+
+    /**
+     * Create an instance of {@link FindLowerThandPriceResponse }
+     * 
+     */
+    public FindLowerThandPriceResponse createFindLowerThandPriceResponse() {
+        return new FindLowerThandPriceResponse();
+    }
+
+    /**
+     * Create an instance of {@link FindByTypeResponse }
+     * 
+     */
+    public FindByTypeResponse createFindByTypeResponse() {
+        return new FindByTypeResponse();
+    }
+
+    /**
+     * Create an instance of {@link Option }
+     * 
+     */
+    public Option createOption() {
+        return new Option();
+    }
+
+    /**
+     * Create an instance of {@link FindByType }
+     * 
+     */
+    public FindByType createFindByType() {
+        return new FindByType();
+    }
+
+    /**
+     * Create an instance of {@link FindByNameResponse }
+     * 
+     */
+    public FindByNameResponse createFindByNameResponse() {
+        return new FindByNameResponse();
     }
 
     /**

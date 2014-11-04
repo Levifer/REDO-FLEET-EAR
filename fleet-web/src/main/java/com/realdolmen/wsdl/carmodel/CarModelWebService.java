@@ -27,7 +27,7 @@ public interface CarModelWebService {
      *     returns com.realdolmen.wsdl.carmodel.CarModel
      */
     @WebMethod(action = "getCarModelById")
-    @WebResult(name = "carModels", targetNamespace = "")
+    @WebResult(name = "carModel", targetNamespace = "http://carmodel.domain.realdolmen.com/")
     @RequestWrapper(localName = "getCarModelById", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetCarModelById")
     @ResponseWrapper(localName = "getCarModelByIdResponse", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetCarModelByIdResponse")
     public CarModel getCarModelById(

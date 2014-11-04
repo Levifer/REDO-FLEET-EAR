@@ -1,6 +1,7 @@
 package com.realdolmen.domain.carmodel;
 
 import com.realdolmen.domain.AbstractRepository;
+import com.realdolmen.domain.Enums;
 
 import javax.ejb.Stateless;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 @Stateless
 public class CarModelRepository extends AbstractRepository<CarModel>{
 
-    public List<CarModel> findAllByType(String type){
+    public List<CarModel> findAllByType(Enums.CarType type){
         return entityManager.createNamedQuery("CarModel.findAllByType",CarModel.class)
                 .setParameter("type",type)
                 .getResultList();

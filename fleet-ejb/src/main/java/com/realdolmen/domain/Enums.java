@@ -56,6 +56,25 @@ public class Enums {
         }
     }
 
+    public enum CarType{
+        HATCHBACK("Hatchback"),
+        BERLINE("Berline"),
+        BREAK("Break"),
+        COUPE("Coupé"),
+        JEEP("Jeep"),
+        MONOVOLUME("Monovolume");
+
+        private final String label;
+
+        CarType(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+    }
+
     public enum Type implements TypeInterface{
         INTERIOR("Type.Interior"),
         EXTERIOR("Type.Extrior"),

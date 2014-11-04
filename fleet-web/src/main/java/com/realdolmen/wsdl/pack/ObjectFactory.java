@@ -49,11 +49,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FindAllResponse }
+     * Create an instance of {@link FindByIdResponse }
      * 
      */
-    public FindAllResponse createFindAllResponse() {
-        return new FindAllResponse();
+    public FindByIdResponse createFindByIdResponse() {
+        return new FindByIdResponse();
+    }
+
+    /**
+     * Create an instance of {@link FindById }
+     * 
+     */
+    public FindById createFindById() {
+        return new FindById();
     }
 
     /**
@@ -62,14 +70,6 @@ public class ObjectFactory {
      */
     public Option createOption() {
         return new Option();
-    }
-
-    /**
-     * Create an instance of {@link FindByIdResponse }
-     * 
-     */
-    public FindByIdResponse createFindByIdResponse() {
-        return new FindByIdResponse();
     }
 
     /**
@@ -89,19 +89,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FindById }
-     * 
-     */
-    public FindById createFindById() {
-        return new FindById();
-    }
-
-    /**
      * Create an instance of {@link UpdatePackResponse }
      * 
      */
     public UpdatePackResponse createUpdatePackResponse() {
         return new UpdatePackResponse();
+    }
+
+    /**
+     * Create an instance of {@link FindAllResponse }
+     * 
+     */
+    public FindAllResponse createFindAllResponse() {
+        return new FindAllResponse();
     }
 
     /**

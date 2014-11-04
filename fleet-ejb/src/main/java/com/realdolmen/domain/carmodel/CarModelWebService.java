@@ -1,5 +1,7 @@
 package com.realdolmen.domain.carmodel;
 
+import com.realdolmen.domain.Enums;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jws.WebMethod;
@@ -26,10 +28,15 @@ public class CarModelWebService {
     @WebResult(name = "carModels")
     @WebMethod(action = "getCarModelsByType")
     public List<CarModel> getCarModelsByType(@WebParam(name = "type") String type) {
-        return carModelRepository.findAllByType(type);
+        for(Enums.CarType carType : Enums.CarType.values()){
+            if(carType.getLabel().toUpperCase().equals(type.toUpperCase())){
+                return carModelRepository.findAllByType(carType);
+            }
+        }
+        return null;
     }
 
-    @WebResult(name = "carModels")
+    @WebResult(name = "carModel")
     @WebMethod(action = "getCarModelById")
     public CarModel getCarModelById(@WebParam(name = "id") Integer id) {
         return carModelRepository.find(id);

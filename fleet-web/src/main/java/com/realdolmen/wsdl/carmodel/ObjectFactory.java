@@ -44,27 +44,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Option }
-     * 
-     */
-    public Option createOption() {
-        return new Option();
-    }
-
-    /**
      * Create an instance of {@link GetAllCarModelsResponse }
      * 
      */
     public GetAllCarModelsResponse createGetAllCarModelsResponse() {
         return new GetAllCarModelsResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetCarModelsByBrand }
-     * 
-     */
-    public GetCarModelsByBrand createGetCarModelsByBrand() {
-        return new GetCarModelsByBrand();
     }
 
     /**
@@ -76,11 +60,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetCarModelById }
+     * Create an instance of {@link Pack }
      * 
      */
-    public GetCarModelById createGetCarModelById() {
-        return new GetCarModelById();
+    public Pack createPack() {
+        return new Pack();
     }
 
     /**
@@ -92,11 +76,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Pack }
+     * Create an instance of {@link GetCarModelsByBrand }
      * 
      */
-    public Pack createPack() {
-        return new Pack();
+    public GetCarModelsByBrand createGetCarModelsByBrand() {
+        return new GetCarModelsByBrand();
+    }
+
+    /**
+     * Create an instance of {@link GetCarModelsByType }
+     * 
+     */
+    public GetCarModelsByType createGetCarModelsByType() {
+        return new GetCarModelsByType();
     }
 
     /**
@@ -116,11 +108,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetCarModelsByType }
+     * Create an instance of {@link Option }
      * 
      */
-    public GetCarModelsByType createGetCarModelsByType() {
-        return new GetCarModelsByType();
+    public Option createOption() {
+        return new Option();
     }
 
     /**
@@ -129,6 +121,14 @@ public class ObjectFactory {
      */
     public GetCarModelsByBrandResponse createGetCarModelsByBrandResponse() {
         return new GetCarModelsByBrandResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetCarModelById }
+     * 
+     */
+    public GetCarModelById createGetCarModelById() {
+        return new GetCarModelById();
     }
 
     /**

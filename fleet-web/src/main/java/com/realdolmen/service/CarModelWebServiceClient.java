@@ -55,4 +55,16 @@ public class CarModelWebServiceClient extends WebServiceGatewaySupport {
 
         return response.getValue();
     }
+
+    public GetAllCarModelsResponse getAllCarModels() {
+        ObjectFactory of = new ObjectFactory();
+        GetAllCarModels request = new GetAllCarModels();
+
+        JAXBElement<GetAllCarModelsResponse> response = (JAXBElement<GetAllCarModelsResponse>) webServiceTemplate.marshalSendAndReceive(
+                of.createGetAllCarModels(request),
+                new SoapActionCallback("getAllCarModels")
+        );
+
+        return response.getValue();
+    }
 }

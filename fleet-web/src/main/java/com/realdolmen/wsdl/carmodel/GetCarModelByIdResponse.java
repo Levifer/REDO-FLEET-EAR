@@ -3,6 +3,7 @@ package com.realdolmen.wsdl.carmodel;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -16,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="carModels" type="{http://carmodel.domain.realdolmen.com/}carModel" minOccurs="0"/>
+ *         &lt;element ref="{http://carmodel.domain.realdolmen.com/}carModel" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +28,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getCarModelByIdResponse", propOrder = {
-    "carModels"
+    "carModel"
 })
 public class GetCarModelByIdResponse {
 
-    protected CarModel carModels;
+    @XmlElement(namespace = "http://carmodel.domain.realdolmen.com/")
+    protected CarModel carModel;
 
     /**
-     * Gets the value of the carModels property.
+     * Gets the value of the carModel property.
      * 
      * @return
      *     possible object is
      *     {@link CarModel }
      *     
      */
-    public CarModel getCarModels() {
-        return carModels;
+    public CarModel getCarModel() {
+        return carModel;
     }
 
     /**
-     * Sets the value of the carModels property.
+     * Sets the value of the carModel property.
      * 
      * @param value
      *     allowed object is
      *     {@link CarModel }
      *     
      */
-    public void setCarModels(CarModel value) {
-        this.carModels = value;
+    public void setCarModel(CarModel value) {
+        this.carModel = value;
     }
 
 }

@@ -22,7 +22,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="brand" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="type" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="type" type="{http://carmodel.domain.realdolmen.com/}carType" minOccurs="0"/>
  *         &lt;element name="fuelType" type="{http://carmodel.domain.realdolmen.com/}fuel" minOccurs="0"/>
  *         &lt;element name="year" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="quarter" type="{http://www.w3.org/2001/XMLSchema}int"/>
@@ -65,7 +65,7 @@ public class CarModel {
     protected Integer id;
     protected String brand;
     protected String name;
-    protected String type;
+    protected CarType type;
     protected Fuel fuelType;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar year;
@@ -157,10 +157,10 @@ public class CarModel {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link CarType }
      *     
      */
-    public String getType() {
+    public CarType getType() {
         return type;
     }
 
@@ -169,10 +169,10 @@ public class CarModel {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link CarType }
      *     
      */
-    public void setType(String value) {
+    public void setType(CarType value) {
         this.type = value;
     }
 

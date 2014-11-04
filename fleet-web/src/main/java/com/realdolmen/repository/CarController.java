@@ -1,9 +1,8 @@
 package com.realdolmen.repository;
 
+import com.realdolmen.domain.carmodel.CarModel;
 import com.realdolmen.service.CarModelWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
-import com.realdolmen.wsdl.carmodel.CarModel;
-import com.realdolmen.wsdl.carmodel.GetCarModelsByBrandResponse;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -77,8 +76,8 @@ public class CarController {
     public String home(Model model) {
         logger.info("home");
         model.addAttribute("isLoggedIn",true);
-        GetCarModelsByBrandResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
-        logger.info(carModels.getCarModels().get(0).getBrand());
+        /*GetCarModelsByBrandResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
+        logger.info(carModels.getCarModels().get(0).getBrand());*/
         return "index";
     }
 
@@ -86,7 +85,7 @@ public class CarController {
     public String list(@RequestParam(value="type", required = false) String type, @RequestParam(value = "brand", required = false) String brand, Model model) {
         logger.info("/car");
         List<CarModel> cars = new ArrayList<CarModel>();
-        if(type!=null){
+        /*if(type!=null){
             GetCarModelsByBrandResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
             cars = carModels.getCarModels();
         }
@@ -103,7 +102,7 @@ public class CarController {
         }
 
         model.addAttribute("isLoggedIn",true);
-        model.addAttribute("cars",cars);
+        model.addAttribute("cars",cars);*/
         return "carList";
     }
 

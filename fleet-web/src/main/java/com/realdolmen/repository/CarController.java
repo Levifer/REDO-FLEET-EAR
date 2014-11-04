@@ -1,9 +1,9 @@
 package com.realdolmen.repository;
 
-import com.realdolmen.domain.carmodel.CarModel;
 import com.realdolmen.service.CarModelWebServiceClient;
-import com.realdolmen.domain.ws.carmodel.CarModelsResponse;
 import com.realdolmen.util.LoggerProducer;
+import com.realdolmen.wsdl.carmodel.CarModel;
+import com.realdolmen.wsdl.carmodel.GetCarModelsByBrandResponse;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.xml.bind.JAXBElement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,7 +77,7 @@ public class CarController {
     public String home(Model model) {
         logger.info("home");
         model.addAttribute("isLoggedIn",true);
-        CarModelsResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
+        GetCarModelsByBrandResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
         logger.info(carModels.getCarModels().get(0).getBrand());
         return "index";
     }
@@ -88,18 +87,18 @@ public class CarController {
         logger.info("/car");
         List<CarModel> cars = new ArrayList<CarModel>();
         if(type!=null){
-            CarModelsResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
+            GetCarModelsByBrandResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
             cars = carModels.getCarModels();
         }
 
         if(brand!=null){
             logger.info("find cars by brand: " + brand);
-            CarModelsResponse carModels = carModelWebServiceClient.getCarModelsByBrand(brand.toLowerCase());
+            GetCarModelsByBrandResponse carModels = carModelWebServiceClient.getCarModelsByBrand(brand.toLowerCase());
             cars = carModels.getCarModels();
         }
 
         if(cars.isEmpty()){
-            CarModelsResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
+            GetCarModelsByBrandResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
             cars = carModels.getCarModels();
         }
 

@@ -14,9 +14,10 @@ import java.util.Date;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
 @NamedQueries(
-        {
-           @NamedQuery(name = "CarModel.findAllByBrand",query = "SELECT c FROM CarModel c WHERE c.brand =:brand")
-        }
+    {
+        @NamedQuery(name = "CarModel.findAllByBrand",query = "SELECT c FROM CarModel c WHERE c.brand =:brand"),
+        @NamedQuery(name = "CarModel.findAllByType",query = "SELECT c FROM CarModel c WHERE c.type =:type")
+    }
 )
 public class CarModel {
     @Id
@@ -24,6 +25,8 @@ public class CarModel {
     private Integer id;
     @XmlElement
     private String brand;
+    @XmlElement
+    private String name;
     @XmlElement
     private String type;
     @XmlElement
@@ -56,8 +59,9 @@ public class CarModel {
     public CarModel() {
     }
 
-    public CarModel(String brand, String type, Enums.Fuel fuelType, Date year, int quarter, int minKm, int maxKm, int deliveryTime, int fiscalHp, int co2, int category, String imageUrl, Pack pack) {
+    public CarModel(String brand, String name, String type, Enums.Fuel fuelType, Date year, int quarter, int minKm, int maxKm, int deliveryTime, int fiscalHp, int co2, int category, String imageUrl, Pack pack) {
         this.brand = brand;
+        this.name = name;
         this.type = type;
         this.fuelType = fuelType;
         this.year = year;
@@ -72,8 +76,9 @@ public class CarModel {
         this.pack = pack;
     }
 
-    public CarModel(String brand, String type, Enums.Fuel fuelType, Date year, int quarter, Pack pack, int minKm, int maxKm, int deliveryTime, int fiscalHp, int co2, int category) {
+    public CarModel(String brand, String name, String type, Enums.Fuel fuelType, Date year, int quarter, Pack pack, int minKm, int maxKm, int deliveryTime, int fiscalHp, int co2, int category) {
         this.brand = brand;
+        this.name = name;
         this.type = type;
         this.fuelType = fuelType;
         this.year = year;
@@ -93,6 +98,14 @@ public class CarModel {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {

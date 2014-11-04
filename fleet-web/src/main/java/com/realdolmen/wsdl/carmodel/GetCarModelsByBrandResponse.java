@@ -1,22 +1,20 @@
 
-package com.realdolmen.domain.ws.carmodel;
+package com.realdolmen.wsdl.carmodel;
 
-import com.realdolmen.domain.carmodel.CarModel;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
- * <p>Java class for carModelsResponse complex type.
+ * <p>Java class for getCarModelsByBrandResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="carModelsResponse">
+ * &lt;complexType name="getCarModelsByBrandResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -30,10 +28,10 @@ import java.util.List;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "carModelsResponse", propOrder = {
+@XmlType(name = "getCarModelsByBrandResponse", propOrder = {
     "carModels"
 })
-public class CarModelsResponse {
+public class GetCarModelsByBrandResponse {
 
     protected List<CarModel> carModels;
 

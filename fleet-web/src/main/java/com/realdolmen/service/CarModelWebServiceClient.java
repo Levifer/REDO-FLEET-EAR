@@ -1,8 +1,8 @@
 package com.realdolmen.service;
 
-import com.realdolmen.domain.ws.carmodel.CarModels;
-import com.realdolmen.domain.ws.carmodel.CarModelsResponse;
-import com.realdolmen.domain.ws.carmodel.ObjectFactory;
+import com.realdolmen.wsdl.carmodel.GetCarModelsByBrand;
+import com.realdolmen.wsdl.carmodel.GetCarModelsByBrandResponse;
+import com.realdolmen.wsdl.carmodel.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
@@ -19,15 +19,15 @@ public class CarModelWebServiceClient extends WebServiceGatewaySupport {
     @Autowired
     private WebServiceTemplate webServiceTemplate;
 
-    public CarModelsResponse getCarModelsByBrand(String brand) {
+    public GetCarModelsByBrandResponse getCarModelsByBrand(String brand) {
         ObjectFactory of = new ObjectFactory();
-        CarModels request = new CarModels();
+        GetCarModelsByBrand request = new GetCarModelsByBrand();
         request.setBrand(brand);
-        CarModelsResponse carModelsResponse = of.createCarModelsResponse();
+        GetCarModelsByBrandResponse carModelsResponse = of.createGetCarModelsByBrandResponse();
 
-        JAXBElement<CarModelsResponse> response = (JAXBElement<CarModelsResponse>) webServiceTemplate.marshalSendAndReceive(
-                of.createCarModels(request),
-                new SoapActionCallback("getCarModels")
+        JAXBElement<GetCarModelsByBrandResponse> response = (JAXBElement<GetCarModelsByBrandResponse>) webServiceTemplate.marshalSendAndReceive(
+                of.createGetCarModelsByBrand(request),
+                new SoapActionCallback("getCarModelsByBrand")
         );
 
 

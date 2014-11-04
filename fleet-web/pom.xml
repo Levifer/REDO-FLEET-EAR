@@ -113,6 +113,11 @@
             <artifactId>log4j</artifactId>
             <version>1.2.14</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.realdolmen</groupId>-->
+            <!--<artifactId>fleet-ejb</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
@@ -133,7 +138,9 @@
                                     http://localhost:8080/fleet-ejb/CarModelWebService?wsdl
                                 </wsdlUrl>
                             </wsdlUrls>
-                            <packageName>com.realdolmen.wsdl</packageName>
+                            <packageName>com.realdolmen.wsdl.carmodel</packageName>
+                            <destDir>${basedir}/src/main/java</destDir>
+                            <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
                             <xadditionalHeaders>true</xadditionalHeaders>
                             <extension>true</extension>
                             <keep>true</keep>

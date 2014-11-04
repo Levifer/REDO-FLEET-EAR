@@ -1,31 +1,34 @@
 package com.realdolmen.service;
-
-import com.realdolmen.domain.carmodel.CarModel;
-import com.realdolmen.domain.carmodel.CarModelWebService;
-import org.springframework.stereotype.Service;
-import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
-import javax.xml.namespace.QName;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-
+        import com.realdolmen.domain.ws.carmodel.CarModels;
+        import com.realdolmen.domain.ws.carmodel.CarModelsResponse;
+        import com.realdolmen.domain.ws.carmodel.ObjectFactory;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.stereotype.Service;
+        import org.springframework.ws.client.core.WebServiceTemplate;
+        import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+        import org.springframework.ws.soap.client.core.SoapActionCallback;
+        import javax.xml.bind.JAXBElement;
 /**
  * Created by AEIAT46 on 3-11-2014.
  */
 @Service
 public class CarModelWebServiceClient extends WebServiceGatewaySupport {
-    private static CarModelWebService carModelWebService;
-    public void callWebService(String brand) {
+    @Autowired
+    private WebServiceTemplate webServiceTemplate;
 
-        URL wsdlLocation = null;
-        try {
-            wsdlLocation = new URL("http://localhost:8080/fleet-ejb/CarModelWebService?wsdl");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        QName serviceName = new QName("http://carmodel.domain.realdolmen.com/", "CarModelWebService");
-        javax.xml.ws.Service service = javax.xml.ws.Service.create(wsdlLocation, serviceName);
-        carModelWebService = service.getPort(CarModelWebService.class);
+    public CarModelsResponse getCarModelsByBrand(String brand){
+        ObjectFactory of = new ObjectFactory();
+        CarModels request = new CarModels();
+        request.setBrand(brand);
+        CarModelsResponse carModelsResponse = of.createCarModelsResponse();
+
+        JAXBElement<CarModelsResponse> response = (JAXBElement<CarModelsResponse>) webServiceTemplate.marshalSendAndReceive(
+                of.createCarModels(request),
+                new SoapActionCallback("getCarModels")
+        );
+
+
+        return response.getValue();
 
     }
 }

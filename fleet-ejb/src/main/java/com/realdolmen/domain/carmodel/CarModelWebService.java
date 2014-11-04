@@ -21,7 +21,7 @@ public class CarModelWebService {
 
 
     @WebResult(name = "carModels")
-    @WebMethod
+    @WebMethod(action = "getCarModels")
     public List<CarModel> carModels(@WebParam(name = "brand") String brand) {
         List<CarModel> fetchedCarModel = carModelRepository.findAllByBrand(brand);
         return fetchedCarModel;

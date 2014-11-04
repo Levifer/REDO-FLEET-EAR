@@ -2,6 +2,7 @@ package com.realdolmen.repository;
 
 import com.realdolmen.domain.carmodel.CarModel;
 import com.realdolmen.service.CarModelWebServiceClient;
+import com.realdolmen.domain.ws.carmodel.CarModelsResponse;
 import com.realdolmen.util.LoggerProducer;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.xml.bind.JAXBElement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,44 +78,33 @@ public class CarController {
     public String home(Model model) {
         logger.info("home");
         model.addAttribute("isLoggedIn",true);
-        carModelWebServiceClient.callWebService("audi");
+        CarModelsResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
+        logger.info(carModels.getCarModels().get(0).getBrand());
         return "index";
     }
 
     @RequestMapping("/car")
     public String list(@RequestParam(value="type", required = false) String type, @RequestParam(value = "brand", required = false) String brand, Model model) {
         logger.info("/car");
-        List<String[]> filterCars = new ArrayList<>();
-        List<String[]> baseCars = cars();
+        List<CarModel> cars = new ArrayList<CarModel>();
         if(type!=null){
-            logger.info("find cars by type: " + type);
-            for(String[] car : baseCars){
-                if(car[3].toLowerCase().equals(type.toLowerCase())){
-                    filterCars.add(car);
-                }
-            }
+            CarModelsResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
+            cars = carModels.getCarModels();
         }
 
         if(brand!=null){
             logger.info("find cars by brand: " + brand);
-            if(filterCars.isEmpty()){
-                for(String[] car : baseCars){
-                    if(car[1].toLowerCase().equals(brand.toLowerCase())){
-                        filterCars.add(car);
-                    }
-                }
-            }else{
-                for(String[] car : filterCars){
-                    if(car[1].toLowerCase().equals(brand.toLowerCase())){
-                        filterCars.add(car);
-                    }
-                }
-            }
+            CarModelsResponse carModels = carModelWebServiceClient.getCarModelsByBrand(brand.toLowerCase());
+            cars = carModels.getCarModels();
         }
 
-        System.out.println(filterCars);
+        if(cars.isEmpty()){
+            CarModelsResponse carModels = carModelWebServiceClient.getCarModelsByBrand("audi");
+            cars = carModels.getCarModels();
+        }
+
         model.addAttribute("isLoggedIn",true);
-        model.addAttribute("cars",filterCars);
+        model.addAttribute("cars",cars);
         return "carList";
     }
 

@@ -16,8 +16,8 @@
             <c:forEach var="car" items="${cars}">
                 <tr>
                     <td>${car.brand}</td>
+                    <td>${car.name}</td>
                     <td>${car.type}</td>
-                    <td>${car.fuelType}</td>
                     <td>
                         <a href="car/${car.id}"><spring:message code="actions.details"/></a>
                     </td>

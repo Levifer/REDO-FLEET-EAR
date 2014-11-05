@@ -28,7 +28,7 @@ public class CarModel {
     @XmlElement
     private String name;
     @XmlElement
-    private String type;
+    private Enums.CarType type;
     @XmlElement
     private Enums.Fuel fuelType;
     @Temporal(TemporalType.DATE)
@@ -59,7 +59,7 @@ public class CarModel {
     public CarModel() {
     }
 
-    public CarModel(String brand, String name, String type, Enums.Fuel fuelType, Date year, int quarter, int minKm, int maxKm, int deliveryTime, int fiscalHp, int co2, int category, String imageUrl, Pack pack) {
+    public CarModel(String brand, String name, Enums.CarType type, Enums.Fuel fuelType, Date year, int quarter, int minKm, int maxKm, int deliveryTime, int fiscalHp, int co2, int category, String imageUrl, Pack pack) {
         this.brand = brand;
         this.name = name;
         this.type = type;
@@ -76,7 +76,7 @@ public class CarModel {
         this.pack = pack;
     }
 
-    public CarModel(String brand, String name, String type, Enums.Fuel fuelType, Date year, int quarter, Pack pack, int minKm, int maxKm, int deliveryTime, int fiscalHp, int co2, int category) {
+    public CarModel(String brand, String name, Enums.CarType type, Enums.Fuel fuelType, Date year, int quarter, Pack pack, int minKm, int maxKm, int deliveryTime, int fiscalHp, int co2, int category) {
         this.brand = brand;
         this.name = name;
         this.type = type;
@@ -108,11 +108,11 @@ public class CarModel {
         this.name = name;
     }
 
-    public String getType() {
+    public Enums.CarType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Enums.CarType type) {
         this.type = type;
     }
 

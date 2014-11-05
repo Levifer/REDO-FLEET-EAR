@@ -25,15 +25,10 @@ public class CarServiceTest {
     @Mock
     private CarRepository carRepository;
 
-    @Before
-    public void setUp(){
-        carWebService = Mockito.mock(CarWebService.class);
-        carRepository = Mockito.mock(CarRepository.class);
-    }
 
     @Test
     public void testFindById() throws Exception {
-        carWebService.findById(1);
-        verify(carWebService, times(1)).findById(1);
+        carWebService.findCarById(1);
+        verify(carRepository, times(1)).find(1);
     }
 }

@@ -1,6 +1,8 @@
 package com.realdolmen.domain;
 
 
+import com.realdolmen.domain.employee.Employee;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;

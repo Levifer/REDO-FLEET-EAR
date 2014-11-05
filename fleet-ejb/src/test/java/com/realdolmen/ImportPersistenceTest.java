@@ -32,7 +32,7 @@ public class ImportPersistenceTest extends PersistenceTest {
 
         Connection productionConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/rdfleet", "root", "root");
         IDatabaseConnection con = new DatabaseConnection(productionConnection);
-        String[] tables = {"employee","car","option","fleet_option","pack","carmodel","custompack_fleet_option","employee_car","pack_fleet_option"};
+        String[] tables = {"fleet_option","pack","custompack","custompack_fleet_option","pack_fleet_option","carmodel","car","employee", "employee_car"};
         IDataSet dataSet = con.createDataSet(tables);
 
         //set factorytype in dbconfig to remove warning

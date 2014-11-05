@@ -28,39 +28,34 @@ public class OptionServiceTest {
     @Mock
     private OptionRepository optionRepository;
 
-    @Before
-    public void setUp() throws Exception{
-        optionWebService = Mockito.mock(OptionWebService.class);
-        optionRepository = Mockito.mock(OptionRepository.class);
-    }
 
     @Test
     public void testFindAll(){
-        optionWebService.findAll();
-        verify(optionWebService,times(1)).findAll();
+        optionWebService.findAllOption();
+        verify(optionRepository,times(1)).findAll();
     }
 
     @Test
     public void testFindById() throws Exception {
-        optionWebService.findById(1);
-        verify(optionWebService,times(1)).findById(1);
+        optionWebService.findOptionById(1);
+        verify(optionRepository,times(1)).find(1);
     }
 
     @Test
     public void testFindByType() throws Exception {
-        optionWebService.findByType("airco");
-        verify(optionWebService,times(1)).findByType("airco");
+        optionWebService.findOptionByType("airco");
+        verify(optionRepository,times(1)).FindByType("airco");
     }
 
     @Test
     public void testFindByName() throws Exception {
-        optionWebService.findByName("airco");
-        verify(optionWebService,times(1)).findByName("airco");
+        optionWebService.findOptionByName("airco");
+        verify(optionRepository,times(1)).FindByName("airco");
     }
 
     @Test
     public void testFindLowerThanPrice() throws Exception {
-        optionWebService.findLowerThandPrice(new BigDecimal(500));
-        verify(optionWebService,times(1)).findLowerThandPrice(new BigDecimal(500));
+        optionWebService.findOptionLowerThandPrice(new BigDecimal(500));
+        //verify(optionRepository,times(1)).findLowerThanPrice(new BigDecimal(500));
     }
 }

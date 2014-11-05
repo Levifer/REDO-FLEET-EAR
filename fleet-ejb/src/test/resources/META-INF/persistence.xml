@@ -6,11 +6,11 @@
     <persistence-unit name="fleettest" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>com.realdolmen.domain.option.Option</class>
-        <class>com.realdolmen.domain.car.Car</class>
-        <class>com.realdolmen.domain.carmodel.CarModel</class>
-        <class>com.realdolmen.domain.custompack.CustomPack</class>
-        <class>com.realdolmen.domain.employee.Employee</class>
         <class>com.realdolmen.domain.pack.Pack</class>
+        <class>com.realdolmen.domain.custompack.CustomPack</class>
+        <class>com.realdolmen.domain.carmodel.CarModel</class>
+        <class>com.realdolmen.domain.car.Car</class>
+        <class>com.realdolmen.domain.employee.Employee</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/rdfleettest"/>

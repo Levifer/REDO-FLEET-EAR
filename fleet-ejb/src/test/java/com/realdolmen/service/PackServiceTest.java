@@ -40,8 +40,6 @@ public class PackServiceTest {
 
     @Before
     public void setUp() throws Exception{
-        packWebService = Mockito.mock(PackWebService.class);
-        packRepository = Mockito.mock(PackRepository.class);
         pack = new Pack();
         setUpTestOptions();
     }
@@ -62,14 +60,14 @@ public class PackServiceTest {
 
     @Test
     public void testFindAll() throws Exception{
-        packWebService.findAll();
-        verify(packWebService,times(1)).findAll();
+        packWebService.findAllPacks();
+        verify(packRepository,times(1)).findAll();
     }
 
     @Test
     public void testFindById() throws Exception{
-        packWebService.findById(1);
-        verify(packWebService,times(1)).findById(1);
+        packWebService.findPackById(1);
+        verify(packRepository,times(1)).find(1);
     }
 
 }

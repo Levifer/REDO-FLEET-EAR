@@ -20,7 +20,7 @@ public class Car implements Serializable {
     @XmlTransient
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = CarModel.class)
     @XmlElement
     private CarModel model;
 

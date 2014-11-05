@@ -26,7 +26,7 @@ public class CarModelRepositoryTest extends ImportPersistenceTest{
     @Before
     public void Setup(){
         Pack pack = em().getReference(Pack.class,1);
-        carModel = new CarModel("Audi", "A3 sportback 1,6 tdi 105 pk ultra attraction", Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 20, 9, 88, 2, "", pack);
+        carModel = new CarModel("Audi", "A3 sportback 1,6 tdi 105 pk ultra attraction" ,Enums.CarType.HATCHBACK,Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 20, 9, 88, 2, "", pack);
     }
     @Test
     public void testPersistCarModel() throws Exception {
@@ -49,10 +49,10 @@ public class CarModelRepositoryTest extends ImportPersistenceTest{
     @Test
     public void testUpdateCarModel() throws Exception {
         CarModel carModel = em().getReference(CarModel.class, 1);
-        assertEquals("A3 sportback 1,6 tdi 105 pk ultra attraction",carModel.getType());
-        carModel.setType("A3");
+        assertEquals("A3 sportback 1,6 tdi 105 pk ultra attraction",carModel.getName());
+        carModel.setName("A3");
         em().merge(carModel);
-        assertEquals("A3",carModel.getType());
+        assertEquals("A3",carModel.getName());
     }
 
     @Test

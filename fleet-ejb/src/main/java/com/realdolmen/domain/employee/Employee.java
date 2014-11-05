@@ -31,7 +31,7 @@ public class Employee {
     private String employeeNumber;
     @XmlElement
     private Integer category;
-    @OneToMany
+    @OneToMany()
     @XmlElement
     private List<Car> cars;
     @Enumerated(EnumType.STRING)

@@ -51,7 +51,7 @@ public class CarModel {
     @XmlElement
     private String imageUrl;
 
-    @OneToOne
+    @OneToOne(targetEntity = Pack.class)
     @XmlElement
     private Pack pack;
 

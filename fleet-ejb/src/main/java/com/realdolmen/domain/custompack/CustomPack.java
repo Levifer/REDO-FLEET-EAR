@@ -21,7 +21,7 @@ public class CustomPack {
     @GeneratedValue
     @XmlTransient
     private Integer id;
-    @OneToMany
+    @OneToMany(targetEntity = Option.class)
     @XmlElement
     private List<Option> options;
 

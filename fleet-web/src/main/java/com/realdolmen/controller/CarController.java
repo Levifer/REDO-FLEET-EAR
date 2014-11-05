@@ -1,8 +1,12 @@
 package com.realdolmen.controller;
 
+import com.realdolmen.domain.carmodel.CarModel;
 import com.realdolmen.service.CarModelWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
-import com.realdolmen.wsdl.carmodel.*;
+import com.realdolmen.wsdl.carmodel.GetAllCarModelsResponse;
+import com.realdolmen.wsdl.carmodel.GetCarModelByIdResponse;
+import com.realdolmen.wsdl.carmodel.GetCarModelsByBrandResponse;
+import com.realdolmen.wsdl.carmodel.GetCarModelsByTypeResponse;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

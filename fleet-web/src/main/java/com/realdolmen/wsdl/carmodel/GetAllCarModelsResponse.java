@@ -1,11 +1,13 @@
 
 package com.realdolmen.wsdl.carmodel;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.realdolmen.domain.carmodel.CarModel;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

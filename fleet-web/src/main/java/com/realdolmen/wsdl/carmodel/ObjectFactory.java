@@ -1,6 +1,10 @@
 
 package com.realdolmen.wsdl.carmodel;
 
+import com.realdolmen.domain.carmodel.CarModel;
+import com.realdolmen.domain.pack.Pack;
+import com.realdolmen.wsdl.pack.Option;
+
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;

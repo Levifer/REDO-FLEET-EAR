@@ -2,6 +2,9 @@ package com.realdolmen.domain.option;
 
 
 import javax.inject.Inject;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
@@ -17,23 +20,38 @@ public class OptionWebService {
     @Inject
     private OptionRepository optionRepository;
 
-    public List<Option> findAll(){
+    @WebMethod(action = "createOption")
+    public void createOption(@WebParam(name = "option") Option option){
+        optionRepository.persist(option);
+    }
+
+    @WebResult(name = "options")
+    @WebMethod(action = "findAllOption")
+    public List<Option> findAllOption(){
         return optionRepository.findAll();
     }
 
-    public Option findById(Integer id) {
-        return null;
+    @WebResult(name = "option")
+    @WebMethod(action = "findOptionById")
+    public Option findOptionById(@WebParam(name = "id") Integer id) {
+        return optionRepository.find(id);
     }
 
-    public List<Option> findByType(String type) {
-        return null;
+    @WebResult(name = "options")
+    @WebMethod(action = "findOptionByType")
+    public List<Option> findOptionByType(@WebParam(name = "type") String type) {
+        return optionRepository.FindByType(type);
     }
 
-    public Option findByName(String name) {
-        return null;
+    @WebResult(name = "options")
+    @WebMethod(action = "findOptionByName")
+    public List<Option> findOptionByName(@WebParam(name = "name") String name) {
+        return optionRepository.FindByName(name);
     }
 
-    public List<Option> findLowerThandPrice(BigDecimal price) {
+    @WebResult(name = "optionss")
+    @WebMethod(action = "findOptionLowerThandPrice")
+    public List<Option> findOptionLowerThandPrice(@WebParam(name = "price") BigDecimal price) {
         return null;
     }
 }

@@ -27,7 +27,7 @@ public class Pack {
     @XmlElement
     private BigDecimal downgrade;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany()
     @XmlElement(nillable = true)
     private List<Option> options;
 

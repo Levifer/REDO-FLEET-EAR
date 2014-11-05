@@ -9,19 +9,19 @@ import javax.inject.Inject;
 /**
  * Created by BPTAT47 on 30/10/2014.
  */
-//@Singleton
-//@Startup
-//public class TestData {
-//
-//    @Inject
-//    private TestDataInserter inserter;
-//
-//    @PostConstruct
-//    private  void init(){
-//        inserter.insertOptions();
-//        inserter.insertAPack();
-//        inserter.insertACarModel();
-//        inserter.insertASecondCarModelWithAnUpdatedPack();
-//        inserter.insertEmployees();
-//    }
-//}
+@Singleton
+@Startup
+public class TestData {
+
+    @Inject
+    private TestDataInserter inserter;
+
+    @PostConstruct
+    private  void init(){
+        inserter.insertOptions();
+        inserter.insertAPack();
+        inserter.insertACarModel();
+        inserter.insertASecondCarModelWithAnUpdatedPack();
+        inserter.insertEmployees();
+    }
+}

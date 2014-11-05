@@ -28,8 +28,10 @@ public class CarModel {
     @XmlElement
     private String name;
     @XmlElement
+    @Enumerated(EnumType.STRING)
     private Enums.CarType type;
     @XmlElement
+    @Enumerated(EnumType.STRING)
     private Enums.Fuel fuelType;
     @Temporal(TemporalType.DATE)
     @XmlElement

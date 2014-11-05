@@ -27,7 +27,9 @@ public class Pack {
     @XmlElement
     private BigDecimal downgrade;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "PACK_OPTIONS", joinColumns = @JoinColumn(name = "PACK_ID"),
+            inverseJoinColumns = @JoinColumn(name = "OPTION_ID"))
     @XmlElement(nillable = true)
     private List<Option> options;
 
@@ -97,4 +99,31 @@ public class Pack {
         return id;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Pack pack = (Pack) o;
+
+        if (!benefitPrice.equals(pack.benefitPrice)) return false;
+        if (!downgrade.equals(pack.downgrade)) return false;
+        if (!id.equals(pack.id)) return false;
+        if (!options.equals(pack.options)) return false;
+        if (!price.equals(pack.price)) return false;
+        if (!upgrade.equals(pack.upgrade)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + price.hashCode();
+        result = 31 * result + benefitPrice.hashCode();
+        result = 31 * result + upgrade.hashCode();
+        result = 31 * result + downgrade.hashCode();
+        result = 31 * result + options.hashCode();
+        return result;
+    }
 }

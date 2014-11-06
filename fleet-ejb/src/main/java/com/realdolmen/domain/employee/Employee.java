@@ -34,17 +34,20 @@ public class Employee {
     @OneToMany()
     @XmlElement
     private List<Car> cars;
+    @ElementCollection
     @Enumerated(EnumType.STRING)
     @XmlElement
-    private Enums.Roles roles;
+    private List<Enums.Roles> roles;
     @Enumerated(EnumType.STRING)
     @XmlElement
     private Enums.Status status;
+    @XmlTransient
+    private  boolean enabled = true;
 
     public Employee() {
     }
 
-    public Employee(String name, String surname, String email, String password, String employeeNumber, Integer category,Enums.Roles roles, Enums.Status status) {
+    public Employee(String name, String surname, String email, String password, String employeeNumber, Integer category,List<Enums.Roles> roles, Enums.Status status) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -115,11 +118,11 @@ public class Employee {
         this.cars = cars;
     }
 
-    public Enums.Roles getRoles() {
+    public List<Enums.Roles> getRoles() {
         return roles;
     }
 
-    public void setRoles(Enums.Roles roles) {
+    public void setRoles(List<Enums.Roles> roles) {
         this.roles = roles;
     }
 
@@ -129,5 +132,13 @@ public class Employee {
 
     public void setStatus(Enums.Status status) {
         this.status = status;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

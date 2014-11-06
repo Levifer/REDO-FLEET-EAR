@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -145,7 +146,7 @@ public class TestDataInserter {
     }
 
     private void insertVwTouran(){
-        Pack pack = packRepository.findAll().get(3);
+        Pack pack = packRepository.findAll().get(1);
         CarModel carModel = new CarModel("Volkswagen", "Touran 1,6TDi 105pk/CV Trendline Bluemotion", Enums.CarType.MONOVOLUME, Enums.Fuel.DIESEL,new Date(),1,140000,180000,20,9,121,4,"",pack);
         entityManager.persist(carModel);
         logger.info("/////************************************INSERTING A VW Touran CarModel*************************************/////\"); ");
@@ -154,7 +155,7 @@ public class TestDataInserter {
     private void insertAudiA4Berline(){
         Option option = new Option(Enums.Technical.CHASSIS.getLabel(),"SportChasis","Lowered the chasis for better aerodynamica",randomGenerator());
         entityManager.persist(option);
-        Pack pack = packRepository.findAll().get(3);
+        Pack pack = packRepository.findAll().get(1);
         pack.getOptions().add(option);
         packRepository.update(pack);
         CarModel carModel = new CarModel("Audi", "A4 Berline 2,0 TDIe ultra 136 pk/cv", Enums.CarType.BERLINE, Enums.Fuel.DIESEL,new Date(),4,180000,200000,16,9,104,5,"",pack);
@@ -166,7 +167,7 @@ public class TestDataInserter {
         List<Option> optionList = optionRepository.findAll();
         Option option = new Option(Enums.Exterior.WHEELS.getLabel(),"alu tims 10 spikes Design 17\"","nice rims",randomGenerator());
         entityManager.persist(option);
-        Pack pack = packRepository.findAll().get(3);
+        Pack pack = packRepository.findAll().get(1);
         pack.getOptions().add(option);
         packRepository.update(pack);
         CarModel carModel = new CarModel("Audi", "Q3 2,0 TDI 136 pk/cv", Enums.CarType.JEEP, Enums.Fuel.DIESEL,new Date(),4,180000,200000,20,11,137,6,"",pack);
@@ -189,11 +190,14 @@ public class TestDataInserter {
     }
 
     public void insertEmployees() {
-        Employee employeeApproved = new Employee("Benjamine", "Pieteraerents", "employeeApproved@hotmail.com", "employeeApproved", "AT47", 2, Enums.Roles.EMPLOYEE, Enums.Status.APPROVED);
+        List<Enums.Roles> rolesList = new ArrayList<>();
+        rolesList.add(Enums.Roles.EMPLOYEE);
+        Employee employeeApproved = new Employee("Benjamine", "Pieteraerents", "employeeApproved@hotmail.com", "employeeApproved", "AT47", 2, rolesList, Enums.Status.APPROVED);
         entityManager.persist(employeeApproved);
-        Employee employeeDisapproved = new Employee("Aveline", "Estie", "employeeDisapproved@hotmail.com", "employeeDisapproved", "AT46", 2, Enums.Roles.EMPLOYEE, Enums.Status.DISAPPROVED);
+        Employee employeeDisapproved = new Employee("Aveline", "Estie", "employeeDisapproved@hotmail.com", "employeeDisapproved", "AT46", 2,rolesList, Enums.Status.DISAPPROVED);
         entityManager.persist(employeeDisapproved);
-        Employee leasingManager = new Employee("Tim", "Lemahieu", "leasingManager@hotmail.com", "leasingManager", "AU71", 2, Enums.Roles.FLEET_MANAGER, Enums.Status.APPROVED);
+        rolesList.add(Enums.Roles.FLEET_MANAGER);
+        Employee leasingManager = new Employee("Tim", "Lemahieu", "leasingManager@hotmail.com", "leasingManager", "AU71", 2, rolesList, Enums.Status.APPROVED);
         entityManager.persist(leasingManager);
         logger.info("/////************************************INSERTING EMPLOYEES*************************************/////\"); ");
 

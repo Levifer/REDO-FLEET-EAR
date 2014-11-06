@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,9 @@ public class EmployeeRepositoryTest extends ImportPersistenceTest{
 
     @Before
     public void Setup(){
-        employee = new Employee("Lemahieu","Tim","tim.lemahieu@realdolmen.com","azerty","AAU71",2, Enums.Roles.EMPLOYEE, Enums.Status.APPROVED);
+        List<Enums.Roles> rolesList = new ArrayList<>();
+        rolesList.add(Enums.Roles.EMPLOYEE);
+        employee = new Employee("Lemahieu","Tim","tim.lemahieu@realdolmen.com","azerty","AAU71",2, rolesList, Enums.Status.APPROVED);
     }
     @Test
     public void testPersistEmployee() throws Exception {

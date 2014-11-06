@@ -92,7 +92,7 @@ public class TestDataInserter {
 
     }
 
-    public void insertCarmodel(){
+    public void insertCarmodels(){
         insertACarModel();
         insertASecondCarModelWithAnUpdatedPack();
         insertIbiziaSt();

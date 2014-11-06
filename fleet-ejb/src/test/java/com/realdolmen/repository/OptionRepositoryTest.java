@@ -64,7 +64,7 @@ public class OptionRepositoryTest extends ImportPersistenceTest {
     @Test
     @Ignore
     public void testFindByType() throws Exception {
-        String type = Enums.CarType.HATCHBACK.getLabel();
+        String type = Enums.Technical.SUPPORT_SYSTEMS.getLabel();
         List<Option> list = optionRepository.FindByType(type);
         assertTrue(list.size() > 0);
     }

@@ -40,17 +40,23 @@ public class CarController {
         List<CarModel> cars = new ArrayList<CarModel>();
         if(type!=null){
             logger.info("find cars by type: " + type);
+            model.addAttribute("error",null);
             cars = carModelWebServiceClient.getCarModelsByType(type.toUpperCase());
         }
 
         if(brand!=null){
             logger.info("find cars by brand: " + brand);
             cars = carModelWebServiceClient.getCarModelsByBrand(brand.toLowerCase());
+            model.addAttribute("error",null);
         }
 
-        if(cars.isEmpty()){
-            logger.info("findAllCars");
+        if(brand== null && type== null){
+            logger.info("find all cars");
             cars = carModelWebServiceClient.getAllCarModels();
+            model.addAttribute("error",null);
+        }
+        if(cars.isEmpty()){
+            model.addAttribute("error","No cars found");
         }
 
         model.addAttribute("isLoggedIn",true);

@@ -60,7 +60,7 @@ public class Enums {
         HATCHBACK("Hatchback"),
         BERLINE("Berline"),
         BREAK("Break"),
-        COUPE("Coupé"),
+        COUPE("Coupe"),
         JEEP("Jeep"),
         MONOVOLUME("Monovolume");
 

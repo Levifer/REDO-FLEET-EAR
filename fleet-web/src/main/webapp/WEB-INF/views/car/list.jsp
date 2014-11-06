@@ -6,6 +6,8 @@
 </div>
 <div class="row">
     <div class="col-md-12">
+        <p>${error}</p>
+        <c:if test="${error==null}">
         <table class="table">
             <tr>
                 <th><spring:message code="car.brand"/></th>
@@ -24,5 +26,6 @@
                 </tr>
             </c:forEach>
         </table>
+        </c:if>
     </div>
 </div>

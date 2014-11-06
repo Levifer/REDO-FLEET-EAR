@@ -5,13 +5,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <div class="row">
-    <div class="col-sm-12"><h2>${car.brand} ${car.name} (${car.year.year})</h2></div>
+    <div class="col-sm-12"><h2>${car.brand} ${car.name} (<fmt:formatDate pattern="yyyy" value="${car.year}" />)</h2></div>
 </div>
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-3 col-xs-6">
         <img src="<%=request.getContextPath() %>/resources/img/logo/${fn:toLowerCase(car.brand)}.png" class="img-responsive"/>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-5">
+        <p>${car.brand} ${car.name} (${car.type})</p>
+    </div>
+
+    <div class="col-sm-3 col-sm-offset-1">
         <p>${car.brand} ${car.name} (${car.type})</p>
     </div>
 </div>

@@ -22,10 +22,8 @@ import static org.junit.Assert.*;
 /**
  * Created by TLAAU71 on 4/11/2014.
  */
-@Ignore
 public class OptionRepositoryTest extends ImportPersistenceTest {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
     private Option option;
 
     @Inject
@@ -34,7 +32,7 @@ public class OptionRepositoryTest extends ImportPersistenceTest {
     @Before
     public void Setup(){
         option = new Option(Enums.Technical.BRAKES.getLabel(), "ABS", "description", new BigDecimal(500));
-        optionRepository.findAll();
+        //optionRepository.findAll();
     }
     @Test
     public void testPersistOption() throws Exception {
@@ -80,10 +78,9 @@ public class OptionRepositoryTest extends ImportPersistenceTest {
     }
 
     @Test
-    @Ignore
     public void testFindAllOptions() throws Exception {
-        List resultList = em().createQuery("SELECT o from fleet_option o",Option.class).getResultList();
-        assertNotNull(resultList.size());
+        List resultList = em().createQuery("SELECT o from Option o",Option.class).getResultList();
+        assertTrue(resultList.size() >= 0);
         assertNotNull(resultList.get(1));
     }
 }

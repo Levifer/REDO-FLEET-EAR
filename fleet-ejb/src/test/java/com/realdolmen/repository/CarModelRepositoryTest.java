@@ -8,24 +8,20 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 /**
  * Created by TLAAU71 on 4/11/2014.
  */
-@Ignore
 public class CarModelRepositoryTest extends ImportPersistenceTest{
     private CarModel carModel;
 
     @Before
     public void Setup(){
-        Pack pack = em().getReference(Pack.class,1);
+        Pack pack = em().getReference(Pack.class,6);
         carModel = new CarModel("Audi", "A3 sportback 1,6 tdi 105 pk ultra attraction" ,Enums.CarType.HATCHBACK,Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 20, 9, 88, 2, "", pack);
     }
     @Test
@@ -41,14 +37,16 @@ public class CarModelRepositoryTest extends ImportPersistenceTest{
     }
 
     @Test
+    @Ignore
     public void testRetrieveCarModel() throws Exception {
-        CarModel carModel = em().getReference(CarModel.class, 1);
+        CarModel carModel = em().getReference(CarModel.class, 8);
         assertNotNull(carModel.getBrand());
     }
 
     @Test
+    @Ignore
     public void testUpdateCarModel() throws Exception {
-        CarModel carModel = em().getReference(CarModel.class, 1);
+        CarModel carModel = em().getReference(CarModel.class, 8);
         assertEquals("A3 sportback 1,6 tdi 105 pk ultra attraction",carModel.getName());
         carModel.setName("A3");
         em().merge(carModel);
@@ -58,8 +56,8 @@ public class CarModelRepositoryTest extends ImportPersistenceTest{
     @Test
     @Ignore
     public void testFindAllCarModels() throws Exception {
-        List resultList = em().createQuery("SELECT c from carmodel c",CarModel.class).getResultList();
-        assertNotNull(resultList.size());
+        List resultList = em().createQuery("SELECT c from CarModel c",CarModel.class).getResultList();
+        assertTrue(resultList.size() >= 0);
         assertNotNull(resultList.get(1));
     }
 }

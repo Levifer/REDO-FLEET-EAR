@@ -10,9 +10,7 @@ import org.junit.Test;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 /**
  * Created by TLAAU71 on 4/11/2014.
@@ -37,27 +35,23 @@ public class EmployeeRepositoryTest extends ImportPersistenceTest{
     }
 
     @Test
-    @Ignore
     public void testRetrieveEmployee() throws Exception {
-        Employee employee = em().getReference(Employee.class, 1);
+        Employee employee = em().getReference(Employee.class, 11);
         assertNotNull(employee.getName());
     }
 
     @Test
-    @Ignore
     public void testUpdateEmployee() throws Exception {
-        Employee employee = em().getReference(Employee.class, 1);
-        assertEquals("Tim",employee.getSurname());
-        employee.setSurname("Timmy");
+        Employee employee = em().getReference(Employee.class, 13);
+        assertEquals("Tim",employee.getName());
+        employee.setName("Timmy");
         em().merge(employee);
-        assertEquals("Timmy",employee.getSurname());
+        assertEquals("Timmy",employee.getName());
     }
 
     @Test
-    @Ignore
     public void testFindAllEmployees() throws Exception {
-        List resultList = em().createQuery("SELECT e from employee e",Employee.class).getResultList();
-        assertNotNull(resultList.size());
-        assertNotNull(resultList.get(1));
+        List resultList = em().createQuery("SELECT e from Employee e",Employee.class).getResultList();
+        assertTrue(resultList.size() >=0);
     }
 }

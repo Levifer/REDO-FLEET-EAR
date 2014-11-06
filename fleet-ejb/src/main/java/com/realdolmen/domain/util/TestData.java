@@ -9,6 +9,7 @@ import javax.inject.Inject;
 /**
  * Created by BPTAT47 on 30/10/2014.
  */
+/*
 @Singleton
 @Startup
 public class TestData {
@@ -16,8 +17,7 @@ public class TestData {
     @Inject
     private TestDataInserter inserter;
 
-
-    @PostConstruct
+ @PostConstruct
     private  void init(){
         inserter.insertOptions();
         inserter.insertAPack();
@@ -26,4 +26,4 @@ public class TestData {
         inserter.insertCar();
         inserter.insertEmployees();
     }
-}
+}*/

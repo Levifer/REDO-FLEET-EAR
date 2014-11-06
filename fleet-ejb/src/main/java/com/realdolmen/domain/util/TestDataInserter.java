@@ -125,9 +125,8 @@ public class TestDataInserter {
     private void insertIbiziaSt(){
         Option option = new Option(Enums.Interior.OTHER.getLabel(), "Desactiveerbare Passagiersairbag", "Allows you to disable the aibags", randomGenerator());
         entityManager.persist(option);
-        List<Option> optionList = optionRepository.FindByType(Enums.Technical.SUPPORT_SYSTEMS.getLabel());
-        optionList.add(option);
-        Pack pack = new Pack(getPrice(optionList),randomGenerator(),randomGenerator(),randomGenerator(),optionList);
+        Pack pack = packRepository.findAll().get(1);
+        pack.getOptions().add(option);
         packRepository.update(pack);
         CarModel carModel = new CarModel("Seat", "Ibiza St 1,6TDi 105pk/CV Style",Enums.CarType.BREAK, Enums.Fuel.BENZINE, new Date(),2,140000,180000,14,7,92,2,"",pack);
         entityManager.persist(carModel);
@@ -135,11 +134,10 @@ public class TestDataInserter {
     }
 
     private void insertVWBeetle(){
-        List<Option> supportList = optionRepository.FindByType(Enums.Technical.SUPPORT_SYSTEMS.getLabel());
         Option option = new Option(Enums.Technical.SUPPORT_SYSTEMS.getLabel(),"Hill Hold Control","Automatically brakes when you're on a hill so you don't roll away",randomGenerator());
         entityManager.persist(option);
-        supportList.add(option);
-        Pack pack = new Pack(getPrice(supportList),randomGenerator(),randomGenerator(),randomGenerator(),supportList);
+        Pack pack = packRepository.findAll().get(1);
+        pack.getOptions().add(option);
         packRepository.update(pack);
         CarModel carModel = new CarModel("Volkswagen","BEETLE 1,6 CRTDI 105 pk 5 v Design", Enums.CarType.COUPE, Enums.Fuel.DIESEL,new Date(),3,140000,180000,20,9,113,3,"",pack);
         entityManager.persist(carModel);
@@ -147,20 +145,17 @@ public class TestDataInserter {
     }
 
     private void insertVwTouran(){
-        List<Option> optionList = optionRepository.findAll();
-        Pack pack = new Pack(getPrice(optionList),randomGenerator(),randomGenerator(),randomGenerator(),optionList);
-        packRepository.update(pack);
+        Pack pack = packRepository.findAll().get(3);
         CarModel carModel = new CarModel("Volkswagen", "Touran 1,6TDi 105pk/CV Trendline Bluemotion", Enums.CarType.MONOVOLUME, Enums.Fuel.DIESEL,new Date(),1,140000,180000,20,9,121,4,"",pack);
         entityManager.persist(carModel);
         logger.info("/////************************************INSERTING A VW Touran CarModel*************************************/////\"); ");
     }
 
     private void insertAudiA4Berline(){
-        List<Option> optionList = optionRepository.findAll();
         Option option = new Option(Enums.Technical.CHASSIS.getLabel(),"SportChasis","Lowered the chasis for better aerodynamica",randomGenerator());
         entityManager.persist(option);
-        optionList.add(option);
-        Pack pack = new Pack(getPrice(optionList),randomGenerator(),randomGenerator(),randomGenerator(),optionList);
+        Pack pack = packRepository.findAll().get(3);
+        pack.getOptions().add(option);
         packRepository.update(pack);
         CarModel carModel = new CarModel("Audi", "A4 Berline 2,0 TDIe ultra 136 pk/cv", Enums.CarType.BERLINE, Enums.Fuel.DIESEL,new Date(),4,180000,200000,16,9,104,5,"",pack);
         entityManager.persist(carModel);
@@ -171,8 +166,8 @@ public class TestDataInserter {
         List<Option> optionList = optionRepository.findAll();
         Option option = new Option(Enums.Exterior.WHEELS.getLabel(),"alu tims 10 spikes Design 17\"","nice rims",randomGenerator());
         entityManager.persist(option);
-        optionList.add(option);
-        Pack pack = new Pack(getPrice(optionList),randomGenerator(),randomGenerator(),randomGenerator(),optionList);
+        Pack pack = packRepository.findAll().get(3);
+        pack.getOptions().add(option);
         packRepository.update(pack);
         CarModel carModel = new CarModel("Audi", "Q3 2,0 TDI 136 pk/cv", Enums.CarType.JEEP, Enums.Fuel.DIESEL,new Date(),4,180000,200000,20,11,137,6,"",pack);
         entityManager.persist(carModel);
@@ -189,7 +184,7 @@ public class TestDataInserter {
     public void insertCar(){
         List<CustomPack> customPackList = customPackRepository.findAll();
         List<CarModel> modelList = carModelRepository.findAllByBrand("Seat");
-        Car car = new Car(modelList.get(0),15642,new Date(),customPackList.get(0));
+        Car car = new Car(modelList.get(0),randomGenerator().intValue(),new Date(),customPackList.get(0));
         entityManager.persist(car);
     }
 

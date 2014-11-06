@@ -21,8 +21,7 @@ public class TestData {
     private  void init(){
         inserter.insertOptions();
         inserter.insertAPack();
-        inserter.insertACarModel();
-        inserter.insertASecondCarModelWithAnUpdatedPack();
+        inserter.insertCarmodel();
         inserter.insertEmployees();
 
     }

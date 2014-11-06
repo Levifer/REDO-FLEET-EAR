@@ -16,13 +16,13 @@ public class OptionRepository extends AbstractRepository<Option> {
 
 
     public List<Option> FindByType(String type){
-        return entityManager.createQuery("Select o from fleet_option o where o.type = :tp",Option.class)
+        return entityManager.createQuery("Select o from Option o where o.type = :tp",Option.class)
                 .setParameter("tp",type)
                 .getResultList();
     }
 
     public List<Option> FindByName(String name){
-        return entityManager.createQuery("Select o from fleet_option Where o.name like :name",Option.class)
+        return entityManager.createQuery("Select o from Option Where o.name like :name",Option.class)
                 .setParameter("name","%"+name+"%")
                 .getResultList();
     }

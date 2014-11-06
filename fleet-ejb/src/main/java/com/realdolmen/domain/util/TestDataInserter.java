@@ -1,7 +1,11 @@
 package com.realdolmen.domain.util;
 
 import com.realdolmen.domain.Enums;
+import com.realdolmen.domain.car.Car;
 import com.realdolmen.domain.carmodel.CarModel;
+import com.realdolmen.domain.carmodel.CarModelRepository;
+import com.realdolmen.domain.custompack.CustomPack;
+import com.realdolmen.domain.custompack.CustomPackRepository;
 import com.realdolmen.domain.employee.Employee;
 import com.realdolmen.domain.option.Option;
 import com.realdolmen.domain.option.OptionRepository;
@@ -30,6 +34,10 @@ public class TestDataInserter {
     private OptionRepository optionRepository;
     @Inject
     private PackRepository packRepository;
+    @Inject
+    private CarModelRepository carModelRepository;
+    @Inject
+    private CustomPackRepository customPackRepository;
     @PersistenceContext(unitName = "production")
     private EntityManager entityManager;
 
@@ -84,14 +92,24 @@ public class TestDataInserter {
 
     }
 
-    public void insertACarModel() {
+    public void insertCarmodel(){
+        insertACarModel();
+        insertASecondCarModelWithAnUpdatedPack();
+        insertIbiziaSt();
+        insertVWBeetle();
+        insertVwTouran();
+        insertAudiA4Berline();
+        insertAudiQ3();
+    }
+
+    private void insertACarModel() {
         CarModel carModel = new CarModel("Audi", "A3",Enums.CarType.HATCHBACK, Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 20, 9, 88, 2, "", packRepository.findAll().get(0));
         entityManager.persist(carModel);
         logger.info("/////************************************INSERTING A CARMODEL*************************************/////\"); ");
 
     }
 
-    public void insertASecondCarModelWithAnUpdatedPack() {
+    private void insertASecondCarModelWithAnUpdatedPack() {
         final String description6 = "Autonomous cruise control (also called adaptive or radar cruise control) is an optional cruise control system for road vehicles that automatically adjusts the vehicle speed to maintain a safe distance from vehicles ahead. It makes no use of satellite or roadside infrastructures nor of any cooperative support from other vehicles. Hence control is imposed based on sensor information from on-board sensors only. The extension to cooperative cruise control requires either fixed infrastructure as with satellites, roadside beacons or mobile infrastructures as reflectors or transmitters on the back of other vehicles ahead";
         Option option6 = new Option(Enums.Technical.SUPPORT_SYSTEMS.getLabel(), "Adaptive cruise control", description6, randomGenerator());
         entityManager.persist(option6);
@@ -102,6 +120,77 @@ public class TestDataInserter {
         entityManager.persist(carModel2);
         logger.info("/////************************************INSERTING A SECOND CAR WITH AN UPDATED PACK*************************************/////\"); ");
 
+    }
+
+    private void insertIbiziaSt(){
+        Option option = new Option(Enums.Interior.OTHER.getLabel(), "Desactiveerbare Passagiersairbag", "Allows you to disable the aibags", randomGenerator());
+        entityManager.persist(option);
+        List<Option> optionList = optionRepository.FindByType(Enums.Technical.SUPPORT_SYSTEMS.getLabel());
+        optionList.add(option);
+        Pack pack = new Pack(getPrice(optionList),randomGenerator(),randomGenerator(),randomGenerator(),optionList);
+        packRepository.update(pack);
+        CarModel carModel = new CarModel("Seat", "Ibiza St 1,6TDi 105pk/CV Style",Enums.CarType.BREAK, Enums.Fuel.BENZINE, new Date(),2,140000,180000,14,7,92,2,"",pack);
+        entityManager.persist(carModel);
+        logger.info("/////************************************INSERTING A Ibiza St CarModel*************************************/////\"); ");
+    }
+
+    private void insertVWBeetle(){
+        List<Option> supportList = optionRepository.FindByType(Enums.Technical.SUPPORT_SYSTEMS.getLabel());
+        Option option = new Option(Enums.Technical.SUPPORT_SYSTEMS.getLabel(),"Hill Hold Control","Automatically brakes when you're on a hill so you don't roll away",randomGenerator());
+        entityManager.persist(option);
+        supportList.add(option);
+        Pack pack = new Pack(getPrice(supportList),randomGenerator(),randomGenerator(),randomGenerator(),supportList);
+        packRepository.update(pack);
+        CarModel carModel = new CarModel("Volkswagen","BEETLE 1,6 CRTDI 105 pk 5 v Design", Enums.CarType.COUPE, Enums.Fuel.DIESEL,new Date(),3,140000,180000,20,9,113,3,"",pack);
+        entityManager.persist(carModel);
+        logger.info("/////************************************INSERTING A VW Beetle CarModel*************************************/////\"); ");
+    }
+
+    private void insertVwTouran(){
+        List<Option> optionList = optionRepository.findAll();
+        Pack pack = new Pack(getPrice(optionList),randomGenerator(),randomGenerator(),randomGenerator(),optionList);
+        packRepository.update(pack);
+        CarModel carModel = new CarModel("Volkswagen", "Touran 1,6TDi 105pk/CV Trendline Bluemotion", Enums.CarType.MONOVOLUME, Enums.Fuel.DIESEL,new Date(),1,140000,180000,20,9,121,4,"",pack);
+        entityManager.persist(carModel);
+        logger.info("/////************************************INSERTING A VW Touran CarModel*************************************/////\"); ");
+    }
+
+    private void insertAudiA4Berline(){
+        List<Option> optionList = optionRepository.findAll();
+        Option option = new Option(Enums.Technical.CHASSIS.getLabel(),"SportChasis","Lowered the chasis for better aerodynamica",randomGenerator());
+        entityManager.persist(option);
+        optionList.add(option);
+        Pack pack = new Pack(getPrice(optionList),randomGenerator(),randomGenerator(),randomGenerator(),optionList);
+        packRepository.update(pack);
+        CarModel carModel = new CarModel("Audi", "A4 Berline 2,0 TDIe ultra 136 pk/cv", Enums.CarType.BERLINE, Enums.Fuel.DIESEL,new Date(),4,180000,200000,16,9,104,5,"",pack);
+        entityManager.persist(carModel);
+        logger.info("/////************************************INSERTING A Audi A4 Berline CarModel*************************************/////\"); ");
+    }
+
+    private void insertAudiQ3(){
+        List<Option> optionList = optionRepository.findAll();
+        Option option = new Option(Enums.Exterior.WHEELS.getLabel(),"alu tims 10 spikes Design 17\"","nice rims",randomGenerator());
+        entityManager.persist(option);
+        optionList.add(option);
+        Pack pack = new Pack(getPrice(optionList),randomGenerator(),randomGenerator(),randomGenerator(),optionList);
+        packRepository.update(pack);
+        CarModel carModel = new CarModel("Audi", "Q3 2,0 TDI 136 pk/cv", Enums.CarType.JEEP, Enums.Fuel.DIESEL,new Date(),4,180000,200000,20,11,137,6,"",pack);
+        entityManager.persist(carModel);
+        logger.info("/////************************************INSERTING A Audi Q3 CarModel*************************************/////\"); ");
+    }
+
+    public void insertCustomPack(){
+        List<Option> optionList = optionRepository.findAll();
+        CustomPack customPack = new CustomPack(optionList);
+        entityManager.persist(customPack);
+    }
+
+
+    public void insertCar(){
+        List<CustomPack> customPackList = customPackRepository.findAll();
+        List<CarModel> modelList = carModelRepository.findAllByBrand("Seat");
+        Car car = new Car(modelList.get(0),15642,new Date(),customPackList.get(0));
+        entityManager.persist(car);
     }
 
     public void insertEmployees() {

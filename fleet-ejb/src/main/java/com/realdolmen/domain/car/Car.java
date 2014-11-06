@@ -1,6 +1,7 @@
 package com.realdolmen.domain.car;
 
 import com.realdolmen.domain.carmodel.CarModel;
+import com.realdolmen.domain.custompack.CustomPack;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
@@ -31,7 +32,18 @@ public class Car implements Serializable {
     @XmlElement
     private Date carInUse;
 
+    @XmlElement
+    @OneToOne(targetEntity = CustomPack.class)
+    private CustomPack customPack;
+
     public Car() {
+    }
+
+    public Car(CarModel model, Integer mileage, Date carInUse, CustomPack customPack) {
+        this.model = model;
+        this.mileage = mileage;
+        this.carInUse = carInUse;
+        this.customPack = customPack;
     }
 
     public Car(CarModel model, Integer mileage, Date carInUse) {
@@ -66,5 +78,13 @@ public class Car implements Serializable {
 
     public void setCarInUse(Date carInUse) {
         this.carInUse = carInUse;
+    }
+
+    public CustomPack getCustomPack() {
+        return customPack;
+    }
+
+    public void setCustomPack(CustomPack customPack) {
+        this.customPack = customPack;
     }
 }

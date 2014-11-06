@@ -14,7 +14,7 @@ public class Initializer implements WebApplicationInitializer {
 	public void onStartup(ServletContext servletContext)
 			throws ServletException {
 		AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-		context.register(ProductionConfig.class);
+		context.register(ProductionConfig.class, ConsumeWsdlConfig.class);
 
 		ServletRegistration.Dynamic dispatcher = servletContext.addServlet(
 				"dispatcher", new DispatcherServlet(context));

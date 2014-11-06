@@ -1,8 +1,8 @@
 package com.realdolmen.controller;
 
+import com.realdolmen.domain.carmodel.CarModel;
 import com.realdolmen.service.CarModelWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
-import com.realdolmen.wsdl.carmodel.*;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,20 +40,17 @@ public class CarController {
         List<CarModel> cars = new ArrayList<CarModel>();
         if(type!=null){
             logger.info("find cars by type: " + type);
-            GetCarModelsByTypeResponse carModels = carModelWebServiceClient.getCarModelsByType(type.toUpperCase());
-            cars = carModels.getCarModels();
+            cars = carModelWebServiceClient.getCarModelsByType(type.toUpperCase());
         }
 
         if(brand!=null){
             logger.info("find cars by brand: " + brand);
-            GetCarModelsByBrandResponse carModels = carModelWebServiceClient.getCarModelsByBrand(brand.toLowerCase());
-            cars = carModels.getCarModels();
+            cars = carModelWebServiceClient.getCarModelsByBrand(brand.toLowerCase());
         }
 
         if(cars.isEmpty()){
             logger.info("findAllCars");
-            GetAllCarModelsResponse carModels = carModelWebServiceClient.getAllCarModels();
-            cars = carModels.getCarModels();
+            cars = carModelWebServiceClient.getAllCarModels();
         }
 
         model.addAttribute("isLoggedIn",true);
@@ -64,9 +61,9 @@ public class CarController {
     @RequestMapping("/car/{id}")
     public String detail(@PathVariable("id") String id, Model model) {
         logger.info("/car - id: " + id);
-        GetCarModelByIdResponse carModelsByIdResponse = carModelWebServiceClient.getCarModelsById(Integer.parseInt(id));
+        CarModel carModel = carModelWebServiceClient.getCarModelsById(Integer.parseInt(id));
         model.addAttribute("isLoggedIn",true);
-        model.addAttribute("car", carModelsByIdResponse.getCarModel());
+        model.addAttribute("car", carModel);
         return "carDetail";
     }
 

@@ -1,13 +1,15 @@
 
 package com.realdolmen.wsdl.carmodel;
 
-import java.util.List;
+import com.realdolmen.domain.carmodel.CarModel;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
+import java.util.List;
 
 
 /**

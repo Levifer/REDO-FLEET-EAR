@@ -12,14 +12,6 @@
     <artifactId>fleet-web</artifactId>
     <packaging>war</packaging>
 
-    <repositories>
-        <repository>
-            <id>myWSRepo</id>
-            <name>myWSRepoName</name>
-            <url>https://code.lds.org/svn/stack/modules/ws-spring</url>
-           </repository>
-    </repositories>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java-version>1.7</java-version>
@@ -113,11 +105,11 @@
             <artifactId>log4j</artifactId>
             <version>1.2.14</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.realdolmen</groupId>-->
-            <!--<artifactId>fleet-ejb</artifactId>-->
-            <!--<version>1.0-SNAPSHOT</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.realdolmen</groupId>
+            <artifactId>fleet-ejb</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

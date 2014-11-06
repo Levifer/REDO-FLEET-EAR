@@ -62,11 +62,13 @@ public class OptionRepositoryTest extends ImportPersistenceTest {
     }
 
     @Test
-    @Ignore
     public void testFindByType() throws Exception {
         String type = Enums.Technical.SUPPORT_SYSTEMS.getLabel();
-        List<Option> list = optionRepository.FindByType(type);
-        assertTrue(list.size() > 0);
+        //List<Option> list = optionRepository.FindByType(type);
+        List<Option> list = em().createQuery("Select o from Option o where o.type = :tp", Option.class)
+                .setParameter("tp", type)
+                .getResultList();
+        assertTrue(list.size() >= 0);
     }
 
     @Test

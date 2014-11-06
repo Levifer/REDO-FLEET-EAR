@@ -10,7 +10,9 @@
         </layout>
     </appender>
 
+
     <root>
+        <!--Ge kunt ergens een treshold of zo iets instellen-->
         <level value="INFO" />
         <appender-ref ref="console" />
     </root>

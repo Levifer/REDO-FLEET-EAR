@@ -1,0 +1,42 @@
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <http auto-config="true" request-matcher="ant">
+        <intercept-url pattern="**/*.*" access="denyAll"/>
+    </http>
+
+    <!--<http auto-config="true" use-expressions="false">-->
+        <!--<intercept-url pattern="/j_spring_security_check" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
+       <!--<form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?error" username-parameter="email" password-parameter="password" />-->
+        <!--<intercept-url pattern="/fleet/car/*" access="ROLE_EMPLOYEE"/>-->
+        <!--<intercept-url pattern="/fleet/CarModelWebService?wsdl" access="ROLE_FORBIDDEN"/>-->
+        <!--<logout logout-success-url="/logout.html" invalidate-session="true"/>-->
+        <!--<access-denied-handler error-page="/views/error/error.jsp"/>-->
+
+    <!--</http>-->
+    <!--<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+        <!--<beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
+        <!--<beans:property name="url" value="jdbc:mysql://localhost:3306/rdfleet"/>-->
+        <!--<beans:property name="username" value="root"/>-->
+        <!--<beans:property name="password" value="root"/>-->
+    <!--</beans:bean>-->
+    <!--<beans:bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="passwordEncoder"/>-->
+
+    <!--<beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>-->
+
+    <!--<authentication-manager>-->
+        <!--<authentication-provider>-->
+            <!--<jdbc-user-service data-source-ref="dataSource"-->
+                               <!--users-by-username-query="select DISTINCT empl.email as username,-->
+<!--CONCAT('ROLE_',empl_roles.roles) as authority ,-->
+<!--empl.id-->
+<!--from employee as empl,employee_roles as empl_roles where empl.id = empl_roles.Employee_id and empl_roles.roles = 'EMPLOYEE' or empl_roles.roles = 'FLEET_MANAGER'"/>-->
+            <!--<password-encoder ref="passwordEncoder" />-->
+        <!--</authentication-provider>-->
+    <!--</authentication-manager>-->
+
+</beans:beans>

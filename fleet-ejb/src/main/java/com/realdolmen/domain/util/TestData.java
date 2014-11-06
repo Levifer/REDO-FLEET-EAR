@@ -8,7 +8,7 @@ import javax.inject.Inject;
 
 /**
  * Created by BPTAT47 on 30/10/2014.
- */
+ *//*
 @Singleton
 @Startup
 public class TestData {
@@ -24,4 +24,4 @@ public class TestData {
         inserter.insertASecondCarModelWithAnUpdatedPack();
         inserter.insertEmployees();
     }
-}
+}*/

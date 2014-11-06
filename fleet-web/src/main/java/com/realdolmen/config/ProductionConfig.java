@@ -3,6 +3,7 @@ package com.realdolmen.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 //@EnableTransactionManagement
 @ComponentScan(basePackages = "com.realdolmen")
 //@ImportResource("classpath:/webflow-config.xml")
+//@ImportResource("classpath:/security-config.xml")
 public class ProductionConfig extends WebMvcConfigurerAdapter {
     @Bean
     public UrlBasedViewResolver viewResolver() {

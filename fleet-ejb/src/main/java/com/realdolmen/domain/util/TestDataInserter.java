@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -105,11 +106,14 @@ public class TestDataInserter {
     }
 
     public void insertEmployees() {
-        Employee employeeApproved = new Employee("Benjamine", "Pieteraerents", "employeeApproved@hotmail.com", "employeeApproved", "AT47", 2, Enums.Roles.EMPLOYEE, Enums.Status.APPROVED);
+        List<Enums.Roles> rolesList = new ArrayList<>();
+        rolesList.add(Enums.Roles.EMPLOYEE);
+        Employee employeeApproved = new Employee("Benjamine", "Pieteraerents", "employeeApproved@hotmail.com", "employeeApproved", "AT47", 2, rolesList, Enums.Status.APPROVED);
         entityManager.persist(employeeApproved);
-        Employee employeeDisapproved = new Employee("Aveline", "Estie", "employeeDisapproved@hotmail.com", "employeeDisapproved", "AT46", 2, Enums.Roles.EMPLOYEE, Enums.Status.DISAPPROVED);
+        Employee employeeDisapproved = new Employee("Aveline", "Estie", "employeeDisapproved@hotmail.com", "employeeDisapproved", "AT46", 2,rolesList, Enums.Status.DISAPPROVED);
         entityManager.persist(employeeDisapproved);
-        Employee leasingManager = new Employee("Tim", "Lemahieu", "leasingManager@hotmail.com", "leasingManager", "AU71", 2, Enums.Roles.FLEET_MANAGER, Enums.Status.APPROVED);
+        rolesList.add(Enums.Roles.FLEET_MANAGER);
+        Employee leasingManager = new Employee("Tim", "Lemahieu", "leasingManager@hotmail.com", "leasingManager", "AU71", 2, rolesList, Enums.Status.APPROVED);
         entityManager.persist(leasingManager);
         logger.info("/////************************************INSERTING EMPLOYEES*************************************/////\"); ");
 

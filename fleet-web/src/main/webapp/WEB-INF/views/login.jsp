@@ -7,28 +7,29 @@
 <div class="row">
     <h2>Some day, you can log in here to order your car.</h2>
 </div>
-<c:if test="${loggedIn.equals('no')}">
+<c:if test="${param.error}">
     <div class="row">
         <div class="alert alert-danger"><spring:message code="error.onLogin"/></div>
     </div>
 </c:if>
+<c:if test="${param.logout}">
+    <div class="row">
+        <div class="alert alert-danger">You have been logged out.</div>
+    </div>
+</c:if>
 <div class="row">
-    <form role="form">
+    <form name='f' action="processLogin" method='POST'>
         <div class="form-group">
             <label for="email">Email</label>
-            <input class="form-control" type="email" path="email"
-                        id="email" name="email"/>
+            <input class="form-control" type="text" id="email" name="email"/>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input class="form-control" type="password" path="password" id="password"
-                        name="password"/>
+            <input class="form-control" type="password" id="password" name="password"/>
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <div class="form-group">
-            <input type="submit" value="Back" name="_eventId_back"
-                   class="btn btn-danger"/>
-            <input type="submit" value="Login!" name="_eventId_login"
-                   class="btn btn-primary"/>
+            <input name="submit" type="submit" value="Login!" class="btn btn-primary"/>
         </div>
     </form>
 </div>

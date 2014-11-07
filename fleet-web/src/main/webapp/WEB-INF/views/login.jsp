@@ -15,12 +15,12 @@
 <div class="row">
     <form role="form">
         <div class="form-group">
-            <label for="email">Title</label>
+            <label for="email">Email</label>
             <input class="form-control" type="email" path="email"
                         id="email" name="email"/>
         </div>
         <div class="form-group">
-            <label for="password">ISBN</label>
+            <label for="password">Password</label>
             <input class="form-control" type="password" path="password" id="password"
                         name="password"/>
         </div>

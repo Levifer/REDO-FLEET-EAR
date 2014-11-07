@@ -14,7 +14,7 @@
     <artifactId>fleet-ear</artifactId>
     <packaging>ear</packaging>
 
-    <build>
+    <!--<build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -38,7 +38,7 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 
     <dependencies>
         <dependency>

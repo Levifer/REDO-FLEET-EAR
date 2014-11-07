@@ -1,10 +1,6 @@
 
 package com.realdolmen.wsdl.carmodel;
 
-import com.realdolmen.domain.carmodel.CarModel;
-import com.realdolmen.domain.pack.Pack;
-import com.realdolmen.wsdl.pack.Option;
-
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
@@ -48,43 +44,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetAllCarModelsResponse }
+     * Create an instance of {@link GetCarModelByIdResponse }
      * 
      */
-    public GetAllCarModelsResponse createGetAllCarModelsResponse() {
-        return new GetAllCarModelsResponse();
-    }
-
-    /**
-     * Create an instance of {@link CarModel }
-     * 
-     */
-    public CarModel createCarModel() {
-        return new CarModel();
-    }
-
-    /**
-     * Create an instance of {@link Pack }
-     * 
-     */
-    public Pack createPack() {
-        return new Pack();
-    }
-
-    /**
-     * Create an instance of {@link GetAllCarModels }
-     * 
-     */
-    public GetAllCarModels createGetAllCarModels() {
-        return new GetAllCarModels();
-    }
-
-    /**
-     * Create an instance of {@link GetCarModelsByBrand }
-     * 
-     */
-    public GetCarModelsByBrand createGetCarModelsByBrand() {
-        return new GetCarModelsByBrand();
+    public GetCarModelByIdResponse createGetCarModelByIdResponse() {
+        return new GetCarModelByIdResponse();
     }
 
     /**
@@ -96,19 +60,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetCarModelsByTypeResponse }
+     * Create an instance of {@link Pack }
      * 
      */
-    public GetCarModelsByTypeResponse createGetCarModelsByTypeResponse() {
-        return new GetCarModelsByTypeResponse();
+    public Pack createPack() {
+        return new Pack();
     }
 
     /**
-     * Create an instance of {@link GetCarModelByIdResponse }
+     * Create an instance of {@link GetCarModelById }
      * 
      */
-    public GetCarModelByIdResponse createGetCarModelByIdResponse() {
-        return new GetCarModelByIdResponse();
+    public GetCarModelById createGetCarModelById() {
+        return new GetCarModelById();
     }
 
     /**
@@ -120,6 +84,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetCarModelsByBrand }
+     * 
+     */
+    public GetCarModelsByBrand createGetCarModelsByBrand() {
+        return new GetCarModelsByBrand();
+    }
+
+    /**
+     * Create an instance of {@link GetCarModelsByTypeResponse }
+     * 
+     */
+    public GetCarModelsByTypeResponse createGetCarModelsByTypeResponse() {
+        return new GetCarModelsByTypeResponse();
+    }
+
+    /**
      * Create an instance of {@link GetCarModelsByBrandResponse }
      * 
      */
@@ -128,11 +108,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetCarModelById }
+     * Create an instance of {@link GetAllCarModels }
      * 
      */
-    public GetCarModelById createGetCarModelById() {
-        return new GetCarModelById();
+    public GetAllCarModels createGetAllCarModels() {
+        return new GetAllCarModels();
+    }
+
+    /**
+     * Create an instance of {@link CarModel }
+     * 
+     */
+    public CarModel createCarModel() {
+        return new CarModel();
+    }
+
+    /**
+     * Create an instance of {@link GetAllCarModelsResponse }
+     * 
+     */
+    public GetAllCarModelsResponse createGetAllCarModelsResponse() {
+        return new GetAllCarModelsResponse();
     }
 
     /**

@@ -23,69 +23,80 @@ public interface OptionWebService {
 
     /**
      * 
-     * @param arg0
+     * @param price
+     * @return
+     *     returns java.util.List<com.realdolmen.wsdl.option.Option>
+     */
+    @WebMethod(action = "findOptionLowerThandPrice")
+    @WebResult(name = "optionss", targetNamespace = "")
+    @RequestWrapper(localName = "findOptionLowerThandPrice", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindOptionLowerThandPrice")
+    @ResponseWrapper(localName = "findOptionLowerThandPriceResponse", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindOptionLowerThandPriceResponse")
+    public List<Option> findOptionLowerThandPrice(
+        @WebParam(name = "price", targetNamespace = "")
+        BigDecimal price);
+
+    /**
+     * 
+     * @param type
+     * @return
+     *     returns java.util.List<com.realdolmen.wsdl.option.Option>
+     */
+    @WebMethod(action = "findOptionByType")
+    @WebResult(name = "options", targetNamespace = "")
+    @RequestWrapper(localName = "findOptionByType", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindOptionByType")
+    @ResponseWrapper(localName = "findOptionByTypeResponse", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindOptionByTypeResponse")
+    public List<Option> findOptionByType(
+        @WebParam(name = "type", targetNamespace = "")
+        String type);
+
+    /**
+     * 
+     * @param option
+     */
+    @WebMethod(action = "createOption")
+    @RequestWrapper(localName = "createOption", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.CreateOption")
+    @ResponseWrapper(localName = "createOptionResponse", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.CreateOptionResponse")
+    public void createOption(
+        @WebParam(name = "option", targetNamespace = "http://option.domain.realdolmen.com/")
+        Option option);
+
+    /**
+     * 
+     * @param name
+     * @return
+     *     returns java.util.List<com.realdolmen.wsdl.option.Option>
+     */
+    @WebMethod(action = "findOptionByName")
+    @WebResult(name = "options", targetNamespace = "")
+    @RequestWrapper(localName = "findOptionByName", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindOptionByName")
+    @ResponseWrapper(localName = "findOptionByNameResponse", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindOptionByNameResponse")
+    public List<Option> findOptionByName(
+        @WebParam(name = "name", targetNamespace = "")
+        String name);
+
+    /**
+     * 
+     * @param id
      * @return
      *     returns com.realdolmen.wsdl.option.Option
      */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "findById", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindById")
-    @ResponseWrapper(localName = "findByIdResponse", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindByIdResponse")
-    public Option findById(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Integer arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.util.List<com.realdolmen.wsdl.option.Option>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "findLowerThandPrice", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindLowerThandPrice")
-    @ResponseWrapper(localName = "findLowerThandPriceResponse", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindLowerThandPriceResponse")
-    public List<Option> findLowerThandPrice(
-        @WebParam(name = "arg0", targetNamespace = "")
-        BigDecimal arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns com.realdolmen.wsdl.option.Option
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "findByName", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindByName")
-    @ResponseWrapper(localName = "findByNameResponse", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindByNameResponse")
-    public Option findByName(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+    @WebMethod(action = "findOptionById")
+    @WebResult(name = "option", targetNamespace = "http://option.domain.realdolmen.com/")
+    @RequestWrapper(localName = "findOptionById", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindOptionById")
+    @ResponseWrapper(localName = "findOptionByIdResponse", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindOptionByIdResponse")
+    public Option findOptionById(
+        @WebParam(name = "id", targetNamespace = "")
+        Integer id);
 
     /**
      * 
      * @return
      *     returns java.util.List<com.realdolmen.wsdl.option.Option>
      */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "findAll", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindAll")
-    @ResponseWrapper(localName = "findAllResponse", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindAllResponse")
-    public List<Option> findAll();
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.util.List<com.realdolmen.wsdl.option.Option>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "findByType", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindByType")
-    @ResponseWrapper(localName = "findByTypeResponse", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindByTypeResponse")
-    public List<Option> findByType(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+    @WebMethod(action = "findAllOption")
+    @WebResult(name = "options", targetNamespace = "")
+    @RequestWrapper(localName = "findAllOption", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindAllOption")
+    @ResponseWrapper(localName = "findAllOptionResponse", targetNamespace = "http://option.domain.realdolmen.com/", className = "com.realdolmen.wsdl.option.FindAllOptionResponse")
+    public List<Option> findAllOption();
 
 }

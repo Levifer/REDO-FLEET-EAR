@@ -22,41 +22,52 @@ public interface PackWebService {
 
     /**
      * 
-     * @return
-     *     returns java.util.List<com.realdolmen.wsdl.pack.Pack>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "findAll", targetNamespace = "http://pack.domain.realdolmen.com/", className = "com.realdolmen.wsdl.pack.FindAll")
-    @ResponseWrapper(localName = "findAllResponse", targetNamespace = "http://pack.domain.realdolmen.com/", className = "com.realdolmen.wsdl.pack.FindAllResponse")
-    public List<Pack> findAll();
-
-    /**
-     * 
-     * @param arg0
+     * @param pack
      * @return
      *     returns com.realdolmen.wsdl.pack.Pack
      */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "findById", targetNamespace = "http://pack.domain.realdolmen.com/", className = "com.realdolmen.wsdl.pack.FindById")
-    @ResponseWrapper(localName = "findByIdResponse", targetNamespace = "http://pack.domain.realdolmen.com/", className = "com.realdolmen.wsdl.pack.FindByIdResponse")
-    public Pack findById(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Integer arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns com.realdolmen.wsdl.pack.Pack
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
+    @WebMethod(action = "updatePack")
+    @WebResult(name = "packs", targetNamespace = "")
     @RequestWrapper(localName = "updatePack", targetNamespace = "http://pack.domain.realdolmen.com/", className = "com.realdolmen.wsdl.pack.UpdatePack")
     @ResponseWrapper(localName = "updatePackResponse", targetNamespace = "http://pack.domain.realdolmen.com/", className = "com.realdolmen.wsdl.pack.UpdatePackResponse")
     public Pack updatePack(
-        @WebParam(name = "arg0", targetNamespace = "")
-        Pack arg0);
+        @WebParam(name = "pack", targetNamespace = "http://pack.domain.realdolmen.com/")
+        Pack pack);
+
+    /**
+     * 
+     * @param id
+     * @return
+     *     returns com.realdolmen.wsdl.pack.Pack
+     */
+    @WebMethod(action = "findPackById")
+    @WebResult(name = "pack", targetNamespace = "http://pack.domain.realdolmen.com/")
+    @RequestWrapper(localName = "findPackById", targetNamespace = "http://pack.domain.realdolmen.com/", className = "com.realdolmen.wsdl.pack.FindPackById")
+    @ResponseWrapper(localName = "findPackByIdResponse", targetNamespace = "http://pack.domain.realdolmen.com/", className = "com.realdolmen.wsdl.pack.FindPackByIdResponse")
+    public Pack findPackById(
+        @WebParam(name = "id", targetNamespace = "")
+        Integer id);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<com.realdolmen.wsdl.pack.Pack>
+     */
+    @WebMethod(action = "findAllPacks")
+    @WebResult(name = "packs", targetNamespace = "")
+    @RequestWrapper(localName = "findAllPacks", targetNamespace = "http://pack.domain.realdolmen.com/", className = "com.realdolmen.wsdl.pack.FindAllPacks")
+    @ResponseWrapper(localName = "findAllPacksResponse", targetNamespace = "http://pack.domain.realdolmen.com/", className = "com.realdolmen.wsdl.pack.FindAllPacksResponse")
+    public List<Pack> findAllPacks();
+
+    /**
+     * 
+     * @param pack
+     */
+    @WebMethod(action = "createPack")
+    @RequestWrapper(localName = "createPack", targetNamespace = "http://pack.domain.realdolmen.com/", className = "com.realdolmen.wsdl.pack.CreatePack")
+    @ResponseWrapper(localName = "createPackResponse", targetNamespace = "http://pack.domain.realdolmen.com/", className = "com.realdolmen.wsdl.pack.CreatePackResponse")
+    public void createPack(
+        @WebParam(name = "pack", targetNamespace = "http://pack.domain.realdolmen.com/")
+        Pack pack);
 
 }

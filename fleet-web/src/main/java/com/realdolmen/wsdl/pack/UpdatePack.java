@@ -3,6 +3,7 @@ package com.realdolmen.wsdl.pack;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -16,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="arg0" type="{http://pack.domain.realdolmen.com/}pack" minOccurs="0"/>
+ *         &lt;element ref="{http://pack.domain.realdolmen.com/}pack" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -27,34 +28,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "updatePack", propOrder = {
-    "arg0"
+    "pack"
 })
 public class UpdatePack {
 
-    protected Pack arg0;
+    @XmlElement(namespace = "http://pack.domain.realdolmen.com/")
+    protected Pack pack;
 
     /**
-     * Gets the value of the arg0 property.
+     * Gets the value of the pack property.
      * 
      * @return
      *     possible object is
      *     {@link Pack }
      *     
      */
-    public Pack getArg0() {
-        return arg0;
+    public Pack getPack() {
+        return pack;
     }
 
     /**
-     * Sets the value of the arg0 property.
+     * Sets the value of the pack property.
      * 
      * @param value
      *     allowed object is
      *     {@link Pack }
      *     
      */
-    public void setArg0(Pack value) {
-        this.arg0 = value;
+    public void setPack(Pack value) {
+        this.pack = value;
     }
 
 }

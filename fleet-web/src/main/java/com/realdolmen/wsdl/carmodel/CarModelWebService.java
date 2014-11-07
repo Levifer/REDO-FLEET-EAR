@@ -1,15 +1,13 @@
 
 package com.realdolmen.wsdl.carmodel;
 
-import com.realdolmen.domain.carmodel.CarModel;
-
+import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
-import java.util.List;
 
 
 /**
@@ -38,6 +36,17 @@ public interface CarModelWebService {
 
     /**
      * 
+     * @return
+     *     returns java.util.List<com.realdolmen.wsdl.carmodel.CarModel>
+     */
+    @WebMethod(action = "getAllCarModels")
+    @WebResult(name = "carModels", targetNamespace = "")
+    @RequestWrapper(localName = "getAllCarModels", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetAllCarModels")
+    @ResponseWrapper(localName = "getAllCarModelsResponse", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetAllCarModelsResponse")
+    public List<CarModel> getAllCarModels();
+
+    /**
+     * 
      * @param brand
      * @return
      *     returns java.util.List<com.realdolmen.wsdl.carmodel.CarModel>
@@ -63,16 +72,5 @@ public interface CarModelWebService {
     public List<CarModel> getCarModelsByType(
         @WebParam(name = "type", targetNamespace = "")
         String type);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<com.realdolmen.wsdl.carmodel.CarModel>
-     */
-    @WebMethod(action = "getAllCarModels")
-    @WebResult(name = "carModels", targetNamespace = "")
-    @RequestWrapper(localName = "getAllCarModels", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetAllCarModels")
-    @ResponseWrapper(localName = "getAllCarModelsResponse", targetNamespace = "http://carmodel.domain.realdolmen.com/", className = "com.realdolmen.wsdl.carmodel.GetAllCarModelsResponse")
-    public List<CarModel> getAllCarModels();
 
 }

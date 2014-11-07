@@ -24,13 +24,15 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _FindById_QNAME = new QName("http://pack.domain.realdolmen.com/", "findById");
-    private final static QName _FindByIdResponse_QNAME = new QName("http://pack.domain.realdolmen.com/", "findByIdResponse");
-    private final static QName _FindAllResponse_QNAME = new QName("http://pack.domain.realdolmen.com/", "findAllResponse");
+    private final static QName _FindAllPacksResponse_QNAME = new QName("http://pack.domain.realdolmen.com/", "findAllPacksResponse");
+    private final static QName _CreatePackResponse_QNAME = new QName("http://pack.domain.realdolmen.com/", "createPackResponse");
     private final static QName _UpdatePack_QNAME = new QName("http://pack.domain.realdolmen.com/", "updatePack");
+    private final static QName _FindPackById_QNAME = new QName("http://pack.domain.realdolmen.com/", "findPackById");
     private final static QName _UpdatePackResponse_QNAME = new QName("http://pack.domain.realdolmen.com/", "updatePackResponse");
+    private final static QName _FindAllPacks_QNAME = new QName("http://pack.domain.realdolmen.com/", "findAllPacks");
+    private final static QName _FindPackByIdResponse_QNAME = new QName("http://pack.domain.realdolmen.com/", "findPackByIdResponse");
+    private final static QName _CreatePack_QNAME = new QName("http://pack.domain.realdolmen.com/", "createPack");
     private final static QName _Option_QNAME = new QName("http://pack.domain.realdolmen.com/", "option");
-    private final static QName _FindAll_QNAME = new QName("http://pack.domain.realdolmen.com/", "findAll");
     private final static QName _Pack_QNAME = new QName("http://pack.domain.realdolmen.com/", "pack");
 
     /**
@@ -38,6 +40,14 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link FindAllPacks }
+     * 
+     */
+    public FindAllPacks createFindAllPacks() {
+        return new FindAllPacks();
     }
 
     /**
@@ -49,27 +59,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FindByIdResponse }
+     * Create an instance of {@link UpdatePackResponse }
      * 
      */
-    public FindByIdResponse createFindByIdResponse() {
-        return new FindByIdResponse();
+    public UpdatePackResponse createUpdatePackResponse() {
+        return new UpdatePackResponse();
     }
 
     /**
-     * Create an instance of {@link FindById }
+     * Create an instance of {@link FindPackById }
      * 
      */
-    public FindById createFindById() {
-        return new FindById();
+    public FindPackById createFindPackById() {
+        return new FindPackById();
     }
 
     /**
-     * Create an instance of {@link Option }
+     * Create an instance of {@link CreatePack }
      * 
      */
-    public Option createOption() {
-        return new Option();
+    public CreatePack createCreatePack() {
+        return new CreatePack();
+    }
+
+    /**
+     * Create an instance of {@link CreatePackResponse }
+     * 
+     */
+    public CreatePackResponse createCreatePackResponse() {
+        return new CreatePackResponse();
     }
 
     /**
@@ -81,54 +99,45 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FindAll }
+     * Create an instance of {@link Option }
      * 
      */
-    public FindAll createFindAll() {
-        return new FindAll();
+    public Option createOption() {
+        return new Option();
     }
 
     /**
-     * Create an instance of {@link UpdatePackResponse }
+     * Create an instance of {@link FindAllPacksResponse }
      * 
      */
-    public UpdatePackResponse createUpdatePackResponse() {
-        return new UpdatePackResponse();
+    public FindAllPacksResponse createFindAllPacksResponse() {
+        return new FindAllPacksResponse();
     }
 
     /**
-     * Create an instance of {@link FindAllResponse }
+     * Create an instance of {@link FindPackByIdResponse }
      * 
      */
-    public FindAllResponse createFindAllResponse() {
-        return new FindAllResponse();
+    public FindPackByIdResponse createFindPackByIdResponse() {
+        return new FindPackByIdResponse();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindById }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link FindAllPacksResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://pack.domain.realdolmen.com/", name = "findById")
-    public JAXBElement<FindById> createFindById(FindById value) {
-        return new JAXBElement<FindById>(_FindById_QNAME, FindById.class, null, value);
+    @XmlElementDecl(namespace = "http://pack.domain.realdolmen.com/", name = "findAllPacksResponse")
+    public JAXBElement<FindAllPacksResponse> createFindAllPacksResponse(FindAllPacksResponse value) {
+        return new JAXBElement<FindAllPacksResponse>(_FindAllPacksResponse_QNAME, FindAllPacksResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindByIdResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CreatePackResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://pack.domain.realdolmen.com/", name = "findByIdResponse")
-    public JAXBElement<FindByIdResponse> createFindByIdResponse(FindByIdResponse value) {
-        return new JAXBElement<FindByIdResponse>(_FindByIdResponse_QNAME, FindByIdResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindAllResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://pack.domain.realdolmen.com/", name = "findAllResponse")
-    public JAXBElement<FindAllResponse> createFindAllResponse(FindAllResponse value) {
-        return new JAXBElement<FindAllResponse>(_FindAllResponse_QNAME, FindAllResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://pack.domain.realdolmen.com/", name = "createPackResponse")
+    public JAXBElement<CreatePackResponse> createCreatePackResponse(CreatePackResponse value) {
+        return new JAXBElement<CreatePackResponse>(_CreatePackResponse_QNAME, CreatePackResponse.class, null, value);
     }
 
     /**
@@ -141,6 +150,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FindPackById }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://pack.domain.realdolmen.com/", name = "findPackById")
+    public JAXBElement<FindPackById> createFindPackById(FindPackById value) {
+        return new JAXBElement<FindPackById>(_FindPackById_QNAME, FindPackById.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link UpdatePackResponse }{@code >}}
      * 
      */
@@ -150,21 +168,39 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FindAllPacks }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://pack.domain.realdolmen.com/", name = "findAllPacks")
+    public JAXBElement<FindAllPacks> createFindAllPacks(FindAllPacks value) {
+        return new JAXBElement<FindAllPacks>(_FindAllPacks_QNAME, FindAllPacks.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FindPackByIdResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://pack.domain.realdolmen.com/", name = "findPackByIdResponse")
+    public JAXBElement<FindPackByIdResponse> createFindPackByIdResponse(FindPackByIdResponse value) {
+        return new JAXBElement<FindPackByIdResponse>(_FindPackByIdResponse_QNAME, FindPackByIdResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CreatePack }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://pack.domain.realdolmen.com/", name = "createPack")
+    public JAXBElement<CreatePack> createCreatePack(CreatePack value) {
+        return new JAXBElement<CreatePack>(_CreatePack_QNAME, CreatePack.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Option }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://pack.domain.realdolmen.com/", name = "option")
     public JAXBElement<Option> createOption(Option value) {
         return new JAXBElement<Option>(_Option_QNAME, Option.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link FindAll }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://pack.domain.realdolmen.com/", name = "findAll")
-    public JAXBElement<FindAll> createFindAll(FindAll value) {
-        return new JAXBElement<FindAll>(_FindAll_QNAME, FindAll.class, null, value);
     }
 
     /**

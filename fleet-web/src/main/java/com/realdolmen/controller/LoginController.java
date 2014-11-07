@@ -4,10 +4,13 @@ import com.realdolmen.util.LoggerProducer;
 import org.slf4j.Logger;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.security.Principal;
 
 /**
  * Created by AEIAT46 on 29/10/2014.
@@ -38,6 +41,8 @@ public class LoginController {
         return model;
 
     }
+
+
 /*
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(){

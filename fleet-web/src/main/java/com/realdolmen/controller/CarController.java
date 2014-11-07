@@ -31,11 +31,16 @@ public class CarController {
     @RequestMapping("/")
     public String home(Model model,Principal principal) {
         logger.info("home");
+        loginOrLogout(model,principal);
+        return "index";
+    }
+
+    @RequestMapping("/car/*")
+    public void loginOrLogout(Model model, Principal principal){
         if(principal != null)
             model.addAttribute("isLoggedIn",true);
         else
             model.addAttribute("isLoggedIn",false);
-        return "index";
     }
 
     @RequestMapping("/car")

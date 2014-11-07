@@ -2,14 +2,15 @@ package com.realdolmen.controller;
 
 import com.realdolmen.util.LoggerProducer;
 import com.realdolmen.wsdl.carmodel.CarModel;
+
 import com.realdolmen.wsdl.carmodel.CarType;
 import com.realdolmen.wsdl.carmodel.Fuel;
-import com.realdolmen.wsdl.carmodel.Pack;
-import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
@@ -29,6 +30,7 @@ public class CarOrderController {
     @RequestMapping("/ordercar/order")
     public String orderACar(Model model) throws DatatypeConfigurationException {
         CarModel carModel = new CarModel();
+        logger.info(carModel.getName());
         carModel.setBrand("Audi");
         carModel.setName("A3");
         carModel.setType(CarType.HATCHBACK);
@@ -45,5 +47,6 @@ public class CarOrderController {
         model.addAttribute("carmodel",carModel);
         logger.info("/***************CarOrderController********************/");
         return  "carOrder";
+
     }
 }

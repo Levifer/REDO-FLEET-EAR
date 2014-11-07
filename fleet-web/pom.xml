@@ -164,11 +164,7 @@
                             <goal>wsimport</goal>
                         </goals>
                         <configuration>
-                            <wsdlUrls>
-                                <wsdlUrl>
-                                    http://localhost:8080/fleet-ejb/CarModelWebService?wsdl
-                                </wsdlUrl>
-                            </wsdlUrls>
+                            <wsdlDirectory>${basedir}/src/main/resources/wsdl</wsdlDirectory>
                             <packageName>com.realdolmen.wsdl.carmodel</packageName>
                             <xadditionalHeaders>true</xadditionalHeaders>
                             <extension>true</extension>

@@ -1,0 +1,198 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://carmodel.domain.realdolmen.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="CarModelWebServiceService"
+                  targetNamespace="http://carmodel.domain.realdolmen.com/">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://carmodel.domain.realdolmen.com/"
+                   elementFormDefault="unqualified" targetNamespace="http://carmodel.domain.realdolmen.com/"
+                   version="1.0">
+            <xs:element name="carModel" type="tns:carModel"/>
+            <xs:element name="getAllCarModels" type="tns:getAllCarModels"/>
+            <xs:element name="getAllCarModelsResponse" type="tns:getAllCarModelsResponse"/>
+            <xs:element name="getCarModelById" type="tns:getCarModelById"/>
+            <xs:element name="getCarModelByIdResponse" type="tns:getCarModelByIdResponse"/>
+            <xs:element name="getCarModelsByBrand" type="tns:getCarModelsByBrand"/>
+            <xs:element name="getCarModelsByBrandResponse" type="tns:getCarModelsByBrandResponse"/>
+            <xs:element name="getCarModelsByType" type="tns:getCarModelsByType"/>
+            <xs:element name="getCarModelsByTypeResponse" type="tns:getCarModelsByTypeResponse"/>
+            <xs:element name="option" type="tns:option"/>
+            <xs:element name="pack" type="tns:pack"/>
+            <xs:complexType name="getCarModelById">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getCarModelByIdResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" ref="tns:carModel"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="carModel">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:int"/>
+                    <xs:element minOccurs="0" name="brand" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="type" type="tns:carType"/>
+                    <xs:element minOccurs="0" name="fuelType" type="tns:fuel"/>
+                    <xs:element minOccurs="0" name="year" type="xs:dateTime"/>
+                    <xs:element name="quarter" type="xs:int"/>
+                    <xs:element name="minKm" type="xs:int"/>
+                    <xs:element name="maxKm" type="xs:int"/>
+                    <xs:element name="deliveryTime" type="xs:int"/>
+                    <xs:element name="fiscalHp" type="xs:int"/>
+                    <xs:element name="co2" type="xs:int"/>
+                    <xs:element name="category" type="xs:int"/>
+                    <xs:element minOccurs="0" name="imageUrl" type="xs:string"/>
+                    <xs:element minOccurs="0" ref="tns:pack"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="pack">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="price" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="benefitPrice" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="upgrade" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="downgrade" type="xs:decimal"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="options" nillable="true" type="tns:option"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="option">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="type" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="description" type="xs:string"/>
+                    <xs:element minOccurs="0" name="price" type="xs:decimal"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getCarModelsByBrand">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="brand" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getCarModelsByBrandResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="carModels" type="tns:carModel"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getCarModelsByType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="type" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getCarModelsByTypeResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="carModels" type="tns:carModel"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getAllCarModels">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="getAllCarModelsResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="carModels" type="tns:carModel"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="carType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="HATCHBACK"/>
+                    <xs:enumeration value="BERLINE"/>
+                    <xs:enumeration value="BREAK"/>
+                    <xs:enumeration value="COUPE"/>
+                    <xs:enumeration value="JEEP"/>
+                    <xs:enumeration value="MONOVOLUME"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="fuel">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="DIESEL"/>
+                    <xs:enumeration value="BENZINE"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getCarModelsByTypeResponse">
+        <wsdl:part element="tns:getCarModelsByTypeResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getAllCarModelsResponse">
+        <wsdl:part element="tns:getAllCarModelsResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getCarModelById">
+        <wsdl:part element="tns:getCarModelById" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getAllCarModels">
+        <wsdl:part element="tns:getAllCarModels" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getCarModelsByType">
+        <wsdl:part element="tns:getCarModelsByType" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getCarModelsByBrandResponse">
+        <wsdl:part element="tns:getCarModelsByBrandResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getCarModelByIdResponse">
+        <wsdl:part element="tns:getCarModelByIdResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getCarModelsByBrand">
+        <wsdl:part element="tns:getCarModelsByBrand" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="CarModelWebService">
+        <wsdl:operation name="getCarModelById">
+            <wsdl:input message="tns:getCarModelById" name="getCarModelById"></wsdl:input>
+            <wsdl:output message="tns:getCarModelByIdResponse" name="getCarModelByIdResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCarModelsByBrand">
+            <wsdl:input message="tns:getCarModelsByBrand" name="getCarModelsByBrand"></wsdl:input>
+            <wsdl:output message="tns:getCarModelsByBrandResponse" name="getCarModelsByBrandResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCarModelsByType">
+            <wsdl:input message="tns:getCarModelsByType" name="getCarModelsByType"></wsdl:input>
+            <wsdl:output message="tns:getCarModelsByTypeResponse" name="getCarModelsByTypeResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllCarModels">
+            <wsdl:input message="tns:getAllCarModels" name="getAllCarModels"></wsdl:input>
+            <wsdl:output message="tns:getAllCarModelsResponse" name="getAllCarModelsResponse"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CarModelWebServiceServiceSoapBinding" type="tns:CarModelWebService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getCarModelById">
+            <soap:operation soapAction="getCarModelById" style="document"/>
+            <wsdl:input name="getCarModelById">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getCarModelByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCarModelsByBrand">
+            <soap:operation soapAction="getCarModelsByBrand" style="document"/>
+            <wsdl:input name="getCarModelsByBrand">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getCarModelsByBrandResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getCarModelsByType">
+            <soap:operation soapAction="getCarModelsByType" style="document"/>
+            <wsdl:input name="getCarModelsByType">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getCarModelsByTypeResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllCarModels">
+            <soap:operation soapAction="getAllCarModels" style="document"/>
+            <wsdl:input name="getAllCarModels">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAllCarModelsResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CarModelWebServiceService">
+        <wsdl:port binding="tns:CarModelWebServiceServiceSoapBinding" name="CarModelWebServicePort">
+            <soap:address location="http://localhost:8080/fleet/CarModelWebService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

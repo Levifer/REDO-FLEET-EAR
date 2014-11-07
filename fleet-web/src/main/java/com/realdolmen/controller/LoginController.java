@@ -2,6 +2,7 @@ package com.realdolmen.controller;
 
 import com.realdolmen.util.LoggerProducer;
 import org.slf4j.Logger;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,11 +32,22 @@ public class LoginController {
         if (logout != null) {
             model.addObject("msg", "You've been logged out successfully.");
         }
+
         model.setViewName("login");
 
         return model;
 
     }
+/*
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(){
+        logger.info("Logging out");
+        SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
+        return "redirect:/";
+    }
+*/
+
+
 
 //    public String login(Employee employee){
 //        logger.info("Employee:" + employee.getEmail());
@@ -50,5 +62,6 @@ public class LoginController {
         logger.info("login()");
         return "yes";
     }
+
 
 }

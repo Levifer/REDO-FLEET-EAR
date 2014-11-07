@@ -29,9 +29,12 @@ public class CarController {
     private boolean error = true;
 
     @RequestMapping("/")
-    public String home(Model model) {
+    public String home(Model model,Principal principal) {
         logger.info("home");
-        model.addAttribute("isLoggedIn",true);
+        if(principal != null)
+            model.addAttribute("isLoggedIn",true);
+        else
+            model.addAttribute("isLoggedIn",false);
         return "index";
     }
 

@@ -1,10 +1,14 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <spring:url value="/" var="root"/>
+<c:set var="titleKey">
+    <tiles:insertAttribute name="title" ignore="true" />
+</c:set>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><tiles:insertAttribute name="title" /></title>
+        <title><spring:message code="${titleKey}"/></title>
         <link type="text/css" href="<%=request.getContextPath() %>/resources/css/bootstrap.css" rel="stylesheet"/>
         <link type="text/css" href="<%=request.getContextPath() %>/resources/css/style.css" rel="stylesheet"/>
         <script type="application/javascript" src="<%=request.getContextPath() %>/resources/js/jquery-2.1.1.min.js"></script>

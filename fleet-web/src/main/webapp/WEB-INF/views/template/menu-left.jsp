@@ -1,4 +1,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%-- Variables --%>
 <spring:url value="/" var="root"/>
-<li class="active"><a href="${root}">Home</a></li>
-<li><a href="${root}car">Browse for your new car!</a></li>
+
+<%-- Page --%>
+<li class="active"><a href="${root}"><spring:message code="menu.home"/></a></li>
+<li><a href="${root}car"><spring:message code="menu.browse"/></a></li>

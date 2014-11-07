@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="row">
-    <div class="col-md-12"><h2><spring:message code="car.flowTitle.list"/></h2></div>
+    <div class="col-md-12"><h2><spring:message code="car.list.title"/></h2></div>
 </div>
 <div class="row">
     <div class="col-md-12">

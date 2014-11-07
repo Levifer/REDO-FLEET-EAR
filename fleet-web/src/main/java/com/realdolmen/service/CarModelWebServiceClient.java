@@ -1,6 +1,6 @@
 package com.realdolmen.service;
 
-import com.realdolmen.domain.carmodel.CarModel;
+import com.realdolmen.wsdl.carmodel.CarModel;
 import com.realdolmen.wsdl.carmodel.CarModelWebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

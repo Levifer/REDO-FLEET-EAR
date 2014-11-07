@@ -196,10 +196,11 @@ public class TestDataInserter {
         entityManager.persist(employeeApproved);
         Employee employeeDisapproved = new Employee("Aveline", "Estie", "employeeDisapproved@hotmail.com", "employeeDisapproved", "AT46", 2,rolesList, Enums.Status.DISAPPROVED);
         entityManager.persist(employeeDisapproved);
-        rolesList.add(Enums.Roles.FLEET_MANAGER);
-        Employee leasingManager = new Employee("Tim", "Lemahieu", "leasingManager@hotmail.com", "leasingManager", "AU71", 2, rolesList, Enums.Status.APPROVED);
+        List<Enums.Roles> rolesArrayList = new ArrayList<>();
+        rolesArrayList.add(Enums.Roles.EMPLOYEE);
+        rolesArrayList.add(Enums.Roles.FLEET_MANAGER);
+        Employee leasingManager = new Employee("Tim", "Lemahieu", "leasingManager@hotmail.com", "leasingManager", "AU71", 2, rolesArrayList, Enums.Status.APPROVED);
         entityManager.persist(leasingManager);
         logger.info("/////************************************INSERTING EMPLOYEES*************************************/////\"); ");
-
     }
 }

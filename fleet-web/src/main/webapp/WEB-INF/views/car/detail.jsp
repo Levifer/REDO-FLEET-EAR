@@ -21,6 +21,7 @@
 
     <div class="col-sm-3 col-sm-offset-1">
         <spring:url value="/carorder/order" var="orderUrl"/>
+        <spring:message code="actions.order" var="orderAction"/>
         <form:form action="${orderUrl}" method="POST">
             <input type="submit" value="Order now!" class="btn btn-primary"/>
         </form:form>

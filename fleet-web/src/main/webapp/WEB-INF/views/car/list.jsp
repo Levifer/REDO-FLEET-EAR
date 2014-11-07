@@ -21,7 +21,7 @@
                     <td>${car.name}</td>
                     <td>${car.type}</td>
                     <td>
-                        <a href="car/${car.id}"><spring:message code="actions.details"/></a>
+                        <a href="car/${car.id}"><spring:message code="actions.details" /></a>
                     </td>
                 </tr>
             </c:forEach>

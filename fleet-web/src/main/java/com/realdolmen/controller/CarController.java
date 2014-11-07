@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +75,8 @@ public class CarController {
     }
 
     @RequestMapping("/car/detail")
-    public String carDetail(Model model, @ModelAttribute("id") final String id) {
+    public String carDetail(Model model, @ModelAttribute("id") final String id, Principal principal) {
+        logger.info("Principal: " + principal.getName());
         logger.info("/carDetail - id: " + id);
         CarModel carModel = carModelWebServiceClient.getCarModelsById(Integer.parseInt(id));
         model.addAttribute("car", carModel);

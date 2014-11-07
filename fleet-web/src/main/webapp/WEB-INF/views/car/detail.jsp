@@ -20,8 +20,9 @@
     </div>
 
     <div class="col-sm-3 col-sm-offset-1">
-        <spring:url value="/carorder/order" var="orderUrl"/>
-        <form:form action="${orderUrl}" method="POST">
+        <form:form commandName="handleFormSubmission"  modelAttribute="car" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <input type="hidden" value="${car.brand}"/>
             <input type="submit" value="Order now!" class="btn btn-primary"/>
         </form:form>
     </div>

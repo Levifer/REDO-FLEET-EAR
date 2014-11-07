@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and()
-                .logout().logoutSuccessUrl("/").invalidateHttpSession(true).permitAll()
-                .and().exceptionHandling().accessDeniedPage("/views/error/layout-error.jsp");
+                .logout().logoutSuccessUrl("/").invalidateHttpSession(true).permitAll();
+               // .and().exceptionHandling().accessDeniedPage("/views/error/layout-error.jsp");
     }
 }

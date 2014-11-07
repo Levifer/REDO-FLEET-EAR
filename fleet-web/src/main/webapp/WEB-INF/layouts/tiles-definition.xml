@@ -44,7 +44,7 @@
     </definition>
 
     <definition name="carOrder" extends="DefaultTemplate">
-        <put-attribute name="title" value="Order/Order"/>
-        <put-attribute name="body" value="/WEB-INF/views/order/order.jsp" />
+        <put-attribute name="title" value="OrderCar/Order"/>
+        <put-attribute name="body" value="/WEB-INF/views/ordercar/order.jsp" />
     </definition>
 </tiles-definitions>

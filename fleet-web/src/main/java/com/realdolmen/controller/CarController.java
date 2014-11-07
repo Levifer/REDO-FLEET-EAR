@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +62,7 @@ public class CarController {
             model.addAttribute("error","No cars found");
         }
 
-        model.addAttribute("isLoggedIn",true);
+        model.addAttribute("isLoggedIn", true);
         model.addAttribute("cars",cars);
         return "carList";
     }
@@ -74,7 +75,7 @@ public class CarController {
     }
 
     @RequestMapping("/car/detail")
-    public String carDetail(Model model, @ModelAttribute("id") final String id) {
+    public String carDetail(Model model, @ModelAttribute("id") final String id,final RedirectAttributes redirectAttributes) {
         logger.info("/carDetail - id: " + id);
         CarModel carModel = carModelWebServiceClient.getCarModelsById(Integer.parseInt(id));
         model.addAttribute("car", carModel);

@@ -47,4 +47,9 @@ public class CarModelWebService {
     public List<CarModel> getAllCarModels() {
         return carModelRepository.findAll();
     }
+
+    @WebMethod(action = "addCarModel")
+    public void addCarModel(@WebParam(name= "carModel")CarModel carModel){
+        carModelRepository.persist(carModel);
+    }
 }

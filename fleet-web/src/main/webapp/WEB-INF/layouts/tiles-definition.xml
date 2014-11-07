@@ -37,4 +37,15 @@
         <put-attribute name="title" value="title.car.order"/>
         <put-attribute name="body" value="/WEB-INF/views/ordercar/order.jsp" />
     </definition>
+
+    <definition name="insertCarModel" extends="DefaultTemplate">
+        <put-attribute name="title" value="title.admin.insertCarModel"/>
+        <put-attribute name="body" value="/WEB-INF/views/admin/insertCarModel.jsp"/>
+    </definition>
+
+    <definition name="carModelSucces" extends="DefaultTemplate">
+        <put-attribute name="title" value="title.admin.insertSucces"/>
+        <put-attribute name="body" value="/WEB-INF/views/admin/insertSucces.jsp"/>
+    </definition>
+
 </tiles-definitions>

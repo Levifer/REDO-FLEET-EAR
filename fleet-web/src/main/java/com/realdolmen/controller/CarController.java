@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContext;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -32,11 +31,16 @@ public class CarController {
     @RequestMapping("/")
     public String home(Model model,Principal principal) {
         logger.info("home");
+        loginOrLogout(model,principal);
+        return "index";
+    }
+
+    @RequestMapping("/car/*")
+    public void loginOrLogout(Model model, Principal principal){
         if(principal != null)
             model.addAttribute("isLoggedIn",true);
         else
             model.addAttribute("isLoggedIn",false);
-        return "index";
     }
 
     @RequestMapping("/car")

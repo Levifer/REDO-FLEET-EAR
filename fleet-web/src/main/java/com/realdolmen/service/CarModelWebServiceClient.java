@@ -32,4 +32,8 @@ public class CarModelWebServiceClient extends WebServiceGatewaySupport {
     public List<CarModel> getAllCarModels() {
         return carModelWebService.getAllCarModels();
     }
+
+    public void addCarModel(CarModel carModel){
+        carModelWebService.addCarModel(carModel);
+    }
 }

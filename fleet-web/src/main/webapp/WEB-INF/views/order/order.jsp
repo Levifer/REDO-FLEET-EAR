@@ -5,6 +5,6 @@
 <div class="row">
     <div class="col-md-6">
         <h3>Congratulations on your new car!</h3>
-        <p>Audi</p>
+        <p>${car.brand}</p>
     </div>
 </div>

@@ -20,22 +20,10 @@
     </div>
 
     <div class="col-sm-3 col-sm-offset-1">
-        <p>${car.brand} ${car.name} (${car.type})</p>
+        <spring:url value="/car/order" var="orderUrl"/>
+        <form:form action="${orderUrl}" method="POST">
+            <input type="submit" value="Order now!" class="btn btn-primary"/>
+        </form:form>
     </div>
+
 </div>
-<%--<div class="row">--%>
-    <%--<form:form>--%>
-        <%--<input type="submit" value="Back" name="_eventId_back"--%>
-               <%--class="btn btn-danger" />--%>
-        <%--<c:choose>--%>
-            <%--<c:when test="${isLoggedIn == true}">--%>
-                <%--<input type="submit" value="Order this car!" name="_eventId_next"--%>
-                       <%--class="btn btn-success" />--%>
-            <%--</c:when>--%>
-            <%--<c:otherwise>--%>
-                <%--<input type="submit" value="Log in to order this car!" name="_eventId_login"--%>
-                       <%--class="btn btn-warning" />--%>
-            <%--</c:otherwise>--%>
-        <%--</c:choose>--%>
-    <%--</form:form>--%>
-<%--</div>--%>

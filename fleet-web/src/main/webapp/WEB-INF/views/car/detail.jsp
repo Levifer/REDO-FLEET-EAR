@@ -12,7 +12,11 @@
         <img src="<%=request.getContextPath() %>/resources/img/logo/${fn:toLowerCase(car.brand)}.png" class="img-responsive"/>
     </div>
     <div class="col-sm-5">
-        <p>${car.brand} ${car.name} (${car.type})</p>
+        <ul>
+        <c:forEach var="option" items="${car.pack.options}">
+            <li>${option.name}</li>
+        </c:forEach>
+        </ul>
     </div>
 
     <div class="col-sm-3 col-sm-offset-1">

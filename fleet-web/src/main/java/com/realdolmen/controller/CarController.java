@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,11 +67,16 @@ public class CarController {
     }
 
     @RequestMapping("/car/{id}")
-    public String detail(@PathVariable("id") String id, Model model, final RedirectAttributes redirectAttributes) {
+    public String detail(@PathVariable("id") String id, RedirectAttributes redirectAttributes) {
         logger.info("/car - id: " + id);
+        redirectAttributes.addFlashAttribute("id", id);
+        return "redirect:/car/detail";
+    }
+
+    @RequestMapping("/car/detail")
+    public String carDetail(Model model, @ModelAttribute("id") final String id) {
+        logger.info("/carDetail - id: " + id);
         CarModel carModel = carModelWebServiceClient.getCarModelsById(Integer.parseInt(id));
-        model.addAttribute("isLoggedIn",true);
-        redirectAttributes.addAttribute("id", id);
         model.addAttribute("car", carModel);
         return "carDetail";
     }

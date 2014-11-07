@@ -9,42 +9,32 @@
     </definition>
 
     <definition name="index" extends="DefaultTemplate">
-        <put-attribute name="title" value="Index"/>
+        <put-attribute name="title" value="title.home"/>
         <put-attribute name="body" value="/WEB-INF/views/index.jsp" />
     </definition>
 
     <definition name="login" extends="DefaultTemplate">
-        <put-attribute name="title" value="Login"/>
+        <put-attribute name="title" value="title.login"/>
         <put-attribute name="body" value="/WEB-INF/views/login.jsp" />
     </definition>
 
     <definition name="error" extends="DefaultTemplate">
-        <put-attribute name="title" value="Error"/>
+        <put-attribute name="title" value="title.error"/>
         <put-attribute name="body" value="/WEB-INF/views/error/error.jsp" />
     </definition>
 
-    <definition name="carIndex" extends="DefaultTemplate">
-        <put-attribute name="title" value="Car/Index"/>
-        <put-attribute name="body" value="/WEB-INF/views/index.jsp" />
-    </definition>
-
-    <definition name="carLogin" extends="DefaultTemplate">
-        <put-attribute name="title" value="Car/Login"/>
-        <put-attribute name="body" value="/WEB-INF/views/login.jsp" />
-    </definition>
-
     <definition name="carList" extends="DefaultTemplate">
-        <put-attribute name="title" value="Car/List"/>
+        <put-attribute name="title" value="title.car.list"/>
         <put-attribute name="body" value="/WEB-INF/views/car/list.jsp" />
     </definition>
 
     <definition name="carDetail" extends="DefaultTemplate">
-        <put-attribute name="title" value="Car/Detail"/>
+        <put-attribute name="title" value="title.car.detail"/>
         <put-attribute name="body" value="/WEB-INF/views/car/detail.jsp" />
     </definition>
 
     <definition name="carOrder" extends="DefaultTemplate">
-        <put-attribute name="title" value="OrderCar/Order"/>
+        <put-attribute name="title" value="title.car.order"/>
         <put-attribute name="body" value="/WEB-INF/views/ordercar/order.jsp" />
     </definition>
 </tiles-definitions>

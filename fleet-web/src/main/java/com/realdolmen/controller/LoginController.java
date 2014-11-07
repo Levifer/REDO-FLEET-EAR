@@ -31,6 +31,7 @@ public class LoginController {
         if (logout != null) {
             model.addObject("msg", "You've been logged out successfully.");
         }
+
         model.setViewName("login");
 
         return model;

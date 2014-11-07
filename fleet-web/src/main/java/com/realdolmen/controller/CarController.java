@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContext;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,14 +76,22 @@ public class CarController {
         return "redirect:/car/detail";
     }
 
-    @RequestMapping("/car/detail")
-    public String carDetail(Model model, @ModelAttribute("id") final String id, Principal principal, RedirectAttributes redirectAttributes) {
+    @RequestMapping(value = "/car/detail",method = RequestMethod.GET)
+    public String carDetail(Model model, @ModelAttribute("id") final String id, Principal principal, RedirectAttributes redirectAttributes,HttpServletRequest request) {
         logger.info("Principal: " + principal.getName());
         logger.info("/carDetail - id: " + id);
         CarModel carModel = carModelWebServiceClient.getCarModelsById(Integer.parseInt(id));
+        request.getSession().setAttribute("carmodel",carModel);
         model.addAttribute("car", carModel);
-        redirectAttributes.addFlashAttribute("car",carModel);
         return "carDetail";
+    }
+
+    @RequestMapping(value = "/car/detail", method = RequestMethod.POST)
+    public String handleFormSubmission( final RedirectAttributes redirectAttributes,HttpServletRequest request) {
+        CarModel carModel = (CarModel)request.getSession().getAttribute("carmodel");
+        redirectAttributes.addFlashAttribute("carmodel",carModel);
+       request.getSession().removeAttribute("carmodel");
+        return "redirect:/ordercar/order";
     }
 
     public boolean isError() {

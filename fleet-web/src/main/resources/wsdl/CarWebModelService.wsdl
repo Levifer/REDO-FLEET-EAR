@@ -1,9 +1,9 @@
-<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://carmodel.domain.realdolmen.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"  name="CarModelWebServiceService" targetNamespace="http://carmodel.domain.realdolmen.com/">
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://carmodel.domain.realdolmen.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="CarModelWebServiceService" targetNamespace="http://carmodel.domain.realdolmen.com/">
     <wsdl:types>
         <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://carmodel.domain.realdolmen.com/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://carmodel.domain.realdolmen.com/">
             <xs:element name="carModel" type="tns:CarModel"/>
-            <xs:element name="option" type="tns:option"/>
-            <xs:element name="pack" type="tns:pack"/>
+            <xs:element name="option" type="tns:Option"/>
+            <xs:element name="pack" type="tns:Pack"/>
             <xs:complexType name="CarModel">
                 <xs:sequence>
                     <xs:element minOccurs="0" name="id" type="xs:int"/>
@@ -23,8 +23,9 @@
                     <xs:element minOccurs="0" ref="tns:pack"/>
                 </xs:sequence>
             </xs:complexType>
-            <xs:complexType name="pack">
+            <xs:complexType name="Pack">
                 <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:int"/>
                     <xs:element minOccurs="0" name="price" type="xs:decimal"/>
                     <xs:element minOccurs="0" name="benefitPrice" type="xs:decimal"/>
                     <xs:element minOccurs="0" name="upgrade" type="xs:decimal"/>
@@ -32,14 +33,15 @@
                     <xs:element minOccurs="0" name="options">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element maxOccurs="unbounded" minOccurs="0" name="option" nillable="true" type="tns:option"/>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="option" nillable="true" type="tns:Option"/>
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
                 </xs:sequence>
             </xs:complexType>
-            <xs:complexType name="option">
+            <xs:complexType name="Option">
                 <xs:sequence>
+                    <xs:element minOccurs="0" name="OPTION_ID" type="xs:int"/>
                     <xs:element minOccurs="0" name="type" type="xs:string"/>
                     <xs:element minOccurs="0" name="name" type="xs:string"/>
                     <xs:element minOccurs="0" name="description" type="xs:string"/>

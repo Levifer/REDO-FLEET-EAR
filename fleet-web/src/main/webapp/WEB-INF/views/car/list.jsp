@@ -15,13 +15,13 @@
                 <th><spring:message code="car.type"/></th>
                 <th>&nbsp;</th>
             </tr>
-            <c:forEach var="car" items="${cars}">
+            <c:forEach var="carModel" items="${carModels}">
                 <tr>
-                    <td>${car.brand}</td>
-                    <td>${car.name}</td>
-                    <td>${car.type}</td>
+                    <td>${carModel.brand}</td>
+                    <td>${carModel.name}</td>
+                    <td>${carModel.type}</td>
                     <td>
-                        <a href="car/${car.id}"><spring:message code="actions.details" /></a>
+                        <a href="car/${carModel.id}"><spring:message code="actions.details" /></a>
                     </td>
                 </tr>
             </c:forEach>

@@ -1,5 +1,6 @@
 package com.realdolmen.controller;
 
+import com.realdolmen.controller.dto.OptionList;
 import com.realdolmen.service.CarModelWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
 import com.realdolmen.wsdl.carmodel.CarModel;
@@ -48,30 +49,30 @@ public class CarController {
     @RequestMapping("/car")
     public String list(@RequestParam(value = "type", required = false) String type, @RequestParam(value = "brand", required = false) String brand, Model model) {
         logger.info("/car");
-        List<CarModel> cars = new ArrayList<CarModel>();
+        List<CarModel> carModels = new ArrayList<CarModel>();
         if (type != null) {
             logger.info("find cars by type: " + type);
             model.addAttribute("error", null);
-            cars = carModelWebServiceClient.getCarModelsByType(type.toUpperCase());
+            carModels = carModelWebServiceClient.getCarModelsByType(type.toUpperCase());
         }
 
         if (brand != null) {
             logger.info("find cars by brand: " + brand);
-            cars = carModelWebServiceClient.getCarModelsByBrand(brand.toLowerCase());
+            carModels = carModelWebServiceClient.getCarModelsByBrand(brand.toLowerCase());
             model.addAttribute("error", null);
         }
 
         if (brand == null && type == null) {
             logger.info("find all cars");
-            cars = carModelWebServiceClient.getAllCarModels();
+            carModels = carModelWebServiceClient.getAllCarModels();
             model.addAttribute("error", null);
         }
-        if (cars.isEmpty()) {
+        if (carModels.isEmpty()) {
             model.addAttribute("error", "No cars found");
         }
 
         model.addAttribute("isLoggedIn", true);
-        model.addAttribute("cars", cars);
+        model.addAttribute("carModels", carModels);
         return "carList";
     }
 
@@ -88,9 +89,8 @@ public class CarController {
         logger.info("Principal: " + principal.getName());
         logger.info("/carDetail - id: " + id);
         CarModel carModel = (CarModel) request.getSession().getAttribute("carmodel");
-        model.addAttribute("car", carModel);
-        CustomPack customPack = new CustomPack();
-        model.addAttribute("options", customPack.getOptions());
+        model.addAttribute("carModel", carModel);
+        model.addAttribute("options", new OptionList());
         return "carDetail";
     }
 

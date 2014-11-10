@@ -48,4 +48,9 @@
         <put-attribute name="body" value="/WEB-INF/views/admin/insertSucces.jsp"/>
     </definition>
 
+    <definition name="listCarModel" extends="DefaultTemplate">
+        <put-attribute name="title" value="title.admin.listCarModel"/>
+        <put-attribute name="body" value="/WEB-INF/views/admin/listCarModel.jsp"/>
+    </definition>
+
 </tiles-definitions>

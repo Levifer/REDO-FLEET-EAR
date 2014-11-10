@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +34,14 @@ public class CarModelController {
     private List<CarType> types;
     private Pack pack = null;
 
-    @RequestMapping("admin")
-    public String admin(Model model){
+    @RequestMapping("admin/carmodel")
+    public String carModelList(Model model){
+        model.addAttribute("carModels", carModelWebServiceClient.getAllCarModels());
+        return "listCarModel";
+    }
+
+    @RequestMapping("admin/carmodel/new")
+    public String addCarModel(Model model){
         populate(model);
         model.addAttribute("carModel", new CarModel());
         model.addAttribute("fuelList", fuels);
@@ -64,7 +69,7 @@ public class CarModelController {
         types.add(CarType.MONOVOLUME);
 
     }
-    @RequestMapping(value="/admin/car", method = RequestMethod.POST)
+    @RequestMapping(value="/admin/carmodel/add", method = RequestMethod.POST)
     public String insertCarModel(@ModelAttribute("carModel")CarModel carModel,BindingResult result,Model model){
         /*if(result.hasErrors()){
             logger.info("CarModel is not valid");

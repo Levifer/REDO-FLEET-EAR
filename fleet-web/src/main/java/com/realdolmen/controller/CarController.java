@@ -1,6 +1,7 @@
 package com.realdolmen.controller;
 
 import com.realdolmen.controller.dto.OptionList;
+import com.realdolmen.controller.mapper.OptionMapper;
 import com.realdolmen.service.CarModelWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
 import com.realdolmen.wsdl.carmodel.CarModel;
@@ -94,16 +95,21 @@ public class CarController {
         return "carDetail";
     }
 
+
+
     @RequestMapping(value = "/car/detail", method = RequestMethod.POST)
-    public String carOptions(@ModelAttribute("options") List<Option> options) {
-        logger.info("SHIZZLE IS WORKING");
-        return "carDetail";
-    }
-
-
-    @RequestMapping(value = "/car/detail/selectOptions", method = RequestMethod.POST)
     public String handleFormSubmission(final RedirectAttributes redirectAttributes, HttpServletRequest request) {
         CarModel carModel = (CarModel) request.getSession().getAttribute("carmodel");
+        CustomPack customPack = new CustomPack();
+        String [] selectedOptions = request.getParameterValues("items");
+        List<Option> optionsToBeSaved = new ArrayList<>();
+        for (String s : selectedOptions) {
+
+            if(carModel.getId().toString().equals(s)){
+              //  optionsToBeSaved.add()
+            }
+        }
+        //customPack.getOptions().getOption().addAll(new OptionMapper().mapTo(optionList.getItems()));
         redirectAttributes.addFlashAttribute("carmodel", carModel);
         request.getSession().removeAttribute("carmodel");
         return "redirect:/ordercar/order";

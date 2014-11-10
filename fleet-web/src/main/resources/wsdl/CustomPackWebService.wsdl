@@ -3,12 +3,12 @@
         <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://custompack.domain.realdolmen.com/" elementFormDefault="unqualified" targetNamespace="http://custompack.domain.realdolmen.com/" version="1.0">
             <xs:element name="createCustomPack" type="tns:createCustomPack"/>
             <xs:element name="createCustomPackResponse" type="tns:createCustomPackResponse"/>
-            <xs:element name="customPack" type="tns:customPack"/>
+            <xs:element name="customPack" type="tns:CustomPack"/>
             <xs:element name="findAllCustomPacks" type="tns:findAllCustomPacks"/>
             <xs:element name="findAllCustomPacksResponse" type="tns:findAllCustomPacksResponse"/>
             <xs:element name="findCustomPackById" type="tns:findCustomPackById"/>
             <xs:element name="findCustomPackByIdResponse" type="tns:findCustomPackByIdResponse"/>
-            <xs:element name="option" type="tns:option"/>
+            <xs:element name="option" type="tns:Option"/>
             <xs:complexType name="findCustomPackById">
                 <xs:sequence>
                     <xs:element minOccurs="0" name="id" type="xs:int"/>
@@ -19,13 +19,21 @@
                     <xs:element minOccurs="0" ref="tns:customPack"/>
                 </xs:sequence>
             </xs:complexType>
-            <xs:complexType name="customPack">
+            <xs:complexType name="CustomPack">
                 <xs:sequence>
-                    <xs:element maxOccurs="unbounded" minOccurs="0" name="options" type="tns:option"/>
+                    <xs:element minOccurs="0" name="id" type="xs:int"/>
+                    <xs:element minOccurs="0" name="options">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:option"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
                 </xs:sequence>
             </xs:complexType>
-            <xs:complexType name="option">
+            <xs:complexType name="Option">
                 <xs:sequence>
+                    <xs:element minOccurs="0" name="OPTION_ID" type="xs:int"/>
                     <xs:element minOccurs="0" name="type" type="xs:string"/>
                     <xs:element minOccurs="0" name="name" type="xs:string"/>
                     <xs:element minOccurs="0" name="description" type="xs:string"/>
@@ -45,7 +53,7 @@
             </xs:complexType>
             <xs:complexType name="findAllCustomPacksResponse">
                 <xs:sequence>
-                    <xs:element maxOccurs="unbounded" minOccurs="0" name="CustomPacks" type="tns:customPack"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="CustomPacks" type="tns:CustomPack"/>
                 </xs:sequence>
             </xs:complexType>
         </xs:schema>

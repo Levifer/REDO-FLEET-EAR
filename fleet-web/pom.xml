@@ -164,8 +164,12 @@
                             <goal>wsimport</goal>
                         </goals>
                         <configuration>
-                            <wsdlDirectory>${basedir}/src/main/resources/wsdl</wsdlDirectory>
+                            <wsdlFiles>
+                                <wsdlFile>CarModelWebService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <destDir>${baseDir}/target/jaxws/wsimport/java</destDir>
                             <packageName>com.realdolmen.wsdl.carmodel</packageName>
+                            <staleFile>${project.build.directory}/jaxws/stale/wsdl.CarModelWebService.done</staleFile>
                             <xadditionalHeaders>true</xadditionalHeaders>
                             <extension>true</extension>
                             <keep>true</keep>
@@ -179,8 +183,12 @@
                             <goal>wsimport</goal>
                         </goals>
                         <configuration>
-                            <wsdlDirectory>${basedir}/src/main/resources/wsdl</wsdlDirectory>
+                            <wsdlFiles>
+                                <wsdlFile>CustomPackWebService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <destDir>${baseDir}/target/jaxws/wsimport/java</destDir>
                             <packageName>com.realdolmen.wsdl.customPack</packageName>
+                            <staleFile>${project.build.directory}/jaxws/stale/wsdl.CustomPackWebService.done</staleFile>
                             <xadditionalHeaders>true</xadditionalHeaders>
                             <extension>true</extension>
                             <keep>true</keep>

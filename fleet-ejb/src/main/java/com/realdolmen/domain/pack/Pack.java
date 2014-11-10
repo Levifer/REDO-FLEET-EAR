@@ -30,7 +30,8 @@ public class Pack {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "PACK_OPTIONS", joinColumns = @JoinColumn(name = "PACK_ID"),
             inverseJoinColumns = @JoinColumn(name = "OPTION_ID"))
-    @XmlElement(nillable = true)
+    @XmlElementWrapper(name = "options")
+    @XmlElement(name = "option",nillable = true)
     private List<Option> options;
 
     public Pack() {

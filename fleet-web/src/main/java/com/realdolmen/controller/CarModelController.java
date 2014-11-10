@@ -33,7 +33,7 @@ public class CarModelController {
     private  List<Fuel> fuels;
     private List<Pack> packs;
     private List<CarType> types;
-    private Pack pack = new Pack();
+    private Pack pack = null;
 
     @RequestMapping("admin")
     public String admin(Model model){

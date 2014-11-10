@@ -5,6 +5,7 @@ import com.realdolmen.domain.pack.Pack;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
 
 /**
@@ -19,6 +20,7 @@ import java.util.Date;
         @NamedQuery(name = "CarModel.findAllByType",query = "SELECT c FROM CarModel c WHERE c.type =:type")
     }
 )
+@XmlType(name = "CarModel",propOrder = {"id","brand","name","type","fuelType","year","quarter","minKm","maxKm","deliveryTime","fiscalHp","co2","category","imageUrl","pack"},namespace = "http://carmodel.domain.realdolmen.com/")
 public class CarModel {
     @Id
     @GeneratedValue

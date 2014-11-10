@@ -1,5 +1,9 @@
 package com.realdolmen.domain;
 
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlEnumValue;
+import javax.xml.bind.annotation.XmlValue;
+
 /**
  * Created by BPTAT47 on 29/10/2014.
  */
@@ -11,6 +15,7 @@ public class Enums {
         String getType();
     }
 
+    @XmlEnum(String.class)
     public enum Roles {
         EMPLOYEE("employee.name"),
         FLEET_MANAGER("manager.name");
@@ -26,6 +31,7 @@ public class Enums {
         }
     }
 
+    @XmlEnum(String.class)
     public enum Status {
         APPROVED("employee.Approved"),
         DISAPPROVED("employee.Disapproved");
@@ -41,8 +47,11 @@ public class Enums {
         }
     }
 
+    @XmlEnum(String.class)
     public enum Fuel{
+        @XmlEnumValue("Diesel")
         DIESEL("Fuel.Diesel"),
+        @XmlEnumValue("Benzine")
         BENZINE("Fuel.Benzine");
 
         private final String label;
@@ -56,6 +65,7 @@ public class Enums {
         }
     }
 
+    @XmlEnum(String.class)
     public enum CarType{
         HATCHBACK("Hatchback"),
         BERLINE("Berline"),
@@ -75,6 +85,7 @@ public class Enums {
         }
     }
 
+    @XmlEnum(String.class)
     public enum Type implements TypeInterface{
         INTERIOR("Type.Interior"),
         EXTERIOR("Type.Extrior"),
@@ -101,6 +112,7 @@ public class Enums {
 
     }
 
+    @XmlEnum(String.class)
     public enum Interior{
          MIRROR("Interior.Mirror", Type.INTERIOR),
          DECORATIONPANEL("Interior.DecorationPanel", Type.INTERIOR),
@@ -154,6 +166,7 @@ public class Enums {
         }
     }
 
+    @XmlEnum(String.class)
     public enum Exterior{
         WINDOWS("Exterior.Windows", Type.EXTERIOR),
         MIRRORS("Exterior.Mirrors", Type.EXTERIOR),
@@ -179,6 +192,7 @@ public class Enums {
         }
     }
 
+    @XmlEnum(String.class)
     public enum Technical implements TypeInterface{
 
         CHASSIS("Technical.Chassis", Type.TECHNICAL),
@@ -206,7 +220,7 @@ public class Enums {
         }
     }
 
-
+    @XmlEnum(String.class)
     public enum Media{
 
         GPS("Media.Gps", Type.MEDIA),

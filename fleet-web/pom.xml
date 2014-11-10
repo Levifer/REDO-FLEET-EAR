@@ -173,6 +173,21 @@
                             <target>2.0</target>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>wsdl-customPack</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlDirectory>${basedir}/src/main/resources/wsdl</wsdlDirectory>
+                            <packageName>com.realdolmen.wsdl.customPack</packageName>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 

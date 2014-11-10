@@ -16,7 +16,6 @@ import java.util.List;
 public class Pack {
     @Id
     @GeneratedValue
-    @XmlTransient
     private Integer id;
     @XmlElement
     private BigDecimal price;

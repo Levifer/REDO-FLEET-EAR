@@ -13,11 +13,11 @@ import java.util.List;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
+@XmlType(name = "Employee", propOrder = {"id","name","surname","email","password","employeeNumber","category","cars","roles","status"})
 public class Employee {
 
     @Id
     @GeneratedValue
-    @XmlTransient
     private Integer id;
     @XmlElement
     private String name;
@@ -31,12 +31,14 @@ public class Employee {
     private String employeeNumber;
     @XmlElement
     private Integer category;
-    @OneToMany()
-    @XmlElement
+    @OneToMany(targetEntity = Car.class)
+    @XmlElementWrapper(name = "cars")
+    @XmlElement(name = "car")
     private List<Car> cars;
     @ElementCollection
     @Enumerated(EnumType.STRING)
-    @XmlElement
+    @XmlElementWrapper(name = "roles")
+    @XmlElement(name="role")
     private List<Enums.Roles> roles;
     @Enumerated(EnumType.STRING)
     @XmlElement
@@ -140,5 +142,44 @@ public class Employee {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+
+        Employee employee = (Employee) o;
+
+        if (enabled != employee.enabled) return false;
+        if (cars != null ? !cars.equals(employee.cars) : employee.cars != null) return false;
+        if (category != null ? !category.equals(employee.category) : employee.category != null) return false;
+        if (email != null ? !email.equals(employee.email) : employee.email != null) return false;
+        if (employeeNumber != null ? !employeeNumber.equals(employee.employeeNumber) : employee.employeeNumber != null)
+            return false;
+        if (id != null ? !id.equals(employee.id) : employee.id != null) return false;
+        if (name != null ? !name.equals(employee.name) : employee.name != null) return false;
+        if (password != null ? !password.equals(employee.password) : employee.password != null) return false;
+        if (roles != null ? !roles.equals(employee.roles) : employee.roles != null) return false;
+        if (status != employee.status) return false;
+        if (surname != null ? !surname.equals(employee.surname) : employee.surname != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (employeeNumber != null ? employeeNumber.hashCode() : 0);
+        result = 31 * result + (category != null ? category.hashCode() : 0);
+        result = 31 * result + (cars != null ? cars.hashCode() : 0);
+        result = 31 * result + (roles != null ? roles.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (enabled ? 1 : 0);
+        return result;
     }
 }

@@ -15,14 +15,15 @@ import java.util.List;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
+@XmlType(name = "CustomPack", propOrder = {"id","options"})
 public class CustomPack {
 
     @Id
     @GeneratedValue
-    @XmlTransient
     private Integer id;
     @OneToMany(targetEntity = Option.class)
-    @XmlElement
+    @XmlElementWrapper(name = "options")
+    @XmlElement(name = "option")
     private List<Option> options;
 
     public CustomPack() {
@@ -42,5 +43,25 @@ public class CustomPack {
 
     public void setOptions(List<Option> options) {
         this.options = options;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CustomPack)) return false;
+
+        CustomPack that = (CustomPack) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (options != null ? !options.equals(that.options) : that.options != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (options != null ? options.hashCode() : 0);
+        return result;
     }
 }

@@ -72,7 +72,7 @@
                 <form:input path="category" class="form-control"/>
             </div>
             <%--<div class="form-group">--%>
-            <%--<label><spring:message code="car.pack"/></label>--%>
+            <%--<label><spring:message code="car.pack"/></label>--%>;
             <%--<form:select path="pack" class="form-control">--%>
             <%--<form:option value="${pack}"/>--%>
             <%--</form:select>--%>

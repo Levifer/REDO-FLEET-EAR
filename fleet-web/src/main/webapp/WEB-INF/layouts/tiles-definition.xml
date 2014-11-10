@@ -58,4 +58,9 @@
         <put-attribute name="body" value="/WEB-INF/views/admin/updateCarModel.jsp"/>
     </definition>
 
+    <definition name="insertPack" extends="DefaultTemplate">
+        <put-attribute name="title" value="title.admin.insertPack"/>
+        <put-attribute name="body" value="/WEB-INF/views/admin/insertPack.jsp"/>
+    </definition>
+
 </tiles-definitions>

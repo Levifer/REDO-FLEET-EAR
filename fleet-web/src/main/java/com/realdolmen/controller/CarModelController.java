@@ -12,10 +12,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -51,8 +57,20 @@ public class CarModelController {
         return "insertCarModel";
     }
 
-    public void populate(Model model){
+    @RequestMapping("admin/carmodel/{id}")
+    public String updateCarModel(@PathVariable("id") String id, Model model){
+        populate(model);
+        CarModel carModel = carModelWebServiceClient.getCarModelsById(Integer.parseInt(id));
+        carModel.setId(Integer.parseInt(id));
+        model.addAttribute("carModel", carModel);
+        model.addAttribute("fuelList", fuels);
+        model.addAttribute("packList",packs);
+        model.addAttribute("typeList", types);
+        model.addAttribute("pack",pack);
+        return "updateCarModel";
+    }
 
+    public void populate(Model model){
         fuels = new ArrayList<>();
         fuels.add(Fuel.BENZINE);
         fuels.add(Fuel.DIESEL);
@@ -71,15 +89,35 @@ public class CarModelController {
     }
     @RequestMapping(value="/admin/carmodel/add", method = RequestMethod.POST)
     public String insertCarModel(@ModelAttribute("carModel")CarModel carModel,BindingResult result,Model model){
-        /*if(result.hasErrors()){
-            logger.info("CarModel is not valid");
-            return "insertCarModel";
-        }else{*/
-            logger.info("Carmodel Valid");
-            carModelWebServiceClient.addCarModel(carModel);
-            logger.info("Carmodel is insterted");
-            return "carModelSucces";
-        //}
+        logger.info("Carmodel Valid");
+
+        carModel.setYear(getCalendar());
+        carModel.setImageUrl(carModel.getBrand().toLowerCase() + "_" + carModel.getName().substring(0,carModel.getName().indexOf(" ")).toLowerCase() + "_" + carModel.getYear().getYear() + ".jpg");
+        carModelWebServiceClient.addCarModel(carModel);
+        logger.info("Carmodel is inserted");
+        return "redirect:/admin/carmodel";
     }
 
+    @RequestMapping(value="/admin/carmodel/update", method = RequestMethod.POST)
+    public String updateCarModel(@ModelAttribute("carModel")CarModel carModel,BindingResult result,Model model){
+        carModel.setYear(getCalendar());
+        carModel.setImageUrl(carModel.getBrand().toLowerCase() + "_" + carModel.getName().substring(0,carModel.getName().indexOf(" ")).toLowerCase() + "_" + carModel.getYear().getYear() + ".jpg");
+        logger.info("Carmodel Valid");
+        carModelWebServiceClient.updateCarModel(carModel);
+        logger.info("Carmodel is updated");
+        return "redirect:/admin/carmodel";
+    }
+
+    private XMLGregorianCalendar getCalendar(){
+        GregorianCalendar gcal = new GregorianCalendar();
+        gcal.setTime(new Date());
+        try {
+            return DatatypeFactory.newInstance().newXMLGregorianCalendar(gcal);
+
+        } catch (DatatypeConfigurationException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

@@ -1,4 +1,4 @@
-<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://carmodel.domain.realdolmen.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"  name="CarModelWebServiceService" targetNamespace="http://carmodel.domain.realdolmen.com/">
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://carmodel.domain.realdolmen.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="CarModelWebServiceService" targetNamespace="http://carmodel.domain.realdolmen.com/">
     <wsdl:types>
         <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://carmodel.domain.realdolmen.com/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://carmodel.domain.realdolmen.com/">
             <xs:element name="carModel" type="tns:CarModel"/>
@@ -69,10 +69,11 @@
             </xs:complexType>
             <xs:element name="id" nillable="true" type="xs:int"/>
             <xs:element name="carModels" nillable="true" type="tns:CarModelArray"/>
-            <xs:element name="brand" nillable="true" type="xs:string"/>
             <xs:element name="type" nillable="true" type="xs:string"/>
+            <xs:element name="brand" nillable="true" type="xs:string"/>
         </xs:schema>
     </wsdl:types>
+    <wsdl:message name="updateCarModelResponse"></wsdl:message>
     <wsdl:message name="getCarModelsByBrandResponse">
         <wsdl:part element="tns:carModels" name="carModels"></wsdl:part>
     </wsdl:message>
@@ -89,6 +90,9 @@
     </wsdl:message>
     <wsdl:message name="getCarModelsByType">
         <wsdl:part element="tns:type" name="type"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="updateCarModel">
+        <wsdl:part element="tns:carModel" name="carModel"></wsdl:part>
     </wsdl:message>
     <wsdl:message name="getCarModelByIdResponse">
         <wsdl:part element="tns:carModel" name="carModel"></wsdl:part>
@@ -108,6 +112,14 @@
             <wsdl:input message="tns:getAllCarModels" name="getAllCarModels"></wsdl:input>
             <wsdl:output message="tns:getAllCarModelsResponse" name="getAllCarModelsResponse"></wsdl:output>
         </wsdl:operation>
+        <wsdl:operation name="getCarModelsByType">
+            <wsdl:input message="tns:getCarModelsByType" name="getCarModelsByType"></wsdl:input>
+            <wsdl:output message="tns:getCarModelsByTypeResponse" name="getCarModelsByTypeResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateCarModel">
+            <wsdl:input message="tns:updateCarModel" name="updateCarModel"></wsdl:input>
+            <wsdl:output message="tns:updateCarModelResponse" name="updateCarModelResponse"></wsdl:output>
+        </wsdl:operation>
         <wsdl:operation name="addCarModel">
             <wsdl:input message="tns:addCarModel" name="addCarModel"></wsdl:input>
             <wsdl:output message="tns:addCarModelResponse" name="addCarModelResponse"></wsdl:output>
@@ -115,10 +127,6 @@
         <wsdl:operation name="getCarModelsByBrand">
             <wsdl:input message="tns:getCarModelsByBrand" name="getCarModelsByBrand"></wsdl:input>
             <wsdl:output message="tns:getCarModelsByBrandResponse" name="getCarModelsByBrandResponse"></wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="getCarModelsByType">
-            <wsdl:input message="tns:getCarModelsByType" name="getCarModelsByType"></wsdl:input>
-            <wsdl:output message="tns:getCarModelsByTypeResponse" name="getCarModelsByTypeResponse"></wsdl:output>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="CarModelWebServiceServiceSoapBinding" type="tns:CarModelWebService">
@@ -141,6 +149,24 @@
                 <soap:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>
+        <wsdl:operation name="getCarModelsByType">
+            <soap:operation soapAction="getCarModelsByType" style="document"/>
+            <wsdl:input name="getCarModelsByType">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getCarModelsByTypeResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateCarModel">
+            <soap:operation soapAction="updateCarModel" style="document"/>
+            <wsdl:input name="updateCarModel">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateCarModelResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
         <wsdl:operation name="addCarModel">
             <soap:operation soapAction="addCarModel" style="document"/>
             <wsdl:input name="addCarModel">
@@ -156,15 +182,6 @@
                 <soap:body use="literal"/>
             </wsdl:input>
             <wsdl:output name="getCarModelsByBrandResponse">
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="getCarModelsByType">
-            <soap:operation soapAction="getCarModelsByType" style="document"/>
-            <wsdl:input name="getCarModelsByType">
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output name="getCarModelsByTypeResponse">
                 <soap:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>

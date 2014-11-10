@@ -4,10 +4,11 @@
 <%--String brand, String name, Enums.CarType type, Enums.Fuel fuelType,
  Date year, int quarter, int minKm, int maxKm, int deliveryTime, int fiscalHp,
   int co2, int category, String imageUrl, Pack pack--%>
-<spring:url value="/admin/carmodel/add" var="url"/>
+<spring:url value="/admin/carmodel/update" var="url"/>
 <div class="row">
-    <h2><spring:message code="admin.carmodel.new"/></h2>
+    <h2><spring:message code="admin.carmodel.update"/></h2>
     <form:form commandName="carModel" action="${url}">
+        <form:input path="id" class="hidden"/>
         <div class="form-group">
             <label><spring:message code="car.brand"/></label>
             <form:input path="brand" class="form-control"/>
@@ -72,7 +73,7 @@
         <%--</div>--%>
         <div class="form-group">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <input type="submit" value="<spring:message code="carmodel.add"/>" class="btn btn-primary"/>
+            <input type="submit" value="<spring:message code="carmodel.update"/>" class="btn btn-primary"/>
         </div>
     </form:form>
 </div>

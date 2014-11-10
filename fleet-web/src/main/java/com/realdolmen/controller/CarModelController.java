@@ -1,11 +1,13 @@
 package com.realdolmen.controller;
 
 import com.realdolmen.service.CarModelWebServiceClient;
+import com.realdolmen.service.OptionWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
 import com.realdolmen.wsdl.carmodel.CarModel;
 import com.realdolmen.wsdl.carmodel.CarType;
 import com.realdolmen.wsdl.carmodel.Fuel;
 import com.realdolmen.wsdl.carmodel.Pack;
+import com.realdolmen.wsdl.option.Option;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -34,6 +37,9 @@ public class CarModelController {
 
     @Autowired
     private CarModelWebServiceClient carModelWebServiceClient;
+
+    @Autowired
+    private OptionWebServiceClient optionWebServiceClient;
 
     private  List<Fuel> fuels;
     private List<Pack> packs;
@@ -54,6 +60,7 @@ public class CarModelController {
         model.addAttribute("packList",packs);
         model.addAttribute("typeList", types);
         model.addAttribute("pack",pack);
+        model.addAttribute("optionsList", optionWebServiceClient.getAllOptions());
         return "insertCarModel";
     }
 
@@ -88,11 +95,20 @@ public class CarModelController {
 
     }
     @RequestMapping(value="/admin/carmodel/add", method = RequestMethod.POST)
-    public String insertCarModel(@ModelAttribute("carModel")CarModel carModel,BindingResult result,Model model){
+    public String insertCarModel(@ModelAttribute("carModel")CarModel carModel,BindingResult result,Model model, HttpServletRequest request){
         logger.info("Carmodel Valid");
 
+        List<Option> optionList = optionWebServiceClient.getAllOptions();
+        for(String id : request.getParameterValues("pack.options.option")){
+            for(Option o : optionList){
+                if(o.getOPTIONID().toString().equals(id)){
+                    carModel.getPack().getOptions().getOption().add(mapOption(o));
+                }
+            }
+        }
+
         carModel.setYear(getCalendar());
-        carModel.setImageUrl(carModel.getBrand().toLowerCase() + "_" + carModel.getName().substring(0,carModel.getName().indexOf(" ")).toLowerCase() + "_" + carModel.getYear().getYear() + ".jpg");
+        //carModel.setImageUrl(carModel.getBrand().toLowerCase() + "_" + carModel.getName().substring(0,carModel.getName().indexOf(" ")).toLowerCase() + "_" + carModel.getYear().getYear() + ".jpg");
         carModelWebServiceClient.addCarModel(carModel);
         logger.info("Carmodel is inserted");
         return "redirect:/admin/carmodel?created";
@@ -120,4 +136,16 @@ public class CarModelController {
 
         return null;
     }
+
+    private com.realdolmen.wsdl.carmodel.Option mapOption(Option o){
+        com.realdolmen.wsdl.carmodel.Option opt = new com.realdolmen.wsdl.carmodel.Option();
+        opt.setDescription(o.getDescription());
+        opt.setName(o.getName());
+        opt.setOPTIONID(o.getOPTIONID());
+        opt.setPrice(o.getPrice());
+        opt.setType(o.getType());
+
+        return opt;
+    }
+
 }

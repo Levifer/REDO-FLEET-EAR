@@ -16,19 +16,45 @@
         <form:form commandName="pack" action="${url}/add">
             <div class="form-group">
                 <label>Price</label>
-                <form:input path="price" class="form-control"/>
+
+                <div class="input-group">
+                    <span class="input-group-addon">€</span>
+                    <form:input path="price" class="form-control"/>
+                </div>
             </div>
             <div class="form-group">
                 <label>Benefit price</label>
-                <form:input path="benefitPrice" class="form-control"/>
+
+                <div class="input-group">
+                    <span class="input-group-addon">€</span>
+                    <form:input path="benefitPrice" class="form-control"/>
+                </div>
             </div>
             <div class="form-group">
-                <label>Options</label>
-                <form:select path="options.option" class="form-control" multiple="multiple" name="options">
+                <label>Upgrade</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon">€</span>
+                    <form:input path="upgrade" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Downgrade</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon">€</span>
+                    <form:input path="downgrade" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h3>Options</h3>
+
+                <div class="options">
                     <c:forEach var="option" items="${optionsList}">
-                        <form:option value="${option.OPTIONID}"><c:out value="${option.name} (${option.type})"/></form:option>
+                        <form:checkbox path="options.option" value="${option.OPTIONID}"
+                                       label=" ${option.name} (€${option.price})" cssStyle="font-weight: normal;"/><br/>
                     </c:forEach>
-                </form:select>
+                </div>
             </div>
             <div class="form-group">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

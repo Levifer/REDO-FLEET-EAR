@@ -71,12 +71,50 @@
                 <label><spring:message code="car.category"/></label>
                 <form:input path="category" class="form-control"/>
             </div>
-            <%--<div class="form-group">--%>
-            <%--<label><spring:message code="car.pack"/></label>--%>
-            <%--<form:select path="pack" class="form-control">--%>
-            <%--<form:option value="${pack}"/>--%>
-            <%--</form:select>--%>
-            <%--</div>--%>
+            <h3>Pack</h3>
+            <div class="form-group">
+                <label>Price</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon">€</span>
+                    <form:input path="pack.price" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Benefit price</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon">€</span>
+                    <form:input path="pack.benefitPrice" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Upgrade</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon">€</span>
+                    <form:input path="pack.upgrade" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Downgrade</label>
+
+                <div class="input-group">
+                    <span class="input-group-addon">€</span>
+                    <form:input path="pack.downgrade" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h3>Options</h3>
+
+                <div class="options">
+                    <c:forEach var="option" items="${optionsList}">
+                        <form:checkbox path="pack.options.option" value="${option.OPTIONID}"
+                                       label=" ${option.name} (€${option.price})" cssStyle="font-weight: normal;"/><br/>
+                    </c:forEach>
+                </div>
+            </div>
+
             <div class="form-group">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <input type="submit" value="<spring:message code="carmodel.add"/>" class="btn btn-primary"/>

@@ -6,9 +6,10 @@
   int co2, int category, String imageUrl, Pack pack--%>
 <spring:url value="/admin/carmodel" var="url"/>
 <div class="row">
-    <h2><spring:message code="admin.carmodel.new"/></h2>
-    <spring:url value="/admin/carmodel" var="url"/>
-    <form:form commandName="carModel" action="${url}/add">
+    <h2><spring:message code="admin.carmodel.update"/></h2>
+    <a href="${url}">Back to overview</a>
+    <form:form commandName="carModel" action="${url}/update">
+        <form:input path="id" class="hidden"/>
         <div class="form-group">
             <label><spring:message code="car.brand"/></label>
             <form:input path="brand" class="form-control"/>
@@ -73,7 +74,7 @@
         <%--</div>--%>
         <div class="form-group">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <input type="submit" value="<spring:message code="carmodel.add"/>" class="btn btn-primary"/>
+            <input type="submit" value="<spring:message code="carmodel.update"/>" class="btn btn-primary"/>
         </div>
     </form:form>
 </div>

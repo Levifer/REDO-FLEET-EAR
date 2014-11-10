@@ -10,15 +10,14 @@
 <%-- Page --%>
 <c:choose>
     <c:when test="${not empty pageContext.request.userPrincipal}">
-        <li><p><sec:authentication property="principal.username" /></p></li>
+        <li><p><span class="glyphicon glyphicon-user"></span> <sec:authentication property="principal.username" /></p></li>
         <sec:authorize access="hasRole('ROLE_FLEET_MANAGER')">
             <li>
-                <a href="${adminUrl}/carmodel">Admin</a>
+                <a href="${adminUrl}/carmodel"><span class="glyphicon glyphicon-lock"></span> Admin</a>
             </li>
         </sec:authorize>
         <li>
-            <form action="${logoutUrl}"
-                  method="post">
+            <form action="${logoutUrl}" method="post">
                 <input type="submit" value="${logoutValue}" />
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
@@ -26,7 +25,7 @@
     </c:when>
     <c:otherwise>
         <li>
-            <a href="${loginUrl}"><spring:message code="menu.login"/></a>
+            <a href="${loginUrl}"><span class="glyphicon glyphicon-log-in"></span> <spring:message code="menu.login"/></a>
         </li>
     </c:otherwise>
 </c:choose>

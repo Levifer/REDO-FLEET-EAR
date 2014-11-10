@@ -95,7 +95,7 @@ public class CarModelController {
         carModel.setImageUrl(carModel.getBrand().toLowerCase() + "_" + carModel.getName().substring(0,carModel.getName().indexOf(" ")).toLowerCase() + "_" + carModel.getYear().getYear() + ".jpg");
         carModelWebServiceClient.addCarModel(carModel);
         logger.info("Carmodel is inserted");
-        return "redirect:/admin/carmodel";
+        return "redirect:/admin/carmodel?created";
     }
 
     @RequestMapping(value="/admin/carmodel/update", method = RequestMethod.POST)
@@ -105,7 +105,7 @@ public class CarModelController {
         logger.info("Carmodel Valid");
         carModelWebServiceClient.updateCarModel(carModel);
         logger.info("Carmodel is updated");
-        return "redirect:/admin/carmodel";
+        return "redirect:/admin/carmodel?updated";
     }
 
     private XMLGregorianCalendar getCalendar(){

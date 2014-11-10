@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Table(name ="FLEET_OPTION")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
-//@XmlType(name = "Option", propOrder = {"id","type","name","description","price"})
+@XmlType(name = "Option", propOrder = {"id","type","name","description","price"})
 public class Option {
     @Id
     @GeneratedValue

@@ -14,11 +14,11 @@ import java.util.Date;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
+@XmlType(name = "Car", propOrder = {"id","model", "mileage", "carInUse", "customPack"})
 public class Car implements Serializable {
 
     @Id
     @GeneratedValue
-    @XmlTransient
     private Integer id;
 
     @ManyToOne(targetEntity = CarModel.class)

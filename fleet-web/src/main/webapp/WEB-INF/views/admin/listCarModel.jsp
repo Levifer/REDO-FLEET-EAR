@@ -6,7 +6,7 @@
     <div class="col-sm-12"><h2><spring:message code="admin.carmodel.title"/></h2></div>
 </div>
 <div class="row">
-    <div class="col-sm-3 col-sm-offset-9 text-right"><a href="${carmodelUrl}/new"><spring:message code="admin.carmodel.new"/></a></div>
+    <div class="col-sm-3 col-sm-offset-9 text-right"><a href="${carmodelUrl}/new" class="btn btn-success"><spring:message code="admin.carmodel.new"/></a></div>
 </div>
 <div class="row">
     <div class="col-sm-12">

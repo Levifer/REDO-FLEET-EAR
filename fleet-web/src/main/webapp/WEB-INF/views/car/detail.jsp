@@ -12,11 +12,24 @@
         <img src="<%=request.getContextPath() %>/resources/img/logo/${fn:toLowerCase(car.brand)}.png" class="img-responsive"/>
     </div>
     <div class="col-sm-5">
-        <ul>
-        <c:forEach var="option" items="${car.pack.options}">
-            <li>${option.name}</li>
-        </c:forEach>
-        </ul>
+
+        <form:form method="POST" commandName="options" action="selectOptions">
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        <ul>
+                            <form:checkboxes element="li" items="${car.pack.options}" path="option" />
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="BUY ME"></td>
+                </tr>
+                </tbody>
+            </table>
+        </form:form>
+
     </div>
 
     <div class="col-sm-3 col-sm-offset-1">

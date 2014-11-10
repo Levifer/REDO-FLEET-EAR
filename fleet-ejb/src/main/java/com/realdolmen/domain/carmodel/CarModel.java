@@ -5,7 +5,6 @@ import com.realdolmen.domain.pack.Pack;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
 
 /**
@@ -55,7 +54,7 @@ public class CarModel {
     @XmlElement
     private String imageUrl;
 
-    @OneToOne(targetEntity = Pack.class)
+    @OneToOne(targetEntity = Pack.class, cascade = {CascadeType.ALL})
     @XmlElement
     private Pack pack;
 

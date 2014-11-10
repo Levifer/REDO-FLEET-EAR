@@ -1,10 +1,10 @@
 package com.realdolmen.controller;
 
+import com.realdolmen.controller.dto.OptionList;
 import com.realdolmen.service.CarModelWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
 import com.realdolmen.wsdl.carmodel.CarModel;
 import com.realdolmen.wsdl.carmodel.Option;
-import com.realdolmen.wsdl.customPack.CustomPack;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,24 +50,24 @@ public class CarController {
         logger.info("/car");
         List<CarModel> carModels = new ArrayList<CarModel>();
         if (type != null) {
-            logger.info("find carModels by type: " + type);
+            logger.info("find cars by type: " + type);
             model.addAttribute("error", null);
             carModels = carModelWebServiceClient.getCarModelsByType(type.toUpperCase());
         }
 
         if (brand != null) {
-            logger.info("find carModels by brand: " + brand);
+            logger.info("find cars by brand: " + brand);
             carModels = carModelWebServiceClient.getCarModelsByBrand(brand.toLowerCase());
             model.addAttribute("error", null);
         }
 
         if (brand == null && type == null) {
-            logger.info("find all carModels");
+            logger.info("find all cars");
             carModels = carModelWebServiceClient.getAllCarModels();
             model.addAttribute("error", null);
         }
         if (carModels.isEmpty()) {
-            model.addAttribute("error", "No carModels found");
+            model.addAttribute("error", "No cars found");
         }
 
         model.addAttribute("isLoggedIn", true);
@@ -88,9 +88,8 @@ public class CarController {
         logger.info("Principal: " + principal.getName());
         logger.info("/carDetail - id: " + id);
         CarModel carModel = (CarModel) request.getSession().getAttribute("carmodel");
-        model.addAttribute("car", carModel);
-        CustomPack customPack = new CustomPack();
-        model.addAttribute("options", customPack.getOptions());
+        model.addAttribute("carModel", carModel);
+        model.addAttribute("options", new OptionList());
         return "carDetail";
     }
 

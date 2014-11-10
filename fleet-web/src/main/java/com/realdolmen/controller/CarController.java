@@ -5,7 +5,6 @@ import com.realdolmen.service.CarModelWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
 import com.realdolmen.wsdl.carmodel.CarModel;
 import com.realdolmen.wsdl.carmodel.Option;
-import com.realdolmen.wsdl.customPack.CustomPack;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

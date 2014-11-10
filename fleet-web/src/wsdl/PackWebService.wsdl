@@ -1,0 +1,122 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://pack.domain.realdolmen.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="PackWebServiceService" targetNamespace="http://pack.domain.realdolmen.com/">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pack.domain.realdolmen.com/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://pack.domain.realdolmen.com/">
+            <xs:element name="option" type="tns:Option"/>
+            <xs:element name="pack" type="tns:Pack"/>
+            <xs:complexType name="Pack">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:int"/>
+                    <xs:element minOccurs="0" name="price" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="benefitPrice" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="upgrade" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="downgrade" type="xs:decimal"/>
+                    <xs:element minOccurs="0" name="options">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="option" nillable="true" type="tns:Option"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Option">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="OPTION_ID" type="xs:int"/>
+                    <xs:element minOccurs="0" name="type" type="xs:string"/>
+                    <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    <xs:element minOccurs="0" name="description" type="xs:string"/>
+                    <xs:element minOccurs="0" name="price" type="xs:decimal"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType final="#all" name="PackArray">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:Pack"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="packs" nillable="true" type="tns:Pack"/>
+            <xs:element name="id" nillable="true" type="xs:int"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="findAllPacksResponse">
+        <wsdl:part element="tns:packs" name="packs"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="updatePack">
+        <wsdl:part element="tns:pack" name="pack"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createPackResponse"></wsdl:message>
+    <wsdl:message name="updatePackResponse">
+        <wsdl:part element="tns:packs" name="packs"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findPackById">
+        <wsdl:part element="tns:id" name="id"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findPackByIdResponse">
+        <wsdl:part element="tns:pack" name="pack"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findAllPacks"></wsdl:message>
+    <wsdl:message name="createPack">
+        <wsdl:part element="tns:pack" name="pack"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="PackWebService">
+        <wsdl:operation name="updatePack">
+            <wsdl:input message="tns:updatePack" name="updatePack"></wsdl:input>
+            <wsdl:output message="tns:updatePackResponse" name="updatePackResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findPackById">
+            <wsdl:input message="tns:findPackById" name="findPackById"></wsdl:input>
+            <wsdl:output message="tns:findPackByIdResponse" name="findPackByIdResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findAllPacks">
+            <wsdl:input message="tns:findAllPacks" name="findAllPacks"></wsdl:input>
+            <wsdl:output message="tns:findAllPacksResponse" name="findAllPacksResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createPack">
+            <wsdl:input message="tns:createPack" name="createPack"></wsdl:input>
+            <wsdl:output message="tns:createPackResponse" name="createPackResponse"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="PackWebServiceServiceSoapBinding" type="tns:PackWebService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="updatePack">
+            <soap:operation soapAction="updatePack" style="document"/>
+            <wsdl:input name="updatePack">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updatePackResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findPackById">
+            <soap:operation soapAction="findPackById" style="document"/>
+            <wsdl:input name="findPackById">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findPackByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findAllPacks">
+            <soap:operation soapAction="findAllPacks" style="document"/>
+            <wsdl:input name="findAllPacks">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findAllPacksResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createPack">
+            <soap:operation soapAction="createPack" style="document"/>
+            <wsdl:input name="createPack">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createPackResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PackWebServiceService">
+        <wsdl:port binding="tns:PackWebServiceServiceSoapBinding" name="PackWebServicePort">
+            <soap:address location="http://localhost:8080/fleet-ejb-1.0-SNAPSHOT/PackWebService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

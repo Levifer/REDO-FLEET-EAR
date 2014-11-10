@@ -1,15 +1,12 @@
 package com.realdolmen.domain.pack;
 
-import com.realdolmen.domain.option.Option;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
-import javax.transaction.Transactional;
-import java.math.BigDecimal;
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 /**
@@ -17,6 +14,7 @@ import java.util.List;
  */
 @WebService
 @Stateless
+@SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 public class PackWebService {
 
     @Inject

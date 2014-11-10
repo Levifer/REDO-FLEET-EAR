@@ -87,4 +87,30 @@ public class Car implements Serializable {
     public void setCustomPack(CustomPack customPack) {
         this.customPack = customPack;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Car)) return false;
+
+        Car car = (Car) o;
+
+        if (carInUse != null ? !carInUse.equals(car.carInUse) : car.carInUse != null) return false;
+        if (customPack != null ? !customPack.equals(car.customPack) : car.customPack != null) return false;
+        if (id != null ? !id.equals(car.id) : car.id != null) return false;
+        if (mileage != null ? !mileage.equals(car.mileage) : car.mileage != null) return false;
+        if (model != null ? !model.equals(car.model) : car.model != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (model != null ? model.hashCode() : 0);
+        result = 31 * result + (mileage != null ? mileage.hashCode() : 0);
+        result = 31 * result + (carInUse != null ? carInUse.hashCode() : 0);
+        result = 31 * result + (customPack != null ? customPack.hashCode() : 0);
+        return result;
+    }
 }

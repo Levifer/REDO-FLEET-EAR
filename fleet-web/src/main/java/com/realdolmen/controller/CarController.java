@@ -48,30 +48,30 @@ public class CarController {
     @RequestMapping("/car")
     public String list(@RequestParam(value = "type", required = false) String type, @RequestParam(value = "brand", required = false) String brand, Model model) {
         logger.info("/car");
-        List<CarModel> cars = new ArrayList<CarModel>();
+        List<CarModel> carModels = new ArrayList<CarModel>();
         if (type != null) {
-            logger.info("find cars by type: " + type);
+            logger.info("find carModels by type: " + type);
             model.addAttribute("error", null);
-            cars = carModelWebServiceClient.getCarModelsByType(type.toUpperCase());
+            carModels = carModelWebServiceClient.getCarModelsByType(type.toUpperCase());
         }
 
         if (brand != null) {
-            logger.info("find cars by brand: " + brand);
-            cars = carModelWebServiceClient.getCarModelsByBrand(brand.toLowerCase());
+            logger.info("find carModels by brand: " + brand);
+            carModels = carModelWebServiceClient.getCarModelsByBrand(brand.toLowerCase());
             model.addAttribute("error", null);
         }
 
         if (brand == null && type == null) {
-            logger.info("find all cars");
-            cars = carModelWebServiceClient.getAllCarModels();
+            logger.info("find all carModels");
+            carModels = carModelWebServiceClient.getAllCarModels();
             model.addAttribute("error", null);
         }
-        if (cars.isEmpty()) {
-            model.addAttribute("error", "No cars found");
+        if (carModels.isEmpty()) {
+            model.addAttribute("error", "No carModels found");
         }
 
         model.addAttribute("isLoggedIn", true);
-        model.addAttribute("cars", cars);
+        model.addAttribute("carModels", carModels);
         return "carList";
     }
 

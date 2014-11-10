@@ -18,11 +18,11 @@ public class CarModelWebServiceClient extends WebServiceGatewaySupport {
     private CarModelWebService carModelWebService;
 
     public List<CarModel> getCarModelsByBrand(String brand) {
-        return carModelWebService.getCarModelsByBrand(brand);
+        return carModelWebService.getCarModelsByBrand(brand).getItem();
     }
 
     public List<CarModel> getCarModelsByType(String type) {
-        return carModelWebService.getCarModelsByType(type);
+        return carModelWebService.getCarModelsByType(type).getItem();
     }
 
     public CarModel getCarModelsById(Integer id) {
@@ -30,7 +30,7 @@ public class CarModelWebServiceClient extends WebServiceGatewaySupport {
     }
 
     public List<CarModel> getAllCarModels() {
-        return carModelWebService.getAllCarModels();
+        return carModelWebService.getAllCarModels().getItem();
     }
 
     public void addCarModel(CarModel carModel){

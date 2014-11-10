@@ -40,9 +40,9 @@
     <label><spring:message code="car.category"/></label>
     <form:input path="category" />
     <label><spring:message code="car.pack"/></label>
-    <form:select path="pack">
+    <%--<form:select path="pack">
         <form:option value="${pack}"/>
-    </form:select>
+    </form:select>--%>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <input type="submit" value="<spring:message code="carmodel.add"/>" />
 </form:form>

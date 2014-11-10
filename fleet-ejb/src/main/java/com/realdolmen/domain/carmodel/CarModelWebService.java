@@ -8,6 +8,9 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.List;
 
 /**
@@ -15,6 +18,7 @@ import java.util.List;
  */
 @WebService
 @Stateless
+@SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 public class CarModelWebService {
     @Inject
     private CarModelRepository carModelRepository;

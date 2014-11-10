@@ -63,12 +63,12 @@
             <label><spring:message code="car.category"/></label>
             <form:input path="category" class="form-control"/>
         </div>
-        <div class="form-group">
-            <label><spring:message code="car.pack"/></label>
-            <form:select path="pack" class="form-control">
-                <form:option value="${pack}"/>
-            </form:select>
-        </div>
+        <%--<div class="form-group">--%>
+            <%--<label><spring:message code="car.pack"/></label>--%>
+            <%--<form:select path="pack" class="form-control">--%>
+                <%--<form:option value="${pack}"/>--%>
+            <%--</form:select>--%>
+        <%--</div>--%>
         <div class="form-group">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <input type="submit" value="<spring:message code="carmodel.add"/>" class="btn btn-primary"/>

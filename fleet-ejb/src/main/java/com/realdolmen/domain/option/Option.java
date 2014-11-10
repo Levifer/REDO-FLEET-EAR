@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 public class Option {
     @Id
     @GeneratedValue
+    @XmlElement(name = "OPTION_ID")
     private Integer id;
     @XmlElement
     private String type;

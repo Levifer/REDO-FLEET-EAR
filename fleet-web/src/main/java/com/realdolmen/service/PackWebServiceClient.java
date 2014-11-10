@@ -17,8 +17,14 @@ public class PackWebServiceClient {
     @Autowired
     private PackWebService packWebService;
 
-    public void addPack(Pack pack){
-        packWebService.createPack(pack);
+    public int addPack(Pack pack){
+        int id = packWebService.createPack(pack);
         logger.info("addPack");
+
+        return id;
+    }
+
+    public Pack findPackById(int id){
+        return packWebService.findPackById(id);
     }
 }

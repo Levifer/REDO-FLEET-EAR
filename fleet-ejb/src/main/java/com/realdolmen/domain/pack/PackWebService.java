@@ -33,8 +33,9 @@ public class PackWebService {
     }
 
     @WebMethod(action = "createPack")
-    public void createPack(@WebParam(name = "pack") Pack pack){
+    public Integer createPack(@WebParam(name = "pack") Pack pack){
         packRepository.persist(pack);
+        return pack.getId();
     }
 
     @WebResult(name = "packs")

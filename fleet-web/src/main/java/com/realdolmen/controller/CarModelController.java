@@ -1,7 +1,10 @@
 package com.realdolmen.controller;
 
+import com.realdolmen.controller.mapper.OptionToPackOptionMapper;
+import com.realdolmen.controller.mapper.PackToCarModelOptionMapper;
 import com.realdolmen.service.CarModelWebServiceClient;
 import com.realdolmen.service.OptionWebServiceClient;
+import com.realdolmen.service.PackWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
 import com.realdolmen.wsdl.carmodel.CarModel;
 import com.realdolmen.wsdl.carmodel.CarType;
@@ -40,6 +43,9 @@ public class CarModelController {
 
     @Autowired
     private OptionWebServiceClient optionWebServiceClient;
+
+    @Autowired
+    private PackWebServiceClient packWebServiceClient;
 
     private  List<Fuel> fuels;
     private List<Pack> packs;
@@ -99,19 +105,62 @@ public class CarModelController {
         logger.info("Carmodel Valid");
 
         List<Option> optionList = optionWebServiceClient.getAllOptions();
+        com.realdolmen.wsdl.pack.Pack originalPack = new com.realdolmen.wsdl.pack.Pack();
+        List<com.realdolmen.wsdl.pack.Option> packOptions = new ArrayList<>();
+        OptionToPackOptionMapper optionToPackOptionMapper = new OptionToPackOptionMapper();
         for(String id : request.getParameterValues("pack.options.option")){
             for(Option o : optionList){
                 if(o.getOPTIONID().toString().equals(id)){
-                    carModel.getPack().getOptions().getOption().add(mapOption(o));
+                    packOptions.add(mapOption(o));
                 }
             }
         }
+
+        com.realdolmen.wsdl.pack.Pack.Options optionsWrapper = new com.realdolmen.wsdl.pack.Pack.Options();
+        for(com.realdolmen.wsdl.pack.Option option : packOptions){
+            optionsWrapper.getOption().add(option);
+
+        }
+
+        originalPack.setOptions(optionsWrapper);
+
+        originalPack.setBenefitPrice(carModel.getPack().getBenefitPrice());
+        originalPack.setDowngrade(carModel.getPack().getDowngrade());
+        originalPack.setPrice(carModel.getPack().getPrice());
+        originalPack.setUpgrade(carModel.getPack().getUpgrade());
+
+        int id = packWebServiceClient.addPack(originalPack);
+
+        com.realdolmen.wsdl.pack.Pack createdPack = packWebServiceClient.findPackById(id);
+
+        Pack carModelPack = mapPack(createdPack);
+        carModel.setPack(carModelPack);
 
         carModel.setYear(getCalendar());
         //carModel.setImageUrl(carModel.getBrand().toLowerCase() + "_" + carModel.getName().substring(0,carModel.getName().indexOf(" ")).toLowerCase() + "_" + carModel.getYear().getYear() + ".jpg");
         carModelWebServiceClient.addCarModel(carModel);
         logger.info("Carmodel is inserted");
         return "redirect:/admin/carmodel?created";
+    }
+
+    private Pack mapPack(com.realdolmen.wsdl.pack.Pack createdPack) {
+        PackToCarModelOptionMapper packToCarModelOptionMapper = new PackToCarModelOptionMapper();
+        Pack newPack = new Pack();
+        newPack.setBenefitPrice(createdPack.getBenefitPrice());
+        newPack.setDowngrade(createdPack.getDowngrade());
+        newPack.setId(createdPack.getId());
+        List<com.realdolmen.wsdl.carmodel.Option> options =  packToCarModelOptionMapper.mapTo(createdPack.getOptions().getOption());
+        com.realdolmen.wsdl.carmodel.Pack.Options optionswrapper = new Pack.Options();
+        for(com.realdolmen.wsdl.carmodel.Option opt : options){
+            optionswrapper.getOption().add(opt);
+        }
+
+        newPack.setOptions(optionswrapper);
+
+        newPack.setPrice(createdPack.getPrice());
+        newPack.setUpgrade(createdPack.getUpgrade());
+
+        return newPack;
     }
 
     @RequestMapping(value="/admin/carmodel/update", method = RequestMethod.POST)
@@ -137,8 +186,8 @@ public class CarModelController {
         return null;
     }
 
-    private com.realdolmen.wsdl.carmodel.Option mapOption(Option o){
-        com.realdolmen.wsdl.carmodel.Option opt = new com.realdolmen.wsdl.carmodel.Option();
+    private com.realdolmen.wsdl.pack.Option mapOption(Option o){
+        com.realdolmen.wsdl.pack.Option opt = new com.realdolmen.wsdl.pack.Option();
         opt.setDescription(o.getDescription());
         opt.setName(o.getName());
         opt.setOPTIONID(o.getOPTIONID());
@@ -147,5 +196,7 @@ public class CarModelController {
 
         return opt;
     }
+
+
 
 }

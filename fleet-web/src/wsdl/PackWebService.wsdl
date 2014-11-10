@@ -35,6 +35,7 @@
             </xs:complexType>
             <xs:element name="packs" nillable="true" type="tns:Pack"/>
             <xs:element name="id" nillable="true" type="xs:int"/>
+            <xs:element name="createPackResponse" nillable="true" type="xs:int"/>
         </xs:schema>
     </wsdl:types>
     <wsdl:message name="findAllPacksResponse">
@@ -43,7 +44,9 @@
     <wsdl:message name="updatePack">
         <wsdl:part element="tns:pack" name="pack"></wsdl:part>
     </wsdl:message>
-    <wsdl:message name="createPackResponse"></wsdl:message>
+    <wsdl:message name="createPackResponse">
+        <wsdl:part element="tns:createPackResponse" name="createPackResponse"></wsdl:part>
+    </wsdl:message>
     <wsdl:message name="updatePackResponse">
         <wsdl:part element="tns:packs" name="packs"></wsdl:part>
     </wsdl:message>

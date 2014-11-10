@@ -13,6 +13,7 @@ import java.util.List;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
+@XmlType(name = "Pack",propOrder = {"id","price","benefitPrice","upgrade","downgrade"})
 public class Pack {
     @Id
     @GeneratedValue

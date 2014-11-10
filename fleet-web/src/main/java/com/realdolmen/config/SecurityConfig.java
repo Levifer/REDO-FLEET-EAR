@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/car/*").hasRole("EMPLOYEE")
                 .antMatchers("/ordercar/*").hasRole("EMPLOYEE")
                 .antMatchers("/car").permitAll()
-                .antMatchers("/admin/*").hasRole("FLEET_MANAGER")
+                .antMatchers("/admin/**").hasRole("FLEET_MANAGER")
                 .antMatchers("/**").hasRole("FORBIDDEN")
                 .and()
                 .formLogin().loginPage("/login").permitAll().loginProcessingUrl("/processLogin")

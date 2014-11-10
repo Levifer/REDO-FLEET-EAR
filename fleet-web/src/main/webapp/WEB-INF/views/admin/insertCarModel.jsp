@@ -4,7 +4,7 @@
 <%--String brand, String name, Enums.CarType type, Enums.Fuel fuelType,
  Date year, int quarter, int minKm, int maxKm, int deliveryTime, int fiscalHp,
   int co2, int category, String imageUrl, Pack pack--%>
-<spring:url value="/admin/car" var="url"/>
+<spring:url value="/admin/carmodel/add" var="url"/>
 <div class="row">
     <form:form commandName="carModel" action="${url}">
         <div class="form-group">

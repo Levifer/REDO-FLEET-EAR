@@ -10,10 +10,10 @@
 <%-- Page --%>
 <c:choose>
     <c:when test="${not empty pageContext.request.userPrincipal}">
-        <li><a><sec:authentication property="principal.username" /></a></li>
+        <li><p><sec:authentication property="principal.username" /></p></li>
         <sec:authorize access="hasRole('ROLE_FLEET_MANAGER')">
             <li>
-                <a href="${adminUrl}">Admin</a>
+                <a href="${adminUrl}/carmodel">Admin</a>
             </li>
         </sec:authorize>
         <li>

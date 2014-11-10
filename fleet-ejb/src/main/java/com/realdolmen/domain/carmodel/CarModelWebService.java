@@ -9,8 +9,6 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.List;
 
 /**
@@ -55,5 +53,10 @@ public class CarModelWebService {
     @WebMethod(action = "addCarModel")
     public void addCarModel(@WebParam(name= "carModel")CarModel carModel){
         carModelRepository.persist(carModel);
+    }
+
+    @WebMethod(action = "updateCarModel")
+    public void updateCarModel(@WebParam(name= "carModel")CarModel carModel){
+        carModelRepository.update(carModel);
     }
 }

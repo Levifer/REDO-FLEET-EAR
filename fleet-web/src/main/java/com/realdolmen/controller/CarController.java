@@ -74,9 +74,10 @@ public class CarController {
     }
 
     @RequestMapping("/car/{id}")
-    public String detail(@PathVariable("id") String id, RedirectAttributes redirectAttributes) {
+    public String detail(@PathVariable("id") String id, RedirectAttributes redirectAttributes,HttpServletRequest request) {
         logger.info("/car - id: " + id);
-        redirectAttributes.addFlashAttribute("id", id);
+        CarModel carModel = carModelWebServiceClient.getCarModelsById(Integer.parseInt(id));
+        request.getSession().setAttribute("carmodel",carModel);
         return "redirect:/car/detail";
     }
 
@@ -84,8 +85,7 @@ public class CarController {
     public String carDetail(Model model, @ModelAttribute("id") final String id, Principal principal, RedirectAttributes redirectAttributes,HttpServletRequest request) {
         logger.info("Principal: " + principal.getName());
         logger.info("/carDetail - id: " + id);
-        CarModel carModel = carModelWebServiceClient.getCarModelsById(Integer.parseInt(id));
-        request.getSession().setAttribute("carmodel",carModel);
+        CarModel carModel = (CarModel)request.getSession().getAttribute("carmodel");
         model.addAttribute("car", carModel);
         return "carDetail";
     }

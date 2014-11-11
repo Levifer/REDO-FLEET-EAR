@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Table(name = "FLEET_OPTION")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
-@XmlType(name = "Option", propOrder = {"id", "type", "name", "description", "price","carModel"})
+@XmlType(name = "Option", propOrder = {"id", "type", "name", "description", "price"})
 @NamedQueries(
         {
                 @NamedQuery(name = "Option.findOptionByCarModel",query = "SELECT o FROM Option o WHERE o.carModel.id = :id"),
@@ -36,7 +36,7 @@ public class Option {
     private BigDecimal price;
 
     @ManyToOne(targetEntity = CarModel.class,optional = true)
-    @XmlElement
+    @XmlTransient
     private CarModel carModel;
 
 

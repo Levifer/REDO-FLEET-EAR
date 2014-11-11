@@ -17,7 +17,7 @@ public class CustomPack {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "CUSTOMPACK_SEQUENCE")
-    @SequenceGenerator(name = "CUSTOMPACK_SEQUENCE", sequenceName = "CUSTOMPACK_SEQUENCE_ID_SEQUENCE", allocationSize = 1)
+    @SequenceGenerator(name = "CUSTOMPACK_SEQUENCE", sequenceName = "CUSTOMPACK_ID_SEQUENCE", allocationSize = 1)
     private Integer id;
     @OneToMany(targetEntity = Option.class)
     @XmlElementWrapper(name = "options")
@@ -46,7 +46,7 @@ public class CustomPack {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CustomPack)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         CustomPack that = (CustomPack) o;
 

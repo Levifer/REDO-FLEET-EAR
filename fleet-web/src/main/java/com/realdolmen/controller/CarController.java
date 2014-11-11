@@ -3,6 +3,7 @@ package com.realdolmen.controller;
 import com.realdolmen.controller.dto.OptionList;
 import com.realdolmen.controller.mapper.OptionMapper;
 import com.realdolmen.service.CarModelWebServiceClient;
+import com.realdolmen.service.OptionWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
 import com.realdolmen.wsdl.carmodel.CarModel;
 import com.realdolmen.wsdl.carmodel.Option;
@@ -28,6 +29,9 @@ public class CarController {
 
     @Autowired
     private CarModelWebServiceClient carModelWebServiceClient;
+
+    @Autowired
+    private OptionWebServiceClient optionWebServiceClient;
 
     private boolean error = true;
 
@@ -88,9 +92,12 @@ public class CarController {
     public String carDetail(Model model, @ModelAttribute("id") final String id, Principal principal, RedirectAttributes redirectAttributes, HttpServletRequest request) {
         logger.info("Principal: " + principal.getName());
         logger.info("/carDetail - id: " + id);
+
         CarModel carModel = (CarModel) request.getSession().getAttribute("carmodel");
+        List<com.realdolmen.wsdl.option.Option> options =   optionWebServiceClient.getOptionsByCarModelId(carModel);
         model.addAttribute("carModel", carModel);
         model.addAttribute("options", new OptionList());
+        model.addAttribute("customOptions",options);
         return "carDetail";
     }
 

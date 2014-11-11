@@ -5,6 +5,8 @@
             <xs:element name="createOptionResponse" type="tns:createOptionResponse"/>
             <xs:element name="findAllOption" type="tns:findAllOption"/>
             <xs:element name="findAllOptionResponse" type="tns:findAllOptionResponse"/>
+            <xs:element name="findOptionByCarModelId" type="tns:findOptionByCarModelId"/>
+            <xs:element name="findOptionByCarModelIdResponse" type="tns:findOptionByCarModelIdResponse"/>
             <xs:element name="findOptionById" type="tns:findOptionById"/>
             <xs:element name="findOptionByIdResponse" type="tns:findOptionByIdResponse"/>
             <xs:element name="findOptionByName" type="tns:findOptionByName"/>
@@ -79,8 +81,33 @@
                     <xs:element maxOccurs="unbounded" minOccurs="0" name="options" type="tns:Option"/>
                 </xs:sequence>
             </xs:complexType>
+            <xs:complexType name="findOptionByCarModelId">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="findOptionByCarModelIdResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="options" type="tns:Option"/>
+                </xs:sequence>
+            </xs:complexType>
         </xs:schema>
     </wsdl:types>
+    <wsdl:message name="findAllOptionResponse">
+        <wsdl:part element="tns:findAllOptionResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findOptionByCarModelIdResponse">
+        <wsdl:part element="tns:findOptionByCarModelIdResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findOptionByName">
+        <wsdl:part element="tns:findOptionByName" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="findOptionByCarModelId">
+        <wsdl:part element="tns:findOptionByCarModelId" name="parameters"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createOptionResponse">
+        <wsdl:part element="tns:createOptionResponse" name="parameters"></wsdl:part>
+    </wsdl:message>
     <wsdl:message name="findOptionByIdResponse">
         <wsdl:part element="tns:findOptionByIdResponse" name="parameters"></wsdl:part>
     </wsdl:message>
@@ -96,26 +123,17 @@
     <wsdl:message name="findOptionLowerThandPriceResponse">
         <wsdl:part element="tns:findOptionLowerThandPriceResponse" name="parameters"></wsdl:part>
     </wsdl:message>
-    <wsdl:message name="findAllOptionResponse">
-        <wsdl:part element="tns:findAllOptionResponse" name="parameters"></wsdl:part>
-    </wsdl:message>
     <wsdl:message name="findOptionByType">
         <wsdl:part element="tns:findOptionByType" name="parameters"></wsdl:part>
     </wsdl:message>
     <wsdl:message name="createOption">
         <wsdl:part element="tns:createOption" name="parameters"></wsdl:part>
     </wsdl:message>
-    <wsdl:message name="findOptionByName">
-        <wsdl:part element="tns:findOptionByName" name="parameters"></wsdl:part>
-    </wsdl:message>
     <wsdl:message name="findOptionById">
         <wsdl:part element="tns:findOptionById" name="parameters"></wsdl:part>
     </wsdl:message>
     <wsdl:message name="findAllOption">
         <wsdl:part element="tns:findAllOption" name="parameters"></wsdl:part>
-    </wsdl:message>
-    <wsdl:message name="createOptionResponse">
-        <wsdl:part element="tns:createOptionResponse" name="parameters"></wsdl:part>
     </wsdl:message>
     <wsdl:portType name="OptionWebService">
         <wsdl:operation name="findOptionLowerThandPrice">
@@ -141,6 +159,10 @@
         <wsdl:operation name="findAllOption">
             <wsdl:input message="tns:findAllOption" name="findAllOption"></wsdl:input>
             <wsdl:output message="tns:findAllOptionResponse" name="findAllOptionResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findOptionByCarModelId">
+            <wsdl:input message="tns:findOptionByCarModelId" name="findOptionByCarModelId"></wsdl:input>
+            <wsdl:output message="tns:findOptionByCarModelIdResponse" name="findOptionByCarModelIdResponse"></wsdl:output>
         </wsdl:operation>
     </wsdl:portType>
     <wsdl:binding name="OptionWebServiceServiceSoapBinding" type="tns:OptionWebService">
@@ -196,6 +218,15 @@
                 <soap:body use="literal"/>
             </wsdl:input>
             <wsdl:output name="findAllOptionResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="findOptionByCarModelId">
+            <soap:operation soapAction="findOptionsByCarModelId" style="document"/>
+            <wsdl:input name="findOptionByCarModelId">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="findOptionByCarModelIdResponse">
                 <soap:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>

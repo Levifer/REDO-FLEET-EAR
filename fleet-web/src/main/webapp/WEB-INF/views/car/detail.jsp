@@ -17,7 +17,7 @@
         <form:form  commandName="options" method="post" action="${url}" >
             <table class="table">
                 <tbody>
-                    <c:forEach items="${carModel.pack.options.option}" var="option">
+                    <c:forEach items="${customOptions}" var="option">
                     <tr>
                         <td>
                         <form:checkbox path="items" value="${option.OPTIONID}" label="${option.name}"/><br/>

@@ -13,17 +13,15 @@
              class="img-responsive"/>
     </div>
     <div class="col-sm-5">
-
+        <h2>Options</h2>
         <form:form  commandName="options" method="post" action="${url}" >
-            <table>
+            <table class="table">
                 <tbody>
                     <c:forEach items="${carModel.pack.options.option}" var="option">
                     <tr>
                         <td>
-                        <c:out value="${option.name}"/>
-                        </td>
-                        <td>
-                        <form:checkbox path="items" value="${option.OPTIONID}" label="${option.OPTIONID}"/>
+                        <form:checkbox path="items" value="${option.OPTIONID}" label="${option.name}"/><br/>
+                            <c:out value="${option.description}"/>
                         </td>
                     </tr>
                     </c:forEach>

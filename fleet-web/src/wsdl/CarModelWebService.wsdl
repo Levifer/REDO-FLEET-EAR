@@ -20,7 +20,7 @@
                     <xs:element name="co2" type="xs:int"/>
                     <xs:element name="category" type="xs:int"/>
                     <xs:element minOccurs="0" name="imageUrl" type="xs:string"/>
-                    <xs:element minOccurs="0" ref="tns:pack"/>
+                    <xs:element minOccurs="0" name="pack" type="tns:Pack"/>
                 </xs:sequence>
             </xs:complexType>
             <xs:complexType name="Pack">

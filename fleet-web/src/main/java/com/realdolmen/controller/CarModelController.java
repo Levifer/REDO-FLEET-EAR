@@ -1,5 +1,7 @@
 package com.realdolmen.controller;
 
+import com.realdolmen.controller.mapper.CarmodelPackToPackMapper;
+import com.realdolmen.controller.mapper.OptionToCarModelOptionMapper;
 import com.realdolmen.controller.mapper.OptionToPackOptionMapper;
 import com.realdolmen.controller.mapper.PackToCarModelOptionMapper;
 import com.realdolmen.service.CarModelWebServiceClient;
@@ -101,13 +103,37 @@ public class CarModelController {
 
     }
     @RequestMapping(value="/admin/carmodel/add", method = RequestMethod.POST)
-    public String insertCarModel(@ModelAttribute("carModel")CarModel carModel,BindingResult result,Model model, HttpServletRequest request){
+    public String insertCarModel(@ModelAttribute("carModel")CarModel carModel, BindingResult result,Model model, HttpServletRequest request){
         logger.info("Carmodel Valid");
 
         List<Option> optionList = optionWebServiceClient.getAllOptions();
+
+        Pack pack = carModel.getPack();
+        List<com.realdolmen.wsdl.carmodel.Option> carModelOptions = new ArrayList<com.realdolmen.wsdl.carmodel.Option>();
+        OptionToCarModelOptionMapper optionMapper = new OptionToCarModelOptionMapper();
+        CarmodelPackToPackMapper packMapper = new CarmodelPackToPackMapper();
+
+        for(String id : request.getParameterValues("pack.options.option")){
+            for(Option o : optionList){
+                if(o.getOPTIONID().toString().equals(id)){
+                    carModelOptions.add(optionMapper.mapTo(o));
+                }
+            }
+        }
+
+        pack.getOptions().getOption().addAll(carModelOptions);
+
+        com.realdolmen.wsdl.pack.Pack persistingPack = packMapper.mapTo(pack);
+
+        int id = packWebServiceClient.addPack(persistingPack);
+        pack.setId(id);
+
+        carModel.setPack(pack);
+/*
         com.realdolmen.wsdl.pack.Pack originalPack = new com.realdolmen.wsdl.pack.Pack();
         List<com.realdolmen.wsdl.pack.Option> packOptions = new ArrayList<>();
         OptionToPackOptionMapper optionToPackOptionMapper = new OptionToPackOptionMapper();
+
         for(String id : request.getParameterValues("pack.options.option")){
             for(Option o : optionList){
                 if(o.getOPTIONID().toString().equals(id)){
@@ -135,7 +161,7 @@ public class CarModelController {
 
         Pack carModelPack = mapPack(createdPack);
         carModel.setPack(carModelPack);
-
+*/
         carModel.setYear(getCalendar());
         //carModel.setImageUrl(carModel.getBrand().toLowerCase() + "_" + carModel.getName().substring(0,carModel.getName().indexOf(" ")).toLowerCase() + "_" + carModel.getYear().getYear() + ".jpg");
         carModelWebServiceClient.addCarModel(carModel);

@@ -75,6 +75,40 @@ public class TestDataInserter {
         Option option3 = new Option(Enums.Interior.OTHER.getLabel(), "7 Airbag", description3, randomGenerator());
         Option option4 = new Option(Enums.Interior.STEERING_WHEEL.getLabel(), "Leather", description4, randomGenerator());
         Option option5 = new Option(Enums.Exterior.WHEELS.getLabel(), "Pressure monitoring", description5, randomGenerator());
+
+        String golfMoodLight ="Use of ambient lighting creates a private, relaxed atmosphere and can serve\n" +
+                "for orientation in the vehicle. This type of interior lighting allows you to travel\n" +
+                "comfortably and safely. The significance of ambient lighting will increase \n" +
+                "continuously in future vehicle concepts.";
+        Option optionGolf = new Option(Enums.Interior.OTHER.getLabel(), "Mood light", golfMoodLight, randomGenerator());
+
+        String golfLight = "your tail-light are darkend";
+        Option optionGolfLight = new Option(Enums.Exterior.HEADLIGHTS.getLabel(), "smoked tail-light", golfLight, randomGenerator());
+
+        String ibizaSt = "Automobile air conditioning (also called A/C) systems cool the occupants of a vehicle in hot weather.";
+        Option optionIbizaSt = new Option(Enums.Interior.AIRCO.getLabel(), "manual air conditioning", ibizaSt, randomGenerator());
+
+        String ibizaStWindow = "your windows are darkend";
+        Option optionIbizaStWindow = new Option(Enums.Exterior.WINDOWS.getLabel(), "tinted windows", ibizaStWindow, randomGenerator());
+
+        String beetleBrakes = "A disc brake is a wheel brake that slows rotation of the wheel by the friction caused by pushing brake pads against a brake disc with a set of calipers. The brake disc (or rotor in American English) is usually made of cast iron, but may in some cases be made of composites such as reinforced carbon–carbon or ceramic matrix composites. This is connected to the wheel and/or the axle. To stop the wheel, friction material in the form of brake pads, mounted on a device called a brake caliper, is forced mechanically, hydraulically, pneumatically, or electromagnetically against both sides of the disc. Friction causes the disc and attached wheel to slow or stop. Brakes convert motion to heat, and if the brakes get too hot, they become less effective, a phenomenon known as brake fade.";
+        Option optionBeetleBreakes = new Option(Enums.Technical.BRAKES.getLabel(), "Disc brakes", beetleBrakes, randomGenerator());
+
+        String beetleSpeakers = "soundsystem with 8 speakers ";
+        Option optionBeetleSpeakers = new Option(Enums.Media.SPEAKERS.getLabel(), "Prestereo-equipment (8 speakers)", beetleSpeakers, randomGenerator());
+
+        String touranLight = "Reading light in front and in the back";
+        Option optionTouranLight = new Option(Enums.Interior.OTHER.getLabel(), "Readinglight", touranLight, randomGenerator());
+
+        String touranCruise = "Cruise control (sometimes known as speed control or autocruise, or tempomat in some countries) is a system that automatically controls the speed of a motor vehicle. The system takes over the throttle of the car to maintain a steady speed as set by the driver.";
+        Option optionTouranCruise = new Option(Enums.Technical.SUPPORT_SYSTEMS.getLabel(), "Cruise Control", touranCruise, randomGenerator());
+
+        String A4Mirrors = "your mirrors automatically collapse";
+        Option optionA4 = new Option(Enums.Exterior.MIRRORS.getLabel(), "electric mirrors", A4Mirrors, randomGenerator());
+
+        String Q3 = "ashtray is portable";
+        Option optionQ3 = new Option(Enums.Interior.OTHER.getLabel(), "Portable ashtray", Q3, randomGenerator());
+
         entityManager.persist(option);
         entityManager.persist(option2);
         entityManager.persist(option3);

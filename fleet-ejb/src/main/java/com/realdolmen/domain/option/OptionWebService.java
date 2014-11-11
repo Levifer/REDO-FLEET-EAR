@@ -1,6 +1,7 @@
 package com.realdolmen.domain.option;
 
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -14,7 +15,7 @@ import java.util.List;
  * Created by TLAAU71 on 30/10/2014.
  */
 @WebService
-@Transactional
+@Stateless
 public class OptionWebService {
 
     @Inject

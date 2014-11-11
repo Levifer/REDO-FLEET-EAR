@@ -30,10 +30,14 @@ public class OptionWebServiceClient {
         List<Option> optionsRetrievedFromDB = optionWebService.findOptionByCarModelId(carModel.getId());
         List<Option> optionsToBeReturned = new ArrayList<>();
         for (Option option : optionsRetrievedFromDB) {
-            if(!carModel.getPack().getOptions().getOption().contains(option)){
+            if (!carModel.getPack().getOptions().getOption().contains(option)) {
                 optionsToBeReturned.add(option);
             }
         }
         return optionsToBeReturned;
+    }
+
+    public Option findOptionById(Integer id) {
+        return optionWebService.findOptionById(id);
     }
 }

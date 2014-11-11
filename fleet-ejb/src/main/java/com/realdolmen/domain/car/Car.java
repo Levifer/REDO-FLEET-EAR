@@ -14,7 +14,7 @@ import java.util.Date;
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
-@XmlType(name = "Car", propOrder = {"id","model", "mileage", "carInUse", "customPack"})
+@XmlType(name = "Car", propOrder = {"id","model", "mileage", "carInUse", "customPack"},namespace = "http://car.domain.realdolmen.com")
 public class Car implements Serializable {
 
     @Id

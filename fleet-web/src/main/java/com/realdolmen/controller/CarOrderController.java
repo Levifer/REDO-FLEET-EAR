@@ -1,6 +1,7 @@
 package com.realdolmen.controller;
 
 import com.realdolmen.util.LoggerProducer;
+//import com.realdolmen.wsdl.car.Car;
 import com.realdolmen.wsdl.carmodel.CarModel;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -26,12 +27,12 @@ public class CarOrderController {
     public String orderACar(HttpServletRequest request,Model model) throws DatatypeConfigurationException {
 
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
-        CarModel carModel = new CarModel();
+        //Car car = new Car();
         if (inputFlashMap != null) {
-            carModel = (CarModel)inputFlashMap.get("carmodel");
+             // car= (Car)inputFlashMap.get("car");
         }
-        logger.info(carModel.getName());
-        model.addAttribute("carmodel",carModel);
+        //logger.info(car.getModel().getName());
+        //model.addAttribute("car",car);
         logger.info("/***************CarOrderController********************/");
         //request.getSession().removeAttribute("carmodel");
 

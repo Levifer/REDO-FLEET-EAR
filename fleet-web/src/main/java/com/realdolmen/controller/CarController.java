@@ -1,12 +1,17 @@
 package com.realdolmen.controller;
 
 import com.realdolmen.controller.dto.OptionList;
+import com.realdolmen.controller.mapper.CarModelToCar;
+import com.realdolmen.controller.mapper.CustomPackOptionToCarOptionMapper;
 import com.realdolmen.controller.mapper.OptionMapper;
+import com.realdolmen.controller.mapper.OptionToCustomPackOptionMapper;
 import com.realdolmen.service.CarModelWebServiceClient;
 import com.realdolmen.service.OptionWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
+//import com.realdolmen.wsdl.car.Car;
 import com.realdolmen.wsdl.carmodel.CarModel;
 import com.realdolmen.wsdl.carmodel.Option;
+import com.realdolmen.wsdl.customPack.CustomPack;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -106,17 +111,23 @@ public class CarController {
     @RequestMapping(value = "/car/detail", method = RequestMethod.POST)
     public String handleFormSubmission(final RedirectAttributes redirectAttributes, HttpServletRequest request) {
         CarModel carModel = (CarModel) request.getSession().getAttribute("carmodel");
-       // CustomPack customPack = new CustomPack();
-        String [] selectedOptions = request.getParameterValues("items");
-        List<Option> optionsToBeSaved = new ArrayList<>();
-        for (String s : selectedOptions) {
+      //  com.realdolmen.wsdl.car.CustomPack customPack = new com.realdolmen.wsdl.car.CustomPack();
 
-            if(carModel.getId().toString().equals(s)){
-              //  optionsToBeSaved.add()
-            }
+        String [] selectedOptions = request.getParameterValues("items");
+        List<com.realdolmen.wsdl.customPack.Option> optionsToBeSaved = new ArrayList<>();
+        for (String s : selectedOptions) {
+            OptionToCustomPackOptionMapper optionMapper = new OptionToCustomPackOptionMapper();
+           com.realdolmen.wsdl.option.Option option = optionWebServiceClient.findOptionById(Integer.parseInt(s));
+            optionsToBeSaved.add(optionMapper.mapTo(option));
         }
-        //customPack.getOptions().getOption().addAll(new OptionMapper().mapTo(optionList.getItems()));
-        redirectAttributes.addFlashAttribute("carmodel", carModel);
+
+       // Car car = new Car();
+        CarModelToCar carModelToCar = new CarModelToCar();
+        //car.setModel(carModelToCar.mapTo(carModel));
+        CustomPackOptionToCarOptionMapper carOptionMapper = new CustomPackOptionToCarOptionMapper();
+       // customPack.getOptions().getOption().addAll(carOptionMapper.mapTo(optionsToBeSaved));
+        //car.setCustomPack(customPack);
+       // redirectAttributes.addFlashAttribute("car", car);
         return "redirect:/ordercar/order";
     }
 

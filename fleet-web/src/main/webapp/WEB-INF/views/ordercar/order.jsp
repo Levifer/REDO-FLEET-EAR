@@ -17,7 +17,7 @@
     <form:form>
         <hr >
         <div class="col-sm-3 col-sm-offset-1">
-            <p>${carmodel.brand} ${carmodel.name} (${carmodel.type})</p>
+            <p>${car.model.brand} ${car.model.name} (${car.model.type})</p>
         </div>
 
         <input type="button" value="Back to car detail"

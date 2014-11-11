@@ -99,7 +99,7 @@ public class CarController {
     @RequestMapping(value = "/car/detail", method = RequestMethod.POST)
     public String handleFormSubmission(final RedirectAttributes redirectAttributes, HttpServletRequest request) {
         CarModel carModel = (CarModel) request.getSession().getAttribute("carmodel");
-        CustomPack customPack = new CustomPack();
+       // CustomPack customPack = new CustomPack();
         String [] selectedOptions = request.getParameterValues("items");
         List<Option> optionsToBeSaved = new ArrayList<>();
         for (String s : selectedOptions) {
@@ -110,7 +110,6 @@ public class CarController {
         }
         //customPack.getOptions().getOption().addAll(new OptionMapper().mapTo(optionList.getItems()));
         redirectAttributes.addFlashAttribute("carmodel", carModel);
-        request.getSession().removeAttribute("carmodel");
         return "redirect:/ordercar/order";
     }
 

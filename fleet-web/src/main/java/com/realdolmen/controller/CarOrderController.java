@@ -2,7 +2,6 @@ package com.realdolmen.controller;
 
 import com.realdolmen.util.LoggerProducer;
 import com.realdolmen.wsdl.carmodel.CarModel;
-
 import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +33,8 @@ public class CarOrderController {
         logger.info(carModel.getName());
         model.addAttribute("carmodel",carModel);
         logger.info("/***************CarOrderController********************/");
+        //request.getSession().removeAttribute("carmodel");
+
         return  "carOrder";
 
     }

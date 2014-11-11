@@ -18,7 +18,8 @@ import java.util.Date;
 public class Car implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "CAR_SEQUENCE")
+    @SequenceGenerator(name = "CAR_SEQUENCE", sequenceName = "CAR_ID_SEQUENCE", allocationSize = 1)
     private Integer id;
 
     @ManyToOne(targetEntity = CarModel.class)

@@ -98,7 +98,6 @@ public class CarModelController {
         types.add(CarType.HATCHBACK);
         types.add(CarType.JEEP);
         types.add(CarType.MONOVOLUME);
-
     }
     @RequestMapping(value="/admin/carmodel/add", method = RequestMethod.POST)
     public String insertCarModel(@ModelAttribute("carModel")CarModel carModel,BindingResult result,Model model, HttpServletRequest request){

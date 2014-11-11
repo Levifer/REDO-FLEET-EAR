@@ -1,5 +1,7 @@
 package com.realdolmen.domain.option;
 
+import com.realdolmen.domain.carmodel.CarModel;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.math.BigDecimal;
@@ -8,13 +10,19 @@ import java.math.BigDecimal;
  * Created by TLAAU71 on 29/10/2014.
  */
 @Entity
-@Table(name ="FLEET_OPTION")
+@Table(name = "FLEET_OPTION")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
-@XmlType(name = "Option", propOrder = {"id","type","name","description","price"})
+@XmlType(name = "Option", propOrder = {"id", "type", "name", "description", "price","carModel"})
+@NamedQueries(
+        {
+                @NamedQuery(name = "Option.findOptionByCarModel",query = "SELECT o FROM Option o WHERE o.carModel.id = :id"),
+        }
+)
 public class Option {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "OPTION_SEQUENCE")
+    @SequenceGenerator(name = "OPTION_SEQUENCE", sequenceName = "OPTION_SEQUENCE_ID_SEQUENCE", allocationSize = 1)
     @XmlElement(name = "OPTION_ID")
     private Integer id;
     @XmlElement
@@ -27,8 +35,20 @@ public class Option {
     @XmlElement
     private BigDecimal price;
 
+    @ManyToOne(targetEntity = CarModel.class,optional = true)
+    @XmlElement
+    private CarModel carModel;
+
 
     public Option() {
+    }
+
+    public Option(String type, String name, String description, BigDecimal price, CarModel carModel) {
+        this.type = type;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.carModel = carModel;
     }
 
     public Option(String type, String name, String description, BigDecimal price) {
@@ -54,6 +74,7 @@ public class Option {
 
         Option option = (Option) o;
 
+        if (carModel != null ? !carModel.equals(option.carModel) : option.carModel != null) return false;
         if (description != null ? !description.equals(option.description) : option.description != null) return false;
         if (id != null ? !id.equals(option.id) : option.id != null) return false;
         if (name != null ? !name.equals(option.name) : option.name != null) return false;
@@ -70,6 +91,7 @@ public class Option {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (carModel != null ? carModel.hashCode() : 0);
         return result;
     }
 
@@ -109,4 +131,11 @@ public class Option {
         return id;
     }
 
+    public CarModel getCarModel() {
+        return carModel;
+    }
+
+    public void setCarModel(CarModel carModel) {
+        this.carModel = carModel;
+    }
 }

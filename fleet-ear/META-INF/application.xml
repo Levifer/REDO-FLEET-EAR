@@ -10,7 +10,7 @@
     <module>
         <web>
             <web-uri>fleet-web.war</web-uri>
-            <context-root>/fleet</context-root>
+            <context-root>f/fleet</context-root>
         </web>
     </module>
 </application>

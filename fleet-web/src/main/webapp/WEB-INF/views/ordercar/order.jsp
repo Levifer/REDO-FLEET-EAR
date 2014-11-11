@@ -15,13 +15,16 @@
 </div>
 <div class="row">
     <form:form>
-
+        <hr >
         <div class="col-sm-3 col-sm-offset-1">
             <p>${carmodel.brand} ${carmodel.name} (${carmodel.type})</p>
         </div>
-        <input type="submit" value="Back to car detail" name="_eventId_back"
-               class="btn btn-danger" />
-        <input type="submit" value="Confirm" name="_eventId_finish"
+
+        <input type="button" value="Back to car detail"
+               class="btn btn-danger" >
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </input>
+        <input type="submit" value="Confirm" name="_e ventId_finish"
                class="btn btn-success" />
     </form:form>
 </div>

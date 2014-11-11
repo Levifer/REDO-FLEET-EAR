@@ -17,7 +17,8 @@ import java.util.List;
 public class Employee {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "EMPLOYEE_SEQUENCE")
+    @SequenceGenerator(name = "EMPLOYEE_SEQUENCE", sequenceName = "EMPLOYEE_SEQUENCE_ID_SEQUENCE", allocationSize = 1)
     private Integer id;
     @XmlElement
     private String name;

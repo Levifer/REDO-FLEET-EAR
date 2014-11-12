@@ -160,46 +160,46 @@ public class TestDataInserter {
 
     private void insertAudiA3() {
         //AUDI
-        CarModel carModel = new CarModel("Audi", "A3", Enums.CarType.HATCHBACK, Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 20, 9, 88, 2, "");
+        CarModel carModel = new CarModel("Audi", "A3", Enums.CarType.HATCHBACK, Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 20, 9, 88, 2, "1.jpg");
         entityManager.persist(carModel);
         logger("INSERTING CARMODEL AUDI A3");
 
     }
 
     private void insertAVWGolf() {
-        CarModel carModel2 = new CarModel("Volkswagen", "Golf 7 1,6 TDI 105pk/CV Highline", Enums.CarType.HATCHBACK, Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 16, 9, 99, 2, "");
+        CarModel carModel2 = new CarModel("Volkswagen", "Golf 7 1,6 TDI 105pk/CV Highline", Enums.CarType.HATCHBACK, Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 16, 9, 99, 2, "2.jpg");
         entityManager.persist(carModel2);
         logger("INSERTING A SECOND CAR WITH AN UPDATED PACK");
 
     }
 
     private void insertIbiziaSt() {
-        CarModel carModel = new CarModel("Seat", "Ibiza St 1,6TDi 105pk/CV Style", Enums.CarType.BREAK, Enums.Fuel.BENZINE, new Date(), 2, 140000, 180000, 14, 7, 92, 2, "");
+        CarModel carModel = new CarModel("Seat", "Ibiza St 1,6TDi 105pk/CV Style", Enums.CarType.BREAK, Enums.Fuel.BENZINE, new Date(), 2, 140000, 180000, 14, 7, 92, 2, "3.jpg");
         entityManager.persist(carModel);
         logger("INSERTING A Ibiza St CarModel");
     }
 
     private void insertVWBeetle() {
-        CarModel carModel = new CarModel("Volkswagen", "BEETLE 1,6 CRTDI 105 pk 5 v Design", Enums.CarType.COUPE, Enums.Fuel.DIESEL, new Date(), 3, 140000, 180000, 20, 9, 113, 3, "");
+        CarModel carModel = new CarModel("Volkswagen", "BEETLE 1,6 CRTDI 105 pk 5 v Design", Enums.CarType.COUPE, Enums.Fuel.DIESEL, new Date(), 3, 140000, 180000, 20, 9, 113, 3, "4.jpg");
         entityManager.persist(carModel);
         logger("INSERTING A VW Beetle CarModel");
     }
 
     private void insertVwTouran() {
-        CarModel carModel = new CarModel("Volkswagen", "Touran 1,6TDi 105pk/CV Trendline Bluemotion", Enums.CarType.MONOVOLUME, Enums.Fuel.DIESEL, new Date(), 1, 140000, 180000, 20, 9, 121, 4, "");
+        CarModel carModel = new CarModel("Volkswagen", "Touran 1,6TDi 105pk/CV Trendline Bluemotion", Enums.CarType.MONOVOLUME, Enums.Fuel.DIESEL, new Date(), 1, 140000, 180000, 20, 9, 121, 4, "5.jpg");
         entityManager.persist(carModel);
         logger("INSERTING A VW Touran CarModel");
 
     }
 
     private void insertAudiA4Berline() {
-        CarModel carModel = new CarModel("Audi", "A4 Berline 2,0 TDIe ultra 136 pk/cv", Enums.CarType.BERLINE, Enums.Fuel.DIESEL, new Date(), 4, 180000, 200000, 16, 9, 104, 5, "");
+        CarModel carModel = new CarModel("Audi", "A4 Berline 2,0 TDIe ultra 136 pk/cv", Enums.CarType.BERLINE, Enums.Fuel.DIESEL, new Date(), 4, 180000, 200000, 16, 9, 104, 5, "6.jpg");
         entityManager.persist(carModel);
         logger("INSERTING A Audi A4 Berline CarModel");
     }
 
     private void insertAudiQ3() {
-        CarModel carModel = new CarModel("Audi", "Q3 2,0 TDI 136 pk/cv", Enums.CarType.JEEP, Enums.Fuel.DIESEL, new Date(), 4, 180000, 200000, 20, 11, 137, 6, "");
+        CarModel carModel = new CarModel("Audi", "Q3 2,0 TDI 136 pk/cv", Enums.CarType.JEEP, Enums.Fuel.DIESEL, new Date(), 4, 180000, 200000, 20, 11, 137, 6, "7.jpg");
         entityManager.persist(carModel);
         logger("INSERTING A Audi Q3 CarModel");
     }

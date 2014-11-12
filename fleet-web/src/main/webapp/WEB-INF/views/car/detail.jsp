@@ -4,16 +4,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <spring:url value="/car/detail" var="url"/>
+<spring:url value="/resources/img" var="imgUrl"/>
 <div class="row">
-    <div class="col-sm-12"><h2>${carModel.brand} ${carModel.name} (${carModel.year.year}")</h2></div>
+    <div class="col-sm-12"><h2>${carModel.brand} ${carModel.name} (${carModel.year.year})</h2></div>
 </div>
 <div class="row">
     <div class="col-sm-3 col-xs-6">
-        <img src="<%=request.getContextPath() %>/resources/img/logo/${fn:toLowerCase(carModel.brand)}.png"
+        <img src="${imgUrl}/car/${carModel.imageUrl}"
+             class="img-responsive"/>
+        <img src="${imgUrl}/logo/${fn:toLowerCase(carModel.brand)}.png"
              class="img-responsive"/>
     </div>
-    <div class="col-sm-5">
-        <h2>Options</h2>
+    <div class="col-sm-8">
+        <h2><spring:message code="car.pack.options"/></h2>
         <form:form  commandName="options" method="post" action="${url}" >
             <table class="table">
                 <tbody>
@@ -27,15 +30,9 @@
                     </c:forEach>
                 </tbody>
             </table>
-            <div class="col-sm-3 col-sm-offset-1">
-
-
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <input type="submit" value="Order now!" class="btn btn-primary"/>
-            </div>
+            <spring:message code="actions.order" var="orderBtn"/>
+            <input type="submit" value="${orderBtn}" class="btn btn-primary pull-right"/>
         </form:form>
-
     </div>
-
-
 </div>

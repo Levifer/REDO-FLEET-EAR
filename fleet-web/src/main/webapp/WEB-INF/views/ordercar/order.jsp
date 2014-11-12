@@ -1,51 +1,37 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<%-- Variables --%>
+<spring:url value="/resources/img" var="imgUrl"/>
+<spring:url value="/" var="rootUrl"/>
+
 <div class="row">
-    <div class="col-md-12"><h2><spring:message code="title.car.order"/></h2></div>
+    <div class="col-md-12"><h2><spring:message code="title.car.order.done"/></h2></div>
 </div>
 <div class="row">
- <div class="col-md-6">
-        <img src="<%=request.getContextPath() %>/resources/img/logo/audi.jpg" class="img-responsive"/>
+    <div class="col-md-6">
+        <img src="${imgUrl}/car/${car.model.imageUrl}" class="img-responsive"/>
     </div>
     <div class="col-md-6">
-        <h3>Congratulations on your new car!</h3>
+        <h3>${car.model.brand} ${car.model.name} (${car.model.type})</h3>
+        <table class="table">
+            <tbody>
+                <c:forEach items="${optionList}" var="option">
+                    <tr>
+                        <td>
+                            <c:out value="${option.name}"/>
+                        </td>
+                        <td>
+                            &euro;<c:out value="${option.price}"/>
+                        </td>
+                    </tr>
+                </c:forEach>
+                <tr>
+                    <td><strong><spring:message code="car.pack.price"/></strong></td>
+                    <td><strong>&euro;${totalPrice}</strong></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
-<div class="row">
-        <hr >
-        <div class="col-sm-3 col-sm-offset-1">
-            <p>${car.model.brand} ${car.model.name} (${car.model.type})</p>
-        </div>
-
-</div>
-
-<div class="row">
-    <table class="table">
-        <tbody>
-        <c:forEach items="${optionList}" var="option">
-            <tr>
-                <td>
-                    <c:out value="${option.name}  ${option.price}"/>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</div>
-<div class="row">
-    <div class="col-sm-3 col-sm-offset-1">
-        <p>${totalPrice}</p>
-    </div>
-</div>
-<div class="row">
-        <form:form>
-        <input type="button" value="Back to car detail"
-               class="btn btn-danger" >
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </input>
-        <input type="submit" value="Confirm" name="_e ventId_finish"
-               class="btn btn-success" />
-    </form:form>
 </div>

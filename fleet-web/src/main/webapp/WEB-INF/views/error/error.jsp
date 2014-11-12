@@ -1,6 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <spring:url value="/" var="homeUrl" htmlEscape="true"/>
-<spring:url value="/resoureces/img" var="imgUrl" htmlEscape="true"/>
+<spring:url value="/resources/img" var="imgUrl" htmlEscape="true"/>
 <h2><spring:message code="error.title"/></h2>
 
 <div class="row">

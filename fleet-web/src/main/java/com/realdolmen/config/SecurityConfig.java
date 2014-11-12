@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**").permitAll()
                 .antMatchers("/j_spring_security_check").permitAll()
                 .antMatchers("/*").permitAll()
-                .antMatchers("/car/*").hasRole("EMPLOYEE")
+                .antMatchers("/car/**").hasRole("EMPLOYEE")
                 .antMatchers("/ordercar/*").hasRole("EMPLOYEE")
                 .antMatchers("/car").permitAll()
                 .antMatchers("/admin/**").hasRole("FLEET_MANAGER")

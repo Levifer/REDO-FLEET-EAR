@@ -42,16 +42,15 @@ public class TestDataInserter {
     @PersistenceContext(unitName = "production")
     private EntityManager entityManager;
 
-    public BigDecimal randomGenerator() {
-        return new BigDecimal(new Random().nextInt(500));
-    }
 
-    public BigDecimal getPrice(List<Option> options) {
-        BigDecimal totalPrice = new BigDecimal(0);
-        for (Option option : options) {
-            totalPrice = totalPrice.add(option.getPrice());
-        }
-        return totalPrice.multiply(new BigDecimal(0.9));
+    public void insertCarmodels() {
+        insertAudiA3();
+        insertAVWGolf();
+        insertIbiziaSt();
+        insertVWBeetle();
+        insertVwTouran();
+        insertAudiA4Berline();
+        insertAudiQ3();
     }
 
     public void insertOptions() {
@@ -70,156 +69,162 @@ public class TestDataInserter {
         final String description4 = "A steering wheel (also called a driving wheel or a hand wheel) is a type of steering control in vehicles and vessels (ships and boats).\n" +
                 "Steering wheels are used in most modern land vehicles, including all mass-production automobiles, as well as busses, light and heavy trucks, and tractors. The steering wheel is the part of the steering system that is manipulated by the driver; the rest of the steering system responds to such driver inputs. This can be through direct mechanical contact as in recirculating ball or rack and pinion steering gears, without or with the assistance of hydraulic power steering, HPS, or as in some modern production cars with the assistance of computer controlled motors, known as Electric Power Steering.";
         final String description5 = "A tire pressure monitoring system (TPMS) is an electronic system designed to monitor the air pressure inside the pneumatic tires on various types of vehicles. TPMS report real-time tire-pressure information to the driver of the vehicle, either via a gauge, a pictogram display, or a simple low-pressure warning light. TPMS can be divided into two different types — direct (dTPMS) and indirect (iTPMS). TPMS are provided both at an OEM (factory) level as well as an aftermarket solution. ";
-        Option option = new Option(Enums.Technical.BRAKES.getLabel(), "ABS", description, randomGenerator());
-        Option option2 = new Option(Enums.Technical.SUPPORT_SYSTEMS.getLabel(), "ESP", description2, randomGenerator());
-        Option option3 = new Option(Enums.Interior.OTHER.getLabel(), "7 Airbag", description3, randomGenerator());
-        Option option4 = new Option(Enums.Interior.STEERING_WHEEL.getLabel(), "Leather", description4, randomGenerator());
-        Option option5 = new Option(Enums.Exterior.WHEELS.getLabel(), "Pressure monitoring", description5, randomGenerator());
 
-        String golfMoodLight ="Use of ambient lighting creates a private, relaxed atmosphere and can serve\n" +
-                "for orientation in the vehicle. This type of interior lighting allows you to travel\n" +
-                "comfortably and safely. The significance of ambient lighting will increase \n" +
-                "continuously in future vehicle concepts.";
-        Option optionGolf = new Option(Enums.Interior.OTHER.getLabel(), "Mood light", golfMoodLight, randomGenerator());
+        for (int i = 1; i < 8; i++) {
+            CarModel carModel = entityManager.find(CarModel.class,i);
+            Option aBS = new Option(Enums.Technical.BRAKES.getLabel(), "ABS", description, randomGenerator(), carModel);
+            Option eSP = new Option(Enums.Technical.SUPPORT_SYSTEMS.getLabel(), "ESP", description2, randomGenerator(),carModel);
+            Option airbag = new Option(Enums.Interior.OTHER.getLabel(), "7 Airbag", description3, randomGenerator(), carModel);
+            Option leather = new Option(Enums.Interior.STEERING_WHEEL.getLabel(), "Leather", description4, randomGenerator(), carModel);
+            Option pressureMonitoring = new Option(Enums.Exterior.WHEELS.getLabel(), "Pressure monitoring", description5, randomGenerator(), carModel);
+            persistForAudiA1(aBS, eSP, airbag, leather, pressureMonitoring);
 
-        String golfLight = "your tail-light are darkend";
-        Option optionGolfLight = new Option(Enums.Exterior.HEADLIGHTS.getLabel(), "smoked tail-light", golfLight, randomGenerator());
-
-        String ibizaSt = "Automobile air conditioning (also called A/C) systems cool the occupants of a vehicle in hot weather.";
-        Option optionIbizaSt = new Option(Enums.Interior.AIRCO.getLabel(), "manual air conditioning", ibizaSt, randomGenerator());
-
-        String ibizaStWindow = "your windows are darkend";
-        Option optionIbizaStWindow = new Option(Enums.Exterior.WINDOWS.getLabel(), "tinted windows", ibizaStWindow, randomGenerator());
-
-        String beetleBrakes = "A disc brake is a wheel brake that slows rotation of the wheel by the friction caused by pushing brake pads against a brake disc with a set of calipers. The brake disc (or rotor in American English) is usually made of cast iron, but may in some cases be made of composites such as reinforced carbon–carbon or ceramic matrix composites. This is connected to the wheel and/or the axle. To stop the wheel, friction material in the form of brake pads, mounted on a device called a brake caliper, is forced mechanically, hydraulically, pneumatically, or electromagnetically against both sides of the disc. Friction causes the disc and attached wheel to slow or stop. Brakes convert motion to heat, and if the brakes get too hot, they become less effective, a phenomenon known as brake fade.";
-        Option optionBeetleBreakes = new Option(Enums.Technical.BRAKES.getLabel(), "Disc brakes", beetleBrakes, randomGenerator());
-
-        String beetleSpeakers = "soundsystem with 8 speakers ";
-        Option optionBeetleSpeakers = new Option(Enums.Media.SPEAKERS.getLabel(), "Prestereo-equipment (8 speakers)", beetleSpeakers, randomGenerator());
-
-        String touranLight = "Reading light in front and in the back";
-        Option optionTouranLight = new Option(Enums.Interior.OTHER.getLabel(), "Readinglight", touranLight, randomGenerator());
-
-        String touranCruise = "Cruise control (sometimes known as speed control or autocruise, or tempomat in some countries) is a system that automatically controls the speed of a motor vehicle. The system takes over the throttle of the car to maintain a steady speed as set by the driver.";
-        Option optionTouranCruise = new Option(Enums.Technical.SUPPORT_SYSTEMS.getLabel(), "Cruise Control", touranCruise, randomGenerator());
-
-        String A4Mirrors = "your mirrors automatically collapse";
-        Option optionA4 = new Option(Enums.Exterior.MIRRORS.getLabel(), "electric mirrors", A4Mirrors, randomGenerator());
-
-        String Q3 = "ashtray is portable";
-        Option optionQ3 = new Option(Enums.Interior.OTHER.getLabel(), "Portable ashtray", Q3, randomGenerator());
-
-        entityManager.persist(option);
-        entityManager.persist(option2);
-        entityManager.persist(option3);
-        entityManager.persist(option4);
-        entityManager.persist(option5);
-        logger.info("/////************************************INSERTING OPTIONS*************************************/////\"); ");
+        }
     }
+
+
+    public void insertCustomPackOptions(){
+        final String description6 = "Autonomous cruise control (also called adaptive or radar cruise control) is an optional cruise control system for road vehicles that automatically adjusts the vehicle speed to maintain a safe distance from vehicles ahead. It makes no use of satellite or roadside infrastructures nor of any cooperative support from other vehicles. Hence control is imposed based on sensor information from on-board sensors only. The extension to cooperative cruise control requires either fixed infrastructure as with satellites, roadside beacons or mobile infrastructures as reflectors or transmitters on the back of other vehicles ahead";
+        Option customOptionForVWGolf = new Option(Enums.Technical.SUPPORT_SYSTEMS.getLabel(), "Adaptive cruise control", description6, randomGenerator(), carModelRepository.find(2));
+        entityManager.persist(customOptionForVWGolf);
+
+        Option customOptionForIbizaST = new Option(Enums.Interior.OTHER.getLabel(), "Desactiveerbare Passagiersairbag", "Allows you to disable the aibags", randomGenerator(),carModelRepository.find(3));
+        entityManager.persist(customOptionForIbizaST);
+
+        Option customOptionForVWBeetle = new Option(Enums.Technical.SUPPORT_SYSTEMS.getLabel(), "Hill Hold Control", "Automatically brakes when you're on a hill so you don't roll away", randomGenerator(),carModelRepository.find(4));
+        entityManager.persist(customOptionForVWBeetle);
+
+        Option customOptionForAudiA4 = new Option(Enums.Technical.CHASSIS.getLabel(), "SportChasis", "Lowered the chasis for better aerodynamica", randomGenerator(),carModelRepository.find(5));
+        entityManager.persist(customOptionForAudiA4);
+
+        Option customOptionForAudiQ3 = new Option(Enums.Exterior.WHEELS.getLabel(), "alu tims 10 spikes Design 17\"", "nice rims", randomGenerator(),carModelRepository.find(6));
+        entityManager.persist(customOptionForAudiQ3);
+
+    }
+
+    public void persistForAudiA1(Option aBS, Option eSP, Option airbag, Option leather, Option pressureMonitoring) {
+        entityManager.persist(aBS);
+        entityManager.persist(eSP);
+        entityManager.persist(airbag);
+        entityManager.persist(leather);
+        entityManager.persist(pressureMonitoring);
+    }
+
 
     public void insertAPack() {
-        List<Option> optionsFromTheDB = optionRepository.findAll();
-        Pack pack = new Pack(getPrice(optionsFromTheDB), randomGenerator(), randomGenerator(), randomGenerator(), optionsFromTheDB);
-        entityManager.persist(pack);
-        Pack pack2 = new Pack(getPrice(optionsFromTheDB), randomGenerator(), randomGenerator(), randomGenerator(), optionsFromTheDB);
-        entityManager.persist(pack2);
-        logger.info("/////************************************INSERTING A PACK*************************************/////\"); ");
+        CarModel carModel = entityManager.find(CarModel.class, 1);
+        List<Option> optionsFromTheDB = optionRepository.FindByCarModel(carModel.getId());
+        Pack packForAudi = new Pack(getPrice(optionsFromTheDB), randomGenerator(), randomGenerator(), randomGenerator(), optionsFromTheDB);
+        entityManager.persist(packForAudi);
+        logger("INSERTING A PACK FOR AUDI A3");
+
+        CarModel carModelForVolkswagen = entityManager.find(CarModel.class, 2);
+        List<Option> optionsFromDBForVW = optionRepository.FindByCarModel(carModelForVolkswagen.getId());
+        Pack packForVW = new Pack(getPrice(optionsFromDBForVW), randomGenerator(), randomGenerator(), randomGenerator(), optionsFromDBForVW);
+        entityManager.persist(packForVW);
+        logger("INSERTING A PACK FOR VWGolf");
+
+
+        CarModel carModelForSeat = entityManager.find(CarModel.class, 3);
+        List<Option> optionsFromDBForSeat = optionRepository.FindByCarModel(carModelForSeat.getId());
+        Pack packForSeat = new Pack(getPrice(optionsFromDBForSeat), randomGenerator(), randomGenerator(), randomGenerator(), optionsFromDBForSeat);
+        entityManager.persist(packForSeat);
+        logger("INSERTING A PACK FOR SEAT IBIZA");
+
+        CarModel carModelVWBeetle = entityManager.find(CarModel.class, 4);
+        List<Option> optionsFromDBForVWBeetle = optionRepository.FindByCarModel(carModelVWBeetle.getId());
+        Pack packForVWBeetle = new Pack(getPrice(optionsFromDBForVWBeetle), randomGenerator(), randomGenerator(), randomGenerator(), optionsFromDBForVWBeetle);
+        entityManager.persist(packForVWBeetle);
+        logger("INSERTING A PACK FOR VW BEETLE");
+
+        CarModel carModelForVWTouran = entityManager.find(CarModel.class, 5);
+        List<Option> optionsFromDBForVWTouran = optionRepository.FindByCarModel(carModelForVWTouran.getId());
+        Pack packForVWTouran = new Pack(getPrice(optionsFromDBForVWTouran), randomGenerator(), randomGenerator(), randomGenerator(), optionsFromDBForVWTouran);
+        entityManager.persist(packForVWTouran);
+        logger("INSERTING A PACK FOR VW TOURAN");
+
+        CarModel carModelForAudiA4Berline = entityManager.find(CarModel.class, 6);
+        List<Option> optionsFromDBForAudiA4Berline = optionRepository.FindByCarModel(carModelForAudiA4Berline.getId());
+        Pack packForAudiA4Berline = new Pack(getPrice(optionsFromDBForAudiA4Berline), randomGenerator(), randomGenerator(), randomGenerator(), optionsFromDBForAudiA4Berline);
+        entityManager.persist(packForAudiA4Berline);
+        logger("INSERTING A PACK FOR AUDI A4 BERLINE");
+
+        CarModel carModelForAudiQ3 = entityManager.find(CarModel.class, 7);
+        List<Option> optionsFromDBForAudiQ3 = optionRepository.FindByCarModel(carModelForAudiQ3.getId());
+        Pack packForAudiAudiQ3 = new Pack(getPrice(optionsFromDBForAudiQ3), randomGenerator(), randomGenerator(), randomGenerator(), optionsFromDBForAudiQ3);
+        entityManager.persist(packForAudiAudiQ3);
+        logger("INSERTING A PACK FOR AUDI Q3");
 
     }
 
-    public void insertCarmodels(){
-        insertACarModel();
-        insertASecondCarModelWithAnUpdatedPack();
-        insertIbiziaSt();
-        insertVWBeetle();
-        insertVwTouran();
-        insertAudiA4Berline();
-        insertAudiQ3();
-    }
 
-    private void insertACarModel() {
-        CarModel carModel = new CarModel("Audi", "A3",Enums.CarType.HATCHBACK, Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 20, 9, 88, 2, "", packRepository.findAll().get(0));
+    private void insertAudiA3() {
+        //AUDI
+        CarModel carModel = new CarModel("Audi", "A3", Enums.CarType.HATCHBACK, Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 20, 9, 88, 2, "");
         entityManager.persist(carModel);
-        logger.info("/////************************************INSERTING A CARMODEL*************************************/////\"); ");
+        logger("INSERTING CARMODEL AUDI A3");
 
     }
 
-    private void insertASecondCarModelWithAnUpdatedPack() {
-        final String description6 = "Autonomous cruise control (also called adaptive or radar cruise control) is an optional cruise control system for road vehicles that automatically adjusts the vehicle speed to maintain a safe distance from vehicles ahead. It makes no use of satellite or roadside infrastructures nor of any cooperative support from other vehicles. Hence control is imposed based on sensor information from on-board sensors only. The extension to cooperative cruise control requires either fixed infrastructure as with satellites, roadside beacons or mobile infrastructures as reflectors or transmitters on the back of other vehicles ahead";
-        Option option6 = new Option(Enums.Technical.SUPPORT_SYSTEMS.getLabel(), "Adaptive cruise control", description6, randomGenerator());
-        entityManager.persist(option6);
-        Pack packRetrievedFromDB = packRepository.findAll().get(1);
-        packRetrievedFromDB.getOptions().add(optionRepository.findAll().get(5));
-        packRepository.update(packRetrievedFromDB);
-        CarModel carModel2 = new CarModel("Volkswagen", "Golf 7 1,6 TDI 105pk/CV Highline",Enums.CarType.HATCHBACK, Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 16, 9, 99, 2, "", packRepository.findAll().get(0));
+    private void insertAVWGolf() {
+        CarModel carModel2 = new CarModel("Volkswagen", "Golf 7 1,6 TDI 105pk/CV Highline", Enums.CarType.HATCHBACK, Enums.Fuel.DIESEL, new Date(), 2, 140000, 180000, 16, 9, 99, 2, "");
         entityManager.persist(carModel2);
-        logger.info("/////************************************INSERTING A SECOND CAR WITH AN UPDATED PACK*************************************/////\"); ");
+        logger("INSERTING A SECOND CAR WITH AN UPDATED PACK");
 
     }
 
-    private void insertIbiziaSt(){
-        Option option = new Option(Enums.Interior.OTHER.getLabel(), "Desactiveerbare Passagiersairbag", "Allows you to disable the aibags", randomGenerator());
-        entityManager.persist(option);
-        Pack pack = packRepository.findAll().get(1);
-        pack.getOptions().add(option);
-        packRepository.update(pack);
-        CarModel carModel = new CarModel("Seat", "Ibiza St 1,6TDi 105pk/CV Style",Enums.CarType.BREAK, Enums.Fuel.BENZINE, new Date(),2,140000,180000,14,7,92,2,"",pack);
+    private void insertIbiziaSt() {
+        CarModel carModel = new CarModel("Seat", "Ibiza St 1,6TDi 105pk/CV Style", Enums.CarType.BREAK, Enums.Fuel.BENZINE, new Date(), 2, 140000, 180000, 14, 7, 92, 2, "");
         entityManager.persist(carModel);
-        logger.info("/////************************************INSERTING A Ibiza St CarModel*************************************/////\"); ");
+        logger("INSERTING A Ibiza St CarModel");
     }
 
-    private void insertVWBeetle(){
-        Option option = new Option(Enums.Technical.SUPPORT_SYSTEMS.getLabel(),"Hill Hold Control","Automatically brakes when you're on a hill so you don't roll away",randomGenerator());
-        entityManager.persist(option);
-        Pack pack = packRepository.findAll().get(1);
-        pack.getOptions().add(option);
-        packRepository.update(pack);
-        CarModel carModel = new CarModel("Volkswagen","BEETLE 1,6 CRTDI 105 pk 5 v Design", Enums.CarType.COUPE, Enums.Fuel.DIESEL,new Date(),3,140000,180000,20,9,113,3,"",pack);
+    private void insertVWBeetle() {
+        CarModel carModel = new CarModel("Volkswagen", "BEETLE 1,6 CRTDI 105 pk 5 v Design", Enums.CarType.COUPE, Enums.Fuel.DIESEL, new Date(), 3, 140000, 180000, 20, 9, 113, 3, "");
         entityManager.persist(carModel);
-        logger.info("/////************************************INSERTING A VW Beetle CarModel*************************************/////\"); ");
+        logger("INSERTING A VW Beetle CarModel");
     }
 
-    private void insertVwTouran(){
-        Pack pack = packRepository.findAll().get(1);
-        CarModel carModel = new CarModel("Volkswagen", "Touran 1,6TDi 105pk/CV Trendline Bluemotion", Enums.CarType.MONOVOLUME, Enums.Fuel.DIESEL,new Date(),1,140000,180000,20,9,121,4,"",pack);
+    private void insertVwTouran() {
+        CarModel carModel = new CarModel("Volkswagen", "Touran 1,6TDi 105pk/CV Trendline Bluemotion", Enums.CarType.MONOVOLUME, Enums.Fuel.DIESEL, new Date(), 1, 140000, 180000, 20, 9, 121, 4, "");
         entityManager.persist(carModel);
-        logger.info("/////************************************INSERTING A VW Touran CarModel*************************************/////\"); ");
+        logger("INSERTING A VW Touran CarModel");
+
     }
 
-    private void insertAudiA4Berline(){
-        Option option = new Option(Enums.Technical.CHASSIS.getLabel(),"SportChasis","Lowered the chasis for better aerodynamica",randomGenerator());
-        entityManager.persist(option);
-        Pack pack = packRepository.findAll().get(1);
-        pack.getOptions().add(option);
-        packRepository.update(pack);
-        CarModel carModel = new CarModel("Audi", "A4 Berline 2,0 TDIe ultra 136 pk/cv", Enums.CarType.BERLINE, Enums.Fuel.DIESEL,new Date(),4,180000,200000,16,9,104,5,"",pack);
+    private void insertAudiA4Berline() {
+        CarModel carModel = new CarModel("Audi", "A4 Berline 2,0 TDIe ultra 136 pk/cv", Enums.CarType.BERLINE, Enums.Fuel.DIESEL, new Date(), 4, 180000, 200000, 16, 9, 104, 5, "");
         entityManager.persist(carModel);
-        logger.info("/////************************************INSERTING A Audi A4 Berline CarModel*************************************/////\"); ");
+        logger("INSERTING A Audi A4 Berline CarModel");
     }
 
-    private void insertAudiQ3(){
-        List<Option> optionList = optionRepository.findAll();
-        Option option = new Option(Enums.Exterior.WHEELS.getLabel(),"alu tims 10 spikes Design 17\"","nice rims",randomGenerator());
-        entityManager.persist(option);
-        Pack pack = packRepository.findAll().get(1);
-        pack.getOptions().add(option);
-        packRepository.update(pack);
-        CarModel carModel = new CarModel("Audi", "Q3 2,0 TDI 136 pk/cv", Enums.CarType.JEEP, Enums.Fuel.DIESEL,new Date(),4,180000,200000,20,11,137,6,"",pack);
+    private void insertAudiQ3() {
+        CarModel carModel = new CarModel("Audi", "Q3 2,0 TDI 136 pk/cv", Enums.CarType.JEEP, Enums.Fuel.DIESEL, new Date(), 4, 180000, 200000, 20, 11, 137, 6, "");
         entityManager.persist(carModel);
-        logger.info("/////************************************INSERTING A Audi Q3 CarModel*************************************/////\"); ");
+        logger("INSERTING A Audi Q3 CarModel");
     }
 
-    public void insertCustomPack(){
-        List<Option> optionList = optionRepository.findAll();
-        CustomPack customPack = new CustomPack(optionList);
+    public void insertCustomPack() {
+        List<Option> optionListForCustomPack = new ArrayList<>();
+        optionListForCustomPack.add(optionRepository.find(37));
+        CustomPack customPack = new CustomPack(optionListForCustomPack);
         entityManager.persist(customPack);
     }
 
 
-    public void insertCar(){
-        List<CustomPack> customPackList = customPackRepository.findAll();
-        List<CarModel> modelList = carModelRepository.findAllByBrand("Seat");
-        Car car = new Car(modelList.get(0),randomGenerator().intValue(),new Date(),customPackList.get(0));
+    public void updateCarModelsWithADefaultPack() {
+
+        for (int i = 1; i < 8; i++) {
+            CarModel audiA1 = entityManager.find(CarModel.class,i);
+                Pack packForAudiA1 = entityManager.find(Pack.class,i);
+                audiA1.setPack(packForAudiA1);
+                entityManager.merge(audiA1);
+        }
+        logger("UPDATED CARMODELS WITH A DEFAULTPACK");
+    }
+
+    public void insertCar() {
+        Car car = new Car(carModelRepository.find(3), randomGenerator().intValue(), new Date(),entityManager.find(CustomPack.class,1));
         entityManager.persist(car);
     }
 
@@ -228,13 +233,31 @@ public class TestDataInserter {
         rolesList.add(Enums.Roles.EMPLOYEE);
         Employee employeeApproved = new Employee("Benjamine", "Pieteraerents", "employeeApproved@hotmail.com", "employeeApproved", "AT47", 2, rolesList, Enums.Status.APPROVED);
         entityManager.persist(employeeApproved);
-        Employee employeeDisapproved = new Employee("Aveline", "Estie", "employeeDisapproved@hotmail.com", "employeeDisapproved", "AT46", 2,rolesList, Enums.Status.DISAPPROVED);
+        Employee employeeDisapproved = new Employee("Aveline", "Estie", "employeeDisapproved@hotmail.com", "employeeDisapproved", "AT46", 2, rolesList, Enums.Status.DISAPPROVED);
         entityManager.persist(employeeDisapproved);
         List<Enums.Roles> rolesArrayList = new ArrayList<>();
         rolesArrayList.add(Enums.Roles.EMPLOYEE);
         rolesArrayList.add(Enums.Roles.FLEET_MANAGER);
         Employee leasingManager = new Employee("Tim", "Lemahieu", "leasingManager@hotmail.com", "leasingManager", "AU71", 2, rolesArrayList, Enums.Status.APPROVED);
         entityManager.persist(leasingManager);
-        logger.info("/////************************************INSERTING EMPLOYEES*************************************/////\"); ");
+        logger("INSERTING EMPLOYEES");
+    }
+
+
+    public BigDecimal randomGenerator() {
+        return new BigDecimal(new Random().nextInt(500));
+    }
+
+    public BigDecimal getPrice(List<Option> options) {
+        BigDecimal totalPrice = new BigDecimal(0);
+        for (Option option : options) {
+            totalPrice = totalPrice.add(option.getPrice());
+        }
+        return totalPrice.multiply(new BigDecimal(0.9));
+    }
+
+    public void logger(String info) {
+        logger.info("/////************************************" + info + "*************************************/////\"); ");
+
     }
 }

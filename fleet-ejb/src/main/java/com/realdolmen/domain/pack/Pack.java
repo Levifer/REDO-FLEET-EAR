@@ -16,7 +16,8 @@ import java.util.List;
 @XmlType(name = "Pack",propOrder = {"id","price","benefitPrice","upgrade","downgrade","options"})
 public class Pack {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "PACK_SEQUENCE")
+    @SequenceGenerator(name = "PACK_SEQUENCE", sequenceName = "PACK_ID_SEQUENCE", allocationSize = 1)
     private Integer id;
     @XmlElement
     private BigDecimal price;

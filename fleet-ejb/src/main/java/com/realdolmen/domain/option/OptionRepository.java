@@ -26,4 +26,8 @@ public class OptionRepository extends AbstractRepository<Option> {
                 .setParameter("name","%"+name+"%")
                 .getResultList();
     }
+
+    public List<Option> FindByCarModel(Integer id){
+        return  entityManager.createNamedQuery("Option.findOptionByCarModel",Option.class).setParameter("id",id).getResultList();
+    }
 }

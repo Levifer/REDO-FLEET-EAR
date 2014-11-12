@@ -2,10 +2,7 @@ package com.realdolmen.domain.custompack;
 
 import com.realdolmen.domain.option.Option;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.util.List;
 
@@ -19,7 +16,8 @@ import java.util.List;
 public class CustomPack {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "CUSTOMPACK_SEQUENCE")
+    @SequenceGenerator(name = "CUSTOMPACK_SEQUENCE", sequenceName = "CUSTOMPACK_ID_SEQUENCE", allocationSize = 1)
     private Integer id;
     @OneToMany(targetEntity = Option.class)
     @XmlElementWrapper(name = "options")
@@ -48,7 +46,7 @@ public class CustomPack {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CustomPack)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         CustomPack that = (CustomPack) o;
 

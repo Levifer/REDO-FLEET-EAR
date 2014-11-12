@@ -59,6 +59,8 @@ public class CarModel {
     private Pack pack;
 
 
+
+
     public CarModel() {
     }
 
@@ -93,6 +95,22 @@ public class CarModel {
         this.fiscalHp = fiscalHp;
         this.co2 = co2;
         this.category = category;
+    }
+
+    public CarModel(String brand, String name, Enums.CarType type, Enums.Fuel fuelType, Date year, int quarter, int minKm, int maxKm, int deliveryTime, int fiscalHp, int co2, int category, String imageUrl) {
+        this.brand = brand;
+        this.name = name;
+        this.type = type;
+        this.fuelType = fuelType;
+        this.year = year;
+        this.quarter = quarter;
+        this.minKm = minKm;
+        this.maxKm = maxKm;
+        this.deliveryTime = deliveryTime;
+        this.fiscalHp = fiscalHp;
+        this.co2 = co2;
+        this.category = category;
+        this.imageUrl = imageUrl;
     }
 
     public String getBrand() {
@@ -210,6 +228,7 @@ public class CarModel {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
 
 
     @Override

@@ -234,6 +234,25 @@
                             <target>2.0</target>
                         </configuration>
                     </execution>
+                  <execution>
+                        <id>wsdl-car</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>CarWebService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <destDir>${baseDir}/target/jaxws/wsimport/java</destDir>
+                            <packageName>com.realdolmen.wsdl.car</packageName>
+                            <staleFile>${project.build.directory}/jaxws/stale/wsdl.CarWebService.done</staleFile>
+                            <xadditionalHeaders>true</xadditionalHeaders>
+                            <extension>true</extension>
+                            <keep>true</keep>
+                            <verbose>true</verbose>
+                            <target>2.0</target>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
 

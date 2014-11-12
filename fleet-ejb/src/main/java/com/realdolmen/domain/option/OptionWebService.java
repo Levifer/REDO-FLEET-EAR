@@ -55,4 +55,10 @@ public class OptionWebService {
     public List<Option> findOptionLowerThandPrice(@WebParam(name = "price") BigDecimal price) {
         return null;
     }
+
+    @WebResult(name = "options")
+    @WebMethod(action = "findOptionsByCarModelId")
+    public List<Option> findOptionByCarModelId(@WebParam(name = "id") Integer id){
+        return optionRepository.FindByCarModel(id);
+    }
 }

@@ -9,7 +9,7 @@ import javax.inject.Inject;
 /**
  * Created by BPTAT47 on 30/10/2014.
  */
-/*
+
 @Singleton
 @Startup
 public class TestData {
@@ -17,14 +17,15 @@ public class TestData {
     @Inject
     private TestDataInserter inserter;
 
- @PostConstruct
-    private  void init(){
+    @PostConstruct
+    private void init() {
+        inserter.insertCarmodels();
         inserter.insertOptions();
         inserter.insertAPack();
-        inserter.insertCarmodels();
+        inserter.insertEmployees();
+        inserter.insertCustomPackOptions();
+        inserter.updateCarModelsWithADefaultPack();
         inserter.insertCustomPack();
         inserter.insertCar();
-        inserter.insertEmployees();
     }
 }
-*/

@@ -7,7 +7,7 @@
 <spring:url value="/" var="rootUrl"/>
 
 <div class="row">
-    <div class="col-md-12"><h2><spring:message code="title.car.order.done"/></h2></div>
+    <div class="col-md-12"><h2><spring:message code="title.car.order.confirm"/></h2></div>
 </div>
 <div class="row">
     <div class="col-md-6">
@@ -33,5 +33,13 @@
                 </tr>
             </tbody>
         </table>
+        <form:form>
+            <a href="${rootUrl}" class="btn btn-danger"><spring:message code="actions.backToIndex" /></a>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            </input>
+            <spring:message code="actions.confirm" var="confirm"/>
+            <input type="submit" value="${confirm}" name="_e ventId_finish"
+                   class="btn btn-success pull-right"/>
+        </form:form>
     </div>
 </div>

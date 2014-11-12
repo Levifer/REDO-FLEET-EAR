@@ -1,17 +1,13 @@
 package com.realdolmen.controller;
 
 import com.realdolmen.util.LoggerProducer;
-//import com.realdolmen.wsdl.car.Car;
 import com.realdolmen.wsdl.car.Car;
 import com.realdolmen.wsdl.car.CarWebService;
-import com.realdolmen.wsdl.carmodel.CarModel;
-import com.realdolmen.wsdl.carmodel.CarModelWebService;
 import com.realdolmen.wsdl.option.Option;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -22,6 +18,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+//import com.realdolmen.wsdl.car.Car;
 
 /**
  * Created by BPTAT47 on 7/11/2014.
@@ -41,7 +39,7 @@ public class CarOrderController {
         Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
         List<Option> optionList = new ArrayList<>();
         List<Option> realOptions  = new ArrayList<>();;
-        Car car = new Car();
+        car = new Car();
         if (inputFlashMap != null) {
             car= (Car)inputFlashMap.get("car");
             optionList = (List<Option>) inputFlashMap.get("optionList");
@@ -70,6 +68,7 @@ public class CarOrderController {
 
         carWebService.createCar(car);
         logger.info("/***************Car Insterted********************/");
+        model.addAttribute("carOrder", "yes");
         return "index";
     }
 

@@ -1,8 +1,19 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%-- Variables --%>
 <spring:url value="/resources/img" var="imgUrl"/>
 
+<c:if test="${carOrder.equals('yes')}">
+    <div class="row">
+        <br/>
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                    class="sr-only">Close</span></button>
+            <spring:message code="message.order"/>
+        </div>
+    </div>
+</c:if>
 <%-- Page --%>
 <div class="row">
     <div class="col-md-12"><h2><spring:message code="car.details.title"/></h2></div>

@@ -7,7 +7,7 @@
 <spring:url value="/admin/carmodel" var="url"/>
 <div class="row">
     <div class="col-sm-12">
-        <h2><spring:message code="admin.carmodel.update"/>></h2>
+        <h2><spring:message code="admin.carmodel.update"/></h2>
     </div>
     <div class="col-sm-3 col-sm-offset-9">
         <a href="${url}" class="btn btn-danger pull-right">Back to overview</a>

@@ -7,6 +7,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
  */
 @WebService
 @Stateless
+@SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 public class OptionWebService {
 
     @Inject
@@ -30,6 +32,12 @@ public class OptionWebService {
     @WebMethod(action = "findAllOption")
     public List<Option> findAllOption(){
         return optionRepository.findAll();
+    }
+
+    @WebResult(name = "options")
+    @WebMethod(action = "findDistinctOptions")
+    public List<Option> findDistinctOptions(){
+        return optionRepository.findDistinctOptions();
     }
 
     @WebResult(name = "option")
@@ -61,4 +69,6 @@ public class OptionWebService {
     public List<Option> findOptionByCarModelId(@WebParam(name = "id") Integer id){
         return optionRepository.FindByCarModel(id);
     }
+
+
 }

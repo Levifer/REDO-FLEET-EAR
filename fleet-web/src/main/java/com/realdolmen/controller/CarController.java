@@ -9,6 +9,7 @@ import com.realdolmen.service.CarModelWebServiceClient;
 import com.realdolmen.service.OptionWebServiceClient;
 import com.realdolmen.util.LoggerProducer;
 //import com.realdolmen.wsdl.car.Car;
+import com.realdolmen.wsdl.car.Car;
 import com.realdolmen.wsdl.carmodel.CarModel;
 import com.realdolmen.wsdl.carmodel.Option;
 import com.realdolmen.wsdl.customPack.CustomPack;
@@ -99,10 +100,20 @@ public class CarController {
         logger.info("/carDetail - id: " + id);
 
         CarModel carModel = (CarModel) request.getSession().getAttribute("carmodel");
-        List<com.realdolmen.wsdl.option.Option> options =   optionWebServiceClient.getOptionsByCarModelId(carModel);
+        ArrayList<com.realdolmen.wsdl.option.Option> list = new ArrayList<com.realdolmen.wsdl.option.Option>();
+        list.add(optionWebServiceClient.findOptionById(35));
+        list.add(optionWebServiceClient.findOptionById(36));
+        list.add(optionWebServiceClient.findOptionById(37));
+        list.add(optionWebServiceClient.findOptionById(38));
+        list.add(optionWebServiceClient.findOptionById(39));
+        list.add(optionWebServiceClient.findOptionById(40));
+
+        request.getSession().setAttribute("listOfOptions",list);
+
+        List<com.realdolmen.wsdl.option.Option> options =   list;
         model.addAttribute("carModel", carModel);
         model.addAttribute("options", new OptionList());
-        model.addAttribute("customOptions",options);
+        model.addAttribute("customOptions",list);
         return "carDetail";
     }
 
@@ -111,23 +122,27 @@ public class CarController {
     @RequestMapping(value = "/car/detail", method = RequestMethod.POST)
     public String handleFormSubmission(final RedirectAttributes redirectAttributes, HttpServletRequest request) {
         CarModel carModel = (CarModel) request.getSession().getAttribute("carmodel");
-      //  com.realdolmen.wsdl.car.CustomPack customPack = new com.realdolmen.wsdl.car.CustomPack();
+        List<com.realdolmen.wsdl.option.Option> optionList = (  List<com.realdolmen.wsdl.option.Option>)request.getSession().getAttribute("listOfOptions");
+
+        com.realdolmen.wsdl.car.CustomPack customPack = new com.realdolmen.wsdl.car.CustomPack();
+        customPack.setOptions(new com.realdolmen.wsdl.car.CustomPack.Options());
 
         String [] selectedOptions = request.getParameterValues("items");
         List<com.realdolmen.wsdl.customPack.Option> optionsToBeSaved = new ArrayList<>();
         for (String s : selectedOptions) {
             OptionToCustomPackOptionMapper optionMapper = new OptionToCustomPackOptionMapper();
-           com.realdolmen.wsdl.option.Option option = optionWebServiceClient.findOptionById(Integer.parseInt(s));
+            com.realdolmen.wsdl.option.Option option = optionWebServiceClient.findOptionById(Integer.parseInt(s));
             optionsToBeSaved.add(optionMapper.mapTo(option));
         }
 
-       // Car car = new Car();
+        Car car = new Car();
         CarModelToCar carModelToCar = new CarModelToCar();
-        //car.setModel(carModelToCar.mapTo(carModel));
+        car.setModel(carModelToCar.mapTo(carModel));
         CustomPackOptionToCarOptionMapper carOptionMapper = new CustomPackOptionToCarOptionMapper();
-       // customPack.getOptions().getOption().addAll(carOptionMapper.mapTo(optionsToBeSaved));
-        //car.setCustomPack(customPack);
-       // redirectAttributes.addFlashAttribute("car", car);
+        customPack.getOptions().getOption().addAll(carOptionMapper.mapTo(optionsToBeSaved));
+        car.setCustomPack(customPack);
+        redirectAttributes.addFlashAttribute("optionList", optionList);
+        redirectAttributes.addFlashAttribute("car", car);
         return "redirect:/ordercar/order";
     }
 

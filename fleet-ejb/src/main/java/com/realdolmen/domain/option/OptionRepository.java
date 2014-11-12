@@ -30,4 +30,8 @@ public class OptionRepository extends AbstractRepository<Option> {
     public List<Option> FindByCarModel(Integer id){
         return  entityManager.createNamedQuery("Option.findOptionByCarModel",Option.class).setParameter("id",id).getResultList();
     }
+
+    public List<Option> findDistinctOptions() {
+        return entityManager.createNamedQuery("Option.findDistinctOptions",Option.class).getResultList();
+    }
 }

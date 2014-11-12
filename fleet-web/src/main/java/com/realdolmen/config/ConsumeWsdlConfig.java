@@ -1,5 +1,7 @@
 package com.realdolmen.config;
 
+import com.realdolmen.wsdl.car.CarWebService;
+import com.realdolmen.wsdl.car.CarWebServiceService;
 import com.realdolmen.wsdl.carmodel.CarModelWebService;
 import com.realdolmen.wsdl.carmodel.CarModelWebServiceService;
 import com.realdolmen.wsdl.option.OptionWebService;
@@ -29,4 +31,9 @@ public class ConsumeWsdlConfig {
     public PackWebService packWebService(){
         return new PackWebServiceService().getPackWebServicePort();
     }
+    @Bean
+    public CarWebService carWebService(){
+        return new CarWebServiceService().getCarWebServicePort();
+    }
+
 }

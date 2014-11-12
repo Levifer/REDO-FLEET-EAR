@@ -14,12 +14,33 @@
     </div>
 </div>
 <div class="row">
-    <form:form>
         <hr >
         <div class="col-sm-3 col-sm-offset-1">
             <p>${car.model.brand} ${car.model.name} (${car.model.type})</p>
         </div>
 
+</div>
+
+<div class="row">
+    <table class="table">
+        <tbody>
+        <c:forEach items="${optionList}" var="option">
+            <tr>
+                <td>
+                    <c:out value="${option.name}  ${option.price}"/>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <div class="col-sm-3 col-sm-offset-1">
+        <p>${totalPrice}</p>
+    </div>
+</div>
+<div class="row">
+        <form:form>
         <input type="button" value="Back to car detail"
                class="btn btn-danger" >
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

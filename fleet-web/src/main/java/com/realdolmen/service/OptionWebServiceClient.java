@@ -22,12 +22,12 @@ public class OptionWebServiceClient {
     private OptionWebService optionWebService;
 
     public List<Option> getAllOptions() {
-        return optionWebService.findAllOption();
+        return optionWebService.findAllOption().getItem();
     }
 
     public List<Option> getOptionsByCarModelId(CarModel carModel) {
         PackToCarModelOptionMapper optionMapper = new PackToCarModelOptionMapper();
-        List<Option> optionsRetrievedFromDB = optionWebService.findOptionByCarModelId(carModel.getId());
+        List<Option> optionsRetrievedFromDB = optionWebService.findOptionByCarModelId(carModel.getId()).getItem();
         List<Option> optionsToBeReturned = new ArrayList<>();
         for (Option option : optionsRetrievedFromDB) {
             if (!carModel.getPack().getOptions().getOption().contains(option)) {
@@ -39,5 +39,9 @@ public class OptionWebServiceClient {
 
     public Option findOptionById(Integer id) {
         return optionWebService.findOptionById(id);
+    }
+
+    public List<Option> findDistinctOptions(){
+        return optionWebService.findDistinctOptions().getItem();
     }
 }

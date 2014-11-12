@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Levifer on 11/11/2014.
  */
 public class CustomPackOptionToCarOptionMapper {
-   /* public com.realdolmen.wsdl.car.Option  mapTo(Option itemRetrievedFromSoap ){
+   public com.realdolmen.wsdl.car.Option  mapTo(Option itemRetrievedFromSoap ){
 
         return  setValues(itemRetrievedFromSoap);
     }
@@ -31,5 +31,5 @@ public class CustomPackOptionToCarOptionMapper {
         customOption.setPrice(option.getPrice());
         customOption.setType(option.getType());
         return  customOption;
-    }*/
+    }
 }

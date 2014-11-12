@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 @NamedQueries(
         {
                 @NamedQuery(name = "Option.findOptionByCarModel",query = "SELECT o FROM Option o WHERE o.carModel.id = :id"),
+                @NamedQuery(name = "Option.findDistinctOptions", query = "Select DISTINCT o  FROM Option o"),
         }
 )
 public class Option {

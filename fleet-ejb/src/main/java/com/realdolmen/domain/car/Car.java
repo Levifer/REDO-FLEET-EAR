@@ -22,7 +22,7 @@ public class Car implements Serializable {
     @SequenceGenerator(name = "CAR_SEQUENCE", sequenceName = "CAR_ID_SEQUENCE", allocationSize = 1)
     private Integer id;
 
-    @ManyToOne(targetEntity = CarModel.class)
+    @ManyToOne(targetEntity = CarModel.class, cascade = {CascadeType.ALL})
     @XmlElement
     private CarModel model;
 
@@ -34,7 +34,7 @@ public class Car implements Serializable {
     private Date carInUse;
 
     @XmlElement
-    @OneToOne(targetEntity = CustomPack.class)
+    @OneToOne(targetEntity = CustomPack.class, cascade = {CascadeType.ALL})
     private CustomPack customPack;
 
     public Car() {

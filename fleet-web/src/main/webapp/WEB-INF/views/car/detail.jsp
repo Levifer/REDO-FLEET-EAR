@@ -20,7 +20,7 @@
                     <c:forEach items="${customOptions}" var="option">
                     <tr>
                         <td>
-                        <form:checkbox path="items" value="${option.OPTIONID}" label="${option.name}"/><br/>
+                        <form:checkbox path="items" value="${option.OPTIONID}" label="${option.name} ${option.price}"/><br/>
                             <c:out value="${option.description}"/>
                         </td>
                     </tr>

@@ -53,6 +53,7 @@ public class CarModelController {
     private List<Pack> packs;
     private List<CarType> types;
     private Pack pack = null;
+    private List<Option> optionList;
 
     @RequestMapping("admin/carmodel")
     public String carModelList(Model model){
@@ -68,7 +69,7 @@ public class CarModelController {
         model.addAttribute("packList",packs);
         model.addAttribute("typeList", types);
         model.addAttribute("pack",pack);
-        model.addAttribute("optionsList", optionWebServiceClient.getAllOptions());
+        model.addAttribute("optionsList", optionList);
         return "insertCarModel";
     }
 
@@ -100,6 +101,20 @@ public class CarModelController {
         types.add(CarType.HATCHBACK);
         types.add(CarType.JEEP);
         types.add(CarType.MONOVOLUME);
+
+
+        optionList = new ArrayList<>();
+        optionList.add(optionWebServiceClient.findOptionById(6));
+        optionList.add(optionWebServiceClient.findOptionById(7));
+        optionList.add(optionWebServiceClient.findOptionById(8));
+        optionList.add(optionWebServiceClient.findOptionById(9));
+        optionList.add(optionWebServiceClient.findOptionById(10));
+        optionList.add(optionWebServiceClient.findOptionById(35));
+        optionList.add(optionWebServiceClient.findOptionById(36));
+        optionList.add(optionWebServiceClient.findOptionById(37));
+        optionList.add(optionWebServiceClient.findOptionById(38));
+        optionList.add(optionWebServiceClient.findOptionById(39));
+        optionList.add(optionWebServiceClient.findOptionById(40));
     }
     @RequestMapping(value="/admin/carmodel/add", method = RequestMethod.POST)
     public String insertCarModel(@ModelAttribute("carModel")CarModel carModel, BindingResult result,Model model, HttpServletRequest request){
@@ -122,45 +137,8 @@ public class CarModelController {
 
         pack.getOptions().getOption().addAll(carModelOptions);
 
-        com.realdolmen.wsdl.pack.Pack persistingPack = packMapper.mapTo(pack);
-
-        int id = packWebServiceClient.addPack(persistingPack);
-        pack.setId(id);
-
         carModel.setPack(pack);
-/*
-        com.realdolmen.wsdl.pack.Pack originalPack = new com.realdolmen.wsdl.pack.Pack();
-        List<com.realdolmen.wsdl.pack.Option> packOptions = new ArrayList<>();
-        OptionToPackOptionMapper optionToPackOptionMapper = new OptionToPackOptionMapper();
 
-        for(String id : request.getParameterValues("pack.options.option")){
-            for(Option o : optionList){
-                if(o.getOPTIONID().toString().equals(id)){
-                    packOptions.add(mapOption(o));
-                }
-            }
-        }
-
-        com.realdolmen.wsdl.pack.Pack.Options optionsWrapper = new com.realdolmen.wsdl.pack.Pack.Options();
-        for(com.realdolmen.wsdl.pack.Option option : packOptions){
-            optionsWrapper.getOption().add(option);
-
-        }
-
-        originalPack.setOptions(optionsWrapper);
-
-        originalPack.setBenefitPrice(carModel.getPack().getBenefitPrice());
-        originalPack.setDowngrade(carModel.getPack().getDowngrade());
-        originalPack.setPrice(carModel.getPack().getPrice());
-        originalPack.setUpgrade(carModel.getPack().getUpgrade());
-
-        int id = packWebServiceClient.addPack(originalPack);
-
-        com.realdolmen.wsdl.pack.Pack createdPack = packWebServiceClient.findPackById(id);
-
-        Pack carModelPack = mapPack(createdPack);
-        carModel.setPack(carModelPack);
-*/
         carModel.setYear(getCalendar());
         //carModel.setImageUrl(carModel.getBrand().toLowerCase() + "_" + carModel.getName().substring(0,carModel.getName().indexOf(" ")).toLowerCase() + "_" + carModel.getYear().getYear() + ".jpg");
         carModelWebServiceClient.addCarModel(carModel);

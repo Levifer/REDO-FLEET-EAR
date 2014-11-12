@@ -16,7 +16,7 @@
             </xs:complexType>
             <xs:complexType name="findCustomPackByIdResponse">
                 <xs:sequence>
-                    <xs:element minOccurs="0" ref="tns:customPack"/>
+                    <xs:element minOccurs="0" name="customPack" type="tns:CustomPack"/>
                 </xs:sequence>
             </xs:complexType>
             <xs:complexType name="CustomPack">
@@ -25,7 +25,7 @@
                     <xs:element minOccurs="0" name="options">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:option"/>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="option" type="tns:Option"/>
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
@@ -42,7 +42,7 @@
             </xs:complexType>
             <xs:complexType name="createCustomPack">
                 <xs:sequence>
-                    <xs:element minOccurs="0" ref="tns:customPack"/>
+                    <xs:element minOccurs="0" name="customPack" type="tns:CustomPack"/>
                 </xs:sequence>
             </xs:complexType>
             <xs:complexType name="createCustomPackResponse">

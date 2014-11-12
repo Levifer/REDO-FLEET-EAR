@@ -1,6 +1,8 @@
 package com.realdolmen.domain.car;
 
 
+import com.realdolmen.domain.carmodel.CarModelRepository;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.jws.WebMethod;
@@ -16,14 +18,18 @@ import java.util.List;
  */
 @WebService
 @Stateless
-@SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
+//@SOAPBinding(parameterStyle = SOAPBinding.ParameterStyle.BARE)
 public class CarWebService {
 
     @Inject
     private CarRepository carRepository;
 
+    @Inject
+    private CarModelRepository carModelRepository;
+
     @WebMethod(action = "create")
     public void createCar(@WebParam(name = "Car")Car car){
+        car.setModel(carModelRepository.update(car.getModel()));
         carRepository.persist(car);
     }
 

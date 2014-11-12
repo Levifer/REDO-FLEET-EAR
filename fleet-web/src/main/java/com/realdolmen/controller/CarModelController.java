@@ -119,6 +119,17 @@ public class CarModelController {
     @RequestMapping(value="/admin/carmodel/add", method = RequestMethod.POST)
     public String insertCarModel(@ModelAttribute("carModel")CarModel carModel, BindingResult result,Model model, HttpServletRequest request){
         logger.info("Carmodel Valid");
+        if(request.getParameterValues("pack.options.option") == null){
+            populate(model);
+            model.addAttribute("carModel", carModel);
+            model.addAttribute("fuelList", fuels);
+            model.addAttribute("packList",packs);
+            model.addAttribute("typeList", types);
+            model.addAttribute("pack",pack);
+            model.addAttribute("optionsList", optionWebServiceClient.getAllOptions());
+            model.addAttribute("optionsSelected","no");
+            return "insertCarModel";
+        }
 
         List<Option> optionList = optionWebServiceClient.getAllOptions();
 
